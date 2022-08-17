@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "5VuAlZbIQgQqGEawNY+zB3tSQQ5/KAgEQuXlTWNZWywL1kwNx5zmJ0IpOFpyEvedFBJWzxBq8p7oKbu5ogAmdg==",
+  "dgSpecHash": "WIpdUDDX39ZBiwgRKAWQE65qaIXLkbbESXQtCAJ60TM1WmK8pF+5u5MKNZ+tgh/P5z8+cWmFlX/p/oWff7wLvQ==",
   "success": true,
   "projectFilePath": "F:\\EGIT\\EGITBackend\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\mario\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\mario\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.0.0\\microsoft.bcl.asyncinterfaces.1.0.0.nupkg.sha512",
+    "C:\\Users\\mario\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\mario\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.17\\microsoft.entityframeworkcore.5.0.17.nupkg.sha512",
     "C:\\Users\\mario\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.17\\microsoft.entityframeworkcore.abstractions.5.0.17.nupkg.sha512",
     "C:\\Users\\mario\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.17\\microsoft.entityframeworkcore.analyzers.5.0.17.nupkg.sha512",

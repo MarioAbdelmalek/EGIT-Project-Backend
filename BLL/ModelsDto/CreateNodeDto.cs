@@ -4,9 +4,8 @@ using System.Text;
 
 namespace BLL.ModelsDto
 {
-    public class NodeDto
+    public class CreateNodeDto
     {
-        public int NodeID { get; set; }
         public string NodeName { get; set; }
         public string NodeType { get; set; }
         public int TotalRAM { get; set; }

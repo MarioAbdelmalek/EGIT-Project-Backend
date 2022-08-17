@@ -17,6 +17,7 @@ namespace DAL
         public DbSet<Node> Nodes { get; set; }
         public DbSet<Storage> Storages { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

@@ -15,8 +15,8 @@ namespace BLL.ModelsDto
         public string PhoneNumber { get; set; }
         public string PassportNumber { get; set; }
         public string Password { get; set; }
-        //public Array ReservedFlights { get; set; }
         public Boolean IsAdmin { get; set; }
+        public Boolean IsPowerUser { get; set; }
 
     }
 }
