@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EGITBackend", "EGITBackend\EGITBackend.csproj", "{786BCB78-7C9E-446A-B677-1776DD4866F0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CD887A77-18C0-4A01-84E1-FD46B9A83B0F} = {CD887A77-18C0-4A01-84E1-FD46B9A83B0F}
+		{A91807C0-0595-4FC4-804F-B3D8F932D604} = {A91807C0-0595-4FC4-804F-B3D8F932D604}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{A91807C0-0595-4FC4-804F-B3D8F932D604}"
 	ProjectSection(ProjectDependencies) = postProject

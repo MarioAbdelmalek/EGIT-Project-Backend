@@ -1107,7 +1107,6 @@
       "AutoMapper >= 11.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 11.0.0",
       "BLL >= 1.0.0",
-      "DAL >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 5.0.17",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.17",
       "Swashbuckle.AspNetCore >= 5.5.0"
@@ -1142,9 +1141,6 @@
           "projectReferences": {
             "C:\\Users\\farah\\OneDrive\\Desktop\\EGID fixed Project\\EGIT-Project-Backend\\BLL\\BLL.csproj": {
               "projectPath": "C:\\Users\\farah\\OneDrive\\Desktop\\EGID fixed Project\\EGIT-Project-Backend\\BLL\\BLL.csproj"
-            },
-            "C:\\Users\\farah\\OneDrive\\Desktop\\EGID fixed Project\\EGIT-Project-Backend\\DAL\\DAL.csproj": {
-              "projectPath": "C:\\Users\\farah\\OneDrive\\Desktop\\EGID fixed Project\\EGIT-Project-Backend\\DAL\\DAL.csproj"
             }
           }
         }

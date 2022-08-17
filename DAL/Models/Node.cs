@@ -10,6 +10,10 @@ namespace DAL.Models
         public int NodeID { get; set; }
         public string NodeName { get; set; }
         public string NodeType { get; set; }
+        public int TotalRAM { get; set; }
+        public int RemainingRAM { get; set; }
+        public int TotalCPUCores { get; set; }
+        public int RemainingCPUCores { get; set; }
 
         [ForeignKey("Cluster")]
         public int ClusterID { get; set; }

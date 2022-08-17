@@ -26,6 +26,9 @@ namespace EGITBackend
 
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
+
+            CreateMap<Client, ClientDto>();
+            CreateMap<ClientDto, Client>();
         }
     }
 }
