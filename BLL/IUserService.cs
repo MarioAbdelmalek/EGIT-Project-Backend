@@ -12,5 +12,9 @@ namespace BLL
         List<UserDto> GetAllUsers();
         UserDto GetUserByID(int UserID);
         void UpdateUser(int UserID, UpdateUserDto newUser);
+
+        AuthResponseDto Login(UserDto user);
+        void ChangePassword(UserDto user, string NewPassword);
+
     }
 }

@@ -1,9 +1,0 @@
-F:\EGIT\EGITBackend\DAL\bin\Debug\netstandard2.0\DAL.deps.json
-F:\EGIT\EGITBackend\DAL\bin\Debug\netstandard2.0\DAL.dll
-F:\EGIT\EGITBackend\DAL\bin\Debug\netstandard2.0\DAL.pdb
-F:\EGIT\EGITBackend\DAL\obj\Debug\netstandard2.0\DAL.csprojAssemblyReference.cache
-F:\EGIT\EGITBackend\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
-F:\EGIT\EGITBackend\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
-F:\EGIT\EGITBackend\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
-F:\EGIT\EGITBackend\DAL\obj\Debug\netstandard2.0\DAL.dll
-F:\EGIT\EGITBackend\DAL\obj\Debug\netstandard2.0\DAL.pdb

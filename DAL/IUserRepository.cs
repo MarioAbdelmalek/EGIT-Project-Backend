@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using DAL.Models;
 
 namespace DAL
 {
@@ -12,5 +13,8 @@ namespace DAL
         List<User> GetAllUsers();
         User GetUserByID(int UserID);
         void UpdateUser(User newUser);
+        User Login(User user);
+        void ChangePassword(User user, string NewPassword);
+
     }
 }

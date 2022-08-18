@@ -1,10 +1,14 @@
-﻿using AutoMapper;
+using AutoMapper;
 using BLL.ModelsDto;
 using DAL;
 using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using Microsoft.Extensions.Configuration;
 
 namespace BLL
 {
@@ -12,11 +16,13 @@ namespace BLL
     {
         private readonly IMapper mapper;
         IUserRepository UserRepository;
+        private readonly IConfiguration Configuration;
 
-        public UserService(IMapper mapper, IUserRepository UserRepository)
+        public UserService(IMapper mapper, IUserRepository UserRepository, IConfiguration Configuration)
         {
             this.mapper = mapper;
             this.UserRepository = UserRepository;
+            this.Configuration = Configuration;
         }
 
         public void AdminRegistration(CreateUserDto newAdmin)
@@ -84,5 +90,40 @@ namespace BLL
             };
             UserRepository.UserRegistration(mapper.Map<User>(user));
         }
+
+
+            public AuthResponseDto Login(UserDto user)
+            {
+
+                var response = UserRepository.Login(mapper.Map<User>(user));
+                if (response == null)
+                {
+                    return new AuthResponseDto { Response = "Login failed", IsValid = false };
+                }
+
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var tokenKey = Encoding.ASCII.GetBytes(Configuration["JWT:MyPassword"]);
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[]
+                    {
+                    new Claim(ClaimTypes.Name, response.UserName)
+                    }),
+                    Expires = DateTime.Now.AddHours(1),
+                    SigningCredentials = new SigningCredentials(
+                        new SymmetricSecurityKey(tokenKey),
+                        SecurityAlgorithms.HmacSha256Signature)
+
+                };
+
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                return new AuthResponseDto { Response = "Login Successful", Token = tokenHandler.WriteToken(token), IsValid = true };
+            }
+
+            public void ChangePassword(UserDto user, string NewPassword)
+            {
+                UserRepository.ChangePassword(mapper.Map<User>(user), NewPassword);
+            }
+        }
     }
-}
+

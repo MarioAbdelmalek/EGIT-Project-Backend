@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using BLL;
 using DAL;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace EGITBackend
 {
@@ -26,7 +29,6 @@ namespace EGITBackend
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -49,6 +51,31 @@ namespace EGITBackend
             services.AddScoped<IEGITRepository, EGITRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            }).AddJwtBearer(x => {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["JWT:MyPassword"])),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+
+                };
+            });
+
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(x => true).AllowCredentials());
+            });
+
             services.AddSwaggerGen();
 
             services.AddMvc();
@@ -66,6 +93,7 @@ namespace EGITBackend
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSwagger();
@@ -73,6 +101,8 @@ namespace EGITBackend
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "EGIT Web Api");
             });
+
+            app.UseCors("AllowOrigin");
 
             app.UseEndpoints(endpoints =>
             {
