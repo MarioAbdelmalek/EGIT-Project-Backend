@@ -23,19 +23,19 @@ namespace DAL
         void DeleteClient(int ClientID);
         void DeleteNode(int NodeID);
         //Lun Functions
-        public List<Lun> getAllLuns();
-        public void addLun(Lun lun);
-        public Lun getLun(int id);
-        public void deleteLun(int id);
-        public void updateLun(Lun lun);
+        public List<Lun> GetAllLuns();
+        public void AddLun(Lun lun);
+        public Lun GetLun(int id);
+        public void DeleteLun(int id);
+        public void UpdateLun(Lun lun);
         public int getTSpaceByStockId(int id);
 
         //Storage functions
 
-        public List<Storage> getAllStorages();
-        public Storage getStorage(int id);
-        public void addStorage(Storage storage);
-        public void deleteStorage(int id);
-        public void updateStorage(Storage storage);
+        public List<Storage> GetAllStorages();
+        public Storage GetStorage(int id);
+        public void AddStorage(Storage storage);
+        public void DeleteStorage(int id);
+        public void UpdateStorage(Storage storage);
     }
 }

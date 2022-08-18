@@ -18,26 +18,26 @@ namespace EGITBackend.Controllers
         {
             this.egitService = egitService;
         }
-        public List<StorageDto> getAllStorages()
+        public List<StorageDto> GetAllStorages()
         {
 
-            return egitService.getAllStorages();
+            return egitService.GetAllStorages();
         }
-        public StorageDto getStorage(int id)
+        public StorageDto GetStorage(int id)
         {
-            return egitService.getStorage(id);
+            return egitService.GetStorage(id);
         }
         public void addStorage(StorageDto storage)
         {
-            egitService.addStorage(storage);
+            egitService.AddStorage(storage);
         }
         public void deleteStorage(int id)
         {
-            egitService.deleteStorage(id);
+            egitService.DeleteStorage(id);
         }
         public void updateStorage(StorageDto storage)
         {
-            egitService.updateStorage(storage);
+            egitService.UpdateStorage(storage);
         }
 
     }

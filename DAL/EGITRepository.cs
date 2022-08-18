@@ -15,30 +15,30 @@ namespace DAL
 
         }
         //Lun functions
-        public List<Lun> getAllLuns()
+        public List<Lun> GetAllLuns()
         {
             return context.Luns.ToList();
         }
 
-        public Lun getLun(int id)
+        public Lun GetLun(int id)
         {
             return (Lun)context.Luns.Select(l => l.LunID == id);
         }
-        public void addLun(Lun lun)
+        public void AddLun(Lun lun)
         {
             context.Luns.Add(lun);
             context.SaveChanges();
 
         }
 
-        public void deleteLun(int id)
+        public void DeleteLun(int id)
         {
             var entity = context.Luns.FirstOrDefault(t => t.LunID == id);
             context.Luns.Remove(entity);
             context.SaveChanges();
         }
 
-        public void updateLun(Lun lun)
+        public void UpdateLun(Lun lun)
         {
             context.Luns.Update(lun);
             context.SaveChanges();
@@ -67,28 +67,28 @@ namespace DAL
 
         //Storage functions
 
-        public List<Storage> getAllStorages()
+        public List<Storage> GetAllStorages()
         {
             return context.Storages.ToList();
         }
-        public Storage getStorage(int id)
+        public Storage GetStorage(int SorageID)
         {
-            return (Storage)context.Storages.Select(l => l.StorageID == id);
+            return (Storage)context.Storages.Select(l => l.StorageID == SorageID);
         }
 
-        public void addStorage(Storage storage)
+        public void AddStorage(Storage storage)
         {
             context.Storages.Add(storage);
             context.SaveChanges();
 
         }
-        public void updateStorage(Storage storage)
+        public void UpdateStorage(Storage storage)
         {
             context.Storages.Update(storage);
             context.SaveChanges();
         }
 
-        public void deleteStorage(int id)
+        public void DeleteStorage(int id)
         {
             var entity = context.Storages.FirstOrDefault(t => t.StorageID == id);
             context.Storages.Remove(entity);

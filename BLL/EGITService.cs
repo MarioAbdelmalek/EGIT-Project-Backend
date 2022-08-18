@@ -151,25 +151,25 @@ namespace BLL
         }
 
         //Lun functions
-        public List<LunDto> getAllLuns()
+        public List<LunDto> GetAllLuns()
         {
-            List<Lun> luns= EGITRepository.getAllLuns();
+            List<Lun> luns= EGITRepository.GetAllLuns();
             return mapper.Map<List<Lun>, List<LunDto>>(luns);
         }
-        public void addLun(LunDto lun)
+        public void AddLun(LunDto lun)
         {
-            EGITRepository.addLun(mapper.Map<Lun>(lun));
+            EGITRepository.AddLun(mapper.Map<Lun>(lun));
         }
-        public LunDto getLun(int id)
+        public LunDto GetLun(int LunID)
         {
-            Lun lun = EGITRepository.getLun(id);
+            Lun lun = EGITRepository.GetLun(LunID);
             return mapper.Map<LunDto>(lun);
         }
-        public void deleteLun(int id)
+        public void DeleteLun(int LunID)
         {
-            EGITRepository.deleteLun(id);
+            EGITRepository.DeleteLun(LunID);
         }
-        public void updateLun(LunDto lun) {
+        public void UpdateLun(LunDto lun) {
             LunDto newlun = new LunDto
             {
                 LunName = lun.LunName,
@@ -178,36 +178,36 @@ namespace BLL
                 LunTSpace = lun.LunTSpace,
                 StorageID = lun.StorageID
             };
-            EGITRepository.updateLun(mapper.Map<Lun>(newlun));
+            EGITRepository.UpdateLun(mapper.Map<Lun>(newlun));
         }
-        public int getTSpaceByStockId(int id)
+        public int getTSpaceByStockId(int StockID)
         {
-            return EGITRepository.getTSpaceByStockId(id);
+            return EGITRepository.getTSpaceByStockId(StockID);
         }
 
         //Storage functions
 
-        public List<StorageDto> getAllStorages()
+        public List<StorageDto> GetAllStorages()
         {
-            List<Storage> storages = EGITRepository.getAllStorages();
+            List<Storage> storages = EGITRepository.GetAllStorages();
             return mapper.Map<List<Storage>, List<StorageDto>>(storages);
         }
-        public StorageDto getStorage(int id)
+        public StorageDto GetStorage(int StorageID)
         {
-            Storage storage = EGITRepository.getStorage(id);
+            Storage storage = EGITRepository.GetStorage(StorageID);
             return mapper.Map<StorageDto>(storage);
         }
-        public void addStorage(StorageDto storage)
+        public void AddStorage(StorageDto storage)
         {
-            EGITRepository.addStorage(mapper.Map<Storage>(storage));
+            EGITRepository.AddStorage(mapper.Map<Storage>(storage));
 
         }
-        public void deleteStorage(int id)
+        public void DeleteStorage(int StorageID)
         {
-            EGITRepository.deleteStorage(id);
+            EGITRepository.DeleteStorage(StorageID);
 
         }
-        public void updateStorage(StorageDto storage)
+        public void UpdateStorage(StorageDto storage)
         {
             StorageDto newStorage = new StorageDto
             {
@@ -218,7 +218,7 @@ namespace BLL
 
             };
 
-            EGITRepository.updateStorage(mapper.Map<Storage>(newStorage));
+            EGITRepository.UpdateStorage(mapper.Map<Storage>(newStorage));
         }
 
     }

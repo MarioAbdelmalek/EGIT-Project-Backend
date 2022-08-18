@@ -17,25 +17,25 @@ namespace EGITBackend.Controllers
         {
             this.EGITService = egitService;
         }
-        public List<LunDto> getAllLuns()
+        public List<LunDto> GetAllLuns()
         {
-            return EGITService.getAllLuns();
+            return EGITService.GetAllLuns();
         }
-        public void addLun(LunDto lun)
+        public void AddLun(LunDto lun)
         {
-            EGITService.addLun(lun);
+            EGITService.AddLun(lun);
         }
-        public LunDto getLun(int id)
+        public LunDto GetLun(int id)
         {
-            return EGITService.getLun(id);
+            return EGITService.GetLun(id);
         }
-        public void deleteLun(int id)
+        public void DeleteLun(int id)
         {
-            EGITService.deleteLun(id);
+            EGITService.DeleteLun(id);
         }
-        public void updateLun(LunDto lun)
+        public void UpdateLun(LunDto lun)
         {
-            EGITService.updateLun(lun);
+            EGITService.UpdateLun(lun);
         }
         public int getTSpaceByStockId(int id)
         {
