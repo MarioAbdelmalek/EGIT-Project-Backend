@@ -15,7 +15,7 @@ namespace DAL
             this.context = context;
 
         }
-        public void AdminRegistration(User newAdmin)
+        public void AddNewAdmin(User newAdmin)
         {
             context.Users.Add(newAdmin);
             context.SaveChanges();
@@ -37,7 +37,7 @@ namespace DAL
             context.SaveChanges();
         }
 
-        public void UserRegistration(User newUser)
+        public void AddNewUser(User newUser)
         {
             context.Users.Add(newUser);
             context.SaveChanges();

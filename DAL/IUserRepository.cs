@@ -8,8 +8,8 @@ namespace DAL
 {
     public interface IUserRepository
     {
-        void AdminRegistration(User newAdmin);
-        void UserRegistration(User newUser);
+        void AddNewAdmin(User newAdmin);
+        void AddNewUser(User newUser);
         List<User> GetAllUsers();
         User GetUserByID(int UserID);
         void UpdateUser(User newUser);

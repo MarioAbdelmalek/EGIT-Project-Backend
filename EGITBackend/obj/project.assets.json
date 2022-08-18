@@ -8069,6 +8069,7 @@
       "AutoMapper >= 11.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 11.0.0",
       "BLL >= 1.0.0",
+      "DAL >= 1.0.0",
       "EntityFramework6.Npgsql >= 6.4.3",
       "Microsoft.AspNet.WebApi.Cors >= 5.2.9",
       "Microsoft.AspNetCore.Authentication >= 2.2.0",
@@ -8080,19 +8081,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\farah\\.nuget\\packages\\": {}
+    "C:\\Users\\mario\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\farah\\OneDrive\\Desktop\\EGID fixed Project\\EGIT-Project-Backend\\EGITBackend\\EGITBackend.csproj",
+      "projectUniqueName": "F:\\EGIT\\EGITBackend\\EGITBackend\\EGITBackend.csproj",
       "projectName": "EGITBackend",
-      "projectPath": "C:\\Users\\farah\\OneDrive\\Desktop\\EGID fixed Project\\EGIT-Project-Backend\\EGITBackend\\EGITBackend.csproj",
-      "packagesPath": "C:\\Users\\farah\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\farah\\OneDrive\\Desktop\\EGID fixed Project\\EGIT-Project-Backend\\EGITBackend\\obj\\",
+      "projectPath": "F:\\EGIT\\EGITBackend\\EGITBackend\\EGITBackend.csproj",
+      "packagesPath": "C:\\Users\\mario\\.nuget\\packages\\",
+      "outputPath": "F:\\EGIT\\EGITBackend\\EGITBackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\farah\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mario\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8104,10 +8105,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\farah\\OneDrive\\Desktop\\EGID fixed Project\\EGIT-Project-Backend\\BLL\\BLL.csproj": {
-              "projectPath": "C:\\Users\\farah\\OneDrive\\Desktop\\EGID fixed Project\\EGIT-Project-Backend\\BLL\\BLL.csproj"
+            "F:\\EGIT\\EGITBackend\\BLL\\BLL.csproj": {
+              "projectPath": "F:\\EGIT\\EGITBackend\\BLL\\BLL.csproj"
+            },
+            "F:\\EGIT\\EGITBackend\\DAL\\DAL.csproj": {
+              "projectPath": "F:\\EGIT\\EGITBackend\\DAL\\DAL.csproj"
             }
           }
         }
@@ -8120,7 +8123,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "AutoMapper": {
             "target": "Package",
@@ -8177,12 +8179,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[3.1.25, 3.1.25]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -8191,7 +8187,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   },
