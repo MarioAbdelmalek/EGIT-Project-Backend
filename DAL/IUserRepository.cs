@@ -14,7 +14,7 @@ namespace DAL
         User GetUserByID(int UserID);
         void UpdateUser(User newUser);
         User Login(User user);
-        void ChangePassword(User user, string NewPassword);
+        void ChangePassword(int UserID, string NewPassword);
 
     }
 }

@@ -45,11 +45,12 @@ namespace DAL
         public User Login(User user)
         {
             Func<User, bool> expression = p => p.UserName == user.UserName && p.Password == user.Password;
-            return context.Users.Find(expression);
+            return context.Users.FirstOrDefault(expression);
         }
 
-        public void ChangePassword(User user, string NewPassword)
+        public void ChangePassword(int UserID, string NewPassword)
         {
+            var user = GetUserByID(UserID);
             user.Password = NewPassword;
             context.Users.Update(user);
             context.SaveChanges();
