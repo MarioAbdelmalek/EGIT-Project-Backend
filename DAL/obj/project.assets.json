@@ -1194,19 +1194,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mario\\.nuget\\packages\\": {}
+    "C:\\Users\\farah\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\EGIT\\EGITBackend\\DAL\\DAL.csproj",
+      "projectUniqueName": "C:\\Users\\farah\\OneDrive\\Desktop\\EGID fixed Project\\EGIT-Project-Backend\\DAL\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "F:\\EGIT\\EGITBackend\\DAL\\DAL.csproj",
-      "packagesPath": "C:\\Users\\mario\\.nuget\\packages\\",
-      "outputPath": "F:\\EGIT\\EGITBackend\\DAL\\obj\\",
+      "projectPath": "C:\\Users\\farah\\OneDrive\\Desktop\\EGID fixed Project\\EGIT-Project-Backend\\DAL\\DAL.csproj",
+      "packagesPath": "C:\\Users\\farah\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\farah\\OneDrive\\Desktop\\EGID fixed Project\\EGIT-Project-Backend\\DAL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\mario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\farah\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1218,6 +1218,7 @@
       },
       "frameworks": {
         "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
           "projectReferences": {}
         }
       },
@@ -1229,6 +1230,7 @@
     },
     "frameworks": {
       "netstandard2.1": {
+        "targetAlias": "netstandard2.1",
         "dependencies": {
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
@@ -1266,7 +1268,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

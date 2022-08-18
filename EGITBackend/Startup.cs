@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using BLL;
 using DAL;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace EGITBackend
 {
@@ -46,6 +49,31 @@ namespace EGITBackend
             services.AddScoped<IEGITService, EGITService>();
             services.AddScoped<IEGITRepository, EGITRepository>();
 
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            }).AddJwtBearer(x => {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["JWT:MyPassword"])),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+
+                };
+            });
+
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(x => true).AllowCredentials());
+            });
+
             services.AddSwaggerGen();
         }
 
@@ -61,6 +89,7 @@ namespace EGITBackend
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSwagger();
@@ -68,6 +97,8 @@ namespace EGITBackend
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "EGIT Web Api");
             });
+
+            app.UseCors("AllowOrigin");
 
             app.UseEndpoints(endpoints =>
             {

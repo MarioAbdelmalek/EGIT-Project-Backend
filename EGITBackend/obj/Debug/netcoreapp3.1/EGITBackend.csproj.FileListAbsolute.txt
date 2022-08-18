@@ -102,3 +102,12 @@ C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBack
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.RazorTargetAssemblyInfo.cache
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csproj.CopyComplete
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.genruntimeconfig.cache
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll

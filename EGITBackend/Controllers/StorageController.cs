@@ -6,38 +6,54 @@ using System.Linq;
 using System.Threading.Tasks;
 using BLL;
 using BLL.ModelsDto;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EGITBackend.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class StorageController : ControllerBase
     {
-        EGITService egitService;
+        EGITService EGITService;
         public StorageController(EGITService egitService)
         {
-            this.egitService = egitService;
+            this.EGITService = egitService;
         }
+
+        [Route("getAll")]
+        [HttpGet]
         public List<StorageDto> GetAllStorages()
         {
 
-            return egitService.GetAllStorages();
+            return EGITService.GetAllStorages();
         }
+
+        [Route("getById")]
+        [HttpGet]
         public StorageDto GetStorage(int id)
         {
-            return egitService.GetStorage(id);
+            return EGITService.GetStorage(id);
         }
-        public void addStorage(StorageDto storage)
+
+        [Route("addStorage")]
+        [HttpPost]
+        public void AddStorage(StorageDto storage)
         {
-            egitService.AddStorage(storage);
+            EGITService.AddStorage(storage);
         }
-        public void deleteStorage(int id)
+
+        [Route("deleteById")]
+        [HttpDelete]
+        public void DeleteStorage(int id)
         {
-            egitService.DeleteStorage(id);
+            EGITService.DeleteStorage(id);
         }
-        public void updateStorage(StorageDto storage)
+
+        [HttpPost("updatestorage")]
+        public void UpdateStorage(StorageDto storage)
         {
-            egitService.UpdateStorage(storage);
+            EGITService.UpdateStorage(storage);
         }
 
     }
