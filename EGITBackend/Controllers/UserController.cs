@@ -20,18 +20,18 @@ namespace EGITBackend.Controllers
             this.UserService = UserService;
         }
 
-        [Route("adminRegistration")]
+        [Route("addNewAdmin")]
         [HttpPost]
-        public void AdminRegistration(CreateUserDto newAdmin)
+        public void AddNewAdmin(CreateUserDto newAdmin)
         {
-            UserService.AdminRegistration(newAdmin);
+            UserService.AddNewAdmin(newAdmin);
         }
 
-        [Route("userRegistration")]
+        [Route("addNewUser")]
         [HttpPost]
-        public void UserRegistration(CreateUserDto newUser)
+        public void AddNewUser(CreateUserDto newUser)
         {
-            UserService.UserRegistration(newUser);
+            UserService.AddNewUser(newUser);
         }
 
         [Route("getUserById")]

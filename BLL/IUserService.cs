@@ -7,8 +7,8 @@ namespace BLL
 {
     public interface IUserService
     {
-        void AdminRegistration(CreateUserDto newAdmin);
-        void UserRegistration(CreateUserDto newUser);
+        void AddNewAdmin(CreateUserDto newAdmin);
+        void AddNewUser(CreateUserDto newUser);
         List<UserDto> GetAllUsers();
         UserDto GetUserByID(int UserID);
         void UpdateUser(int UserID, UpdateUserDto newUser);

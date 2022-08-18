@@ -25,7 +25,7 @@ namespace BLL
             this.Configuration = Configuration;
         }
 
-        public void AdminRegistration(CreateUserDto newAdmin)
+        public void AddNewAdmin(CreateUserDto newAdmin)
         {
             UserDto admin = new UserDto
             {
@@ -40,7 +40,7 @@ namespace BLL
                 IsAdmin = true,
                 IsPowerUser = false
             };
-            UserRepository.AdminRegistration(mapper.Map<User>(admin));
+            UserRepository.AddNewAdmin(mapper.Map<User>(admin));
         }
 
         public List<UserDto> GetAllUsers()
@@ -73,7 +73,7 @@ namespace BLL
             }
         }
 
-        public void UserRegistration(CreateUserDto newUser)
+        public void AddNewUser(CreateUserDto newUser)
         {
             UserDto user = new UserDto
             {
@@ -88,7 +88,7 @@ namespace BLL
                 IsAdmin = false,
                 IsPowerUser = false
             };
-            UserRepository.UserRegistration(mapper.Map<User>(user));
+            UserRepository.AddNewUser(mapper.Map<User>(user));
         }
 
 

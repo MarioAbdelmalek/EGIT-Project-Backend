@@ -8069,6 +8069,7 @@
       "AutoMapper >= 11.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 11.0.0",
       "BLL >= 1.0.0",
+      "DAL >= 1.0.0",
       "EntityFramework6.Npgsql >= 6.4.3",
       "Microsoft.AspNet.WebApi.Cors >= 5.2.9",
       "Microsoft.AspNetCore.Authentication >= 2.2.0",
@@ -8107,6 +8108,9 @@
           "projectReferences": {
             "F:\\EGIT\\EGITBackend\\BLL\\BLL.csproj": {
               "projectPath": "F:\\EGIT\\EGITBackend\\BLL\\BLL.csproj"
+            },
+            "F:\\EGIT\\EGITBackend\\DAL\\DAL.csproj": {
+              "projectPath": "F:\\EGIT\\EGITBackend\\DAL\\DAL.csproj"
             }
           }
         }

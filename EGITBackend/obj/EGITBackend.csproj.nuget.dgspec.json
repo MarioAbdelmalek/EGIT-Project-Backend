@@ -173,6 +173,9 @@
             "projectReferences": {
               "F:\\EGIT\\EGITBackend\\BLL\\BLL.csproj": {
                 "projectPath": "F:\\EGIT\\EGITBackend\\BLL\\BLL.csproj"
+              },
+              "F:\\EGIT\\EGITBackend\\DAL\\DAL.csproj": {
+                "projectPath": "F:\\EGIT\\EGITBackend\\DAL\\DAL.csproj"
               }
             }
           }
