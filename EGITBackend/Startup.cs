@@ -44,9 +44,14 @@ namespace EGITBackend
             UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
 
             services.AddScoped<IEGITService, EGITService>();
+            services.AddScoped<IUserService, UserService>();
+
             services.AddScoped<IEGITRepository, EGITRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddSwaggerGen();
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

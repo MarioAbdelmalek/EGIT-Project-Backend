@@ -167,5 +167,6 @@ namespace DAL
             context.Nodes.Remove(returnedNode);
             context.SaveChanges();
         }
+
     }
 }

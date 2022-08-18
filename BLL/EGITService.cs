@@ -220,6 +220,5 @@ namespace BLL
 
             EGITRepository.UpdateStorage(mapper.Map<Storage>(newStorage));
         }
-
     }
 }
