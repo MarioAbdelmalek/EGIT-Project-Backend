@@ -48,8 +48,9 @@ namespace DAL
             return context.Users.Find(expression);
         }
 
-        public void ChangePassword(User user, string NewPassword)
+        public void ChangePassword(int UserID, string NewPassword)
         {
+            var user = GetUserByID(UserID);
             user.Password = NewPassword;
             context.Users.Update(user);
             context.SaveChanges();

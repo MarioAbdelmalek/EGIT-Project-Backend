@@ -14,7 +14,7 @@ namespace BLL
         void UpdateUser(int UserID, UpdateUserDto newUser);
 
         AuthResponseDto Login(UserDto user);
-        void ChangePassword(UserDto user, string NewPassword);
+        void ChangePassword(int UserID, string NewPassword);
 
     }
 }

@@ -71,9 +71,9 @@ namespace EGITBackend.Controllers
         [Authorize]
         [Route("changePassword")]
         [HttpPost]
-        public string ChangePassword(UserDto user, string NewPassword)
+        public string ChangePassword(int UserID, string NewPassword)
         {
-            UserService.ChangePassword(user, NewPassword);
+            UserService.ChangePassword(UserID, NewPassword);
             return "Password Changed Successfully";
         }
     }
