@@ -92,7 +92,7 @@ namespace BLL
         }
 
 
-            public AuthResponseDto Login(UserCredentials userCred)
+            public AuthResponseDto Login(UserCredentialsDto userCred)
             {
 
                 var response = UserRepository.Login(userCred.Username, userCred.Password);

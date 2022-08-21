@@ -59,7 +59,7 @@ namespace EGITBackend.Controllers
         [AllowAnonymous]
         [Route("login")]
         [HttpPost]
-        public IActionResult Login([FromBody] UserCredentials userCred)
+        public IActionResult Login([FromBody] UserCredentialsDto userCred)
         {
             var token = UserService.Login(userCred);
 
