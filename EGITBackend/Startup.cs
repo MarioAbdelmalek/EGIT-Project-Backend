@@ -32,7 +32,9 @@ namespace EGITBackend
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+
+
+            services.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
 
             var mapperConfig = new MapperConfiguration(mc =>
             {

@@ -10,15 +10,14 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EGITBackend.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class StorageController : ControllerBase
     {
-        EGITService EGITService;
-        public StorageController(EGITService egitService)
+        IEGITService EGITService;
+        public StorageController(IEGITService EGITService)
         {
-            this.EGITService = egitService;
+            this.EGITService = EGITService;
         }
 
         [Route("getAll")]

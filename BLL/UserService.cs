@@ -120,9 +120,9 @@ namespace BLL
                 return new AuthResponseDto { Response = "Login Successful", Token = tokenHandler.WriteToken(token), IsValid = true };
             }
 
-            public void ChangePassword(UserDto user, string NewPassword)
+            public void ChangePassword(int UserID, string NewPassword)
             {
-                UserRepository.ChangePassword(mapper.Map<User>(user), NewPassword);
+                UserRepository.ChangePassword(UserID, NewPassword);
             }
         }
     }

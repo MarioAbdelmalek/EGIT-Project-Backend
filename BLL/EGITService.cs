@@ -198,7 +198,16 @@ namespace BLL
             return mapper.Map<StorageDto>(storage);
         }
         public void AddStorage(StorageDto storage)
+
         {
+            StorageDto newStorage = new StorageDto
+            {
+                StorageName = storage.StorageName,
+                StorageType = storage.StorageType,
+                StorageRSpace = storage.StorageRSpace,
+                StorageTSpace = storage.StorageTSpace
+
+            };
             EGITRepository.AddStorage(mapper.Map<Storage>(storage));
 
         }

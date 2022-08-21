@@ -9,7 +9,6 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace EGITBackend.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class LunController : ControllerBase
