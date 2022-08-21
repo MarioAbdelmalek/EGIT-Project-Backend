@@ -13,7 +13,7 @@ namespace BLL
         UserDto GetUserByID(int UserID);
         void UpdateUser(int UserID, UpdateUserDto newUser);
 
-        AuthResponseDto Login(UserDto user);
+        AuthResponseDto Login(UserCredentials userCred);
         void ChangePassword(int UserID, string NewPassword);
 
     }

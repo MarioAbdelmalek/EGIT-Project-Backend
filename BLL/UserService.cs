@@ -92,13 +92,13 @@ namespace BLL
         }
 
 
-            public AuthResponseDto Login(UserDto user)
+            public AuthResponseDto Login(UserCredentials userCred)
             {
 
-                var response = UserRepository.Login(mapper.Map<User>(user));
+                var response = UserRepository.Login(userCred.Username, userCred.Password);
                 if (response == null)
                 {
-                    return new AuthResponseDto { Response = "Login failed", IsValid = false };
+                    return new AuthResponseDto { Response = "Invalid Username or Password", Token = "", IsValid = false };
                 }
 
                 var tokenHandler = new JwtSecurityTokenHandler();
@@ -117,7 +117,7 @@ namespace BLL
                 };
 
                 var token = tokenHandler.CreateToken(tokenDescriptor);
-                return new AuthResponseDto { Response = "Login Successful", Token = tokenHandler.WriteToken(token), IsValid = true };
+                return new AuthResponseDto { Response = "You Have Logged in Successfully", Token = tokenHandler.WriteToken(token), IsValid = true };
             }
 
             public void ChangePassword(int UserID, string NewPassword)
