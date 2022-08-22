@@ -10,15 +10,14 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EGITBackend.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class StorageController : ControllerBase
     {
-        EGITService EGITService;
-        public StorageController(EGITService egitService)
+        IEGITService EGITService;
+        public StorageController(IEGITService EGITService)
         {
-            this.EGITService = egitService;
+            this.EGITService = EGITService;
         }
 
         [Route("getAll")]
@@ -50,10 +49,11 @@ namespace EGITBackend.Controllers
             EGITService.DeleteStorage(id);
         }
 
-        [HttpPost("updatestorage")]
-        public void UpdateStorage(StorageDto storage)
+        [Route("updateStorage")]
+        [HttpPut]
+        public void UpdateStorage(StorageDto storage, int StorageID)
         {
-            EGITService.UpdateStorage(storage);
+            EGITService.UpdateStorage(storage, StorageID);
         }
 
     }

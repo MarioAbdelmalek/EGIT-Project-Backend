@@ -32,7 +32,9 @@ namespace EGITBackend
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+
+
+            services.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
 
             services.AddControllers().AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
 
@@ -79,6 +81,7 @@ namespace EGITBackend
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(x => true).AllowCredentials());
             });
 
+
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
@@ -95,16 +98,15 @@ namespace EGITBackend
                     Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 1safsfsdfdfd\"",
                 });
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement {
-        {
-            new OpenApiSecurityScheme {
-                Reference = new OpenApiReference {
-                    Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer"
-                }
-            },
-            new string[] {}
-        }
-    });
+                    {
+                        new OpenApiSecurityScheme {
+                            Reference = new OpenApiReference {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}}
+                });
             });
 
             services.AddMvc();
@@ -118,6 +120,8 @@ namespace EGITBackend
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseWebSockets();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -130,8 +134,6 @@ namespace EGITBackend
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "EGIT Web Api");
             });
-
-            app.UseWebSockets();
 
             app.UseCors("AllowOrigin");
 
