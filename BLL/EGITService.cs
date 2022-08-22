@@ -23,33 +23,29 @@ namespace BLL
             ClientDto c = new ClientDto
             {
                 ClientName = newClient.ClientName,
-                Bandwidth = newClient.Bandwidth,
                 ClientSector = newClient.ClientSector,
-                CurrentVMs = newClient.CurrentVMs,
-                ISPID = newClient.ISPID,
-                PublicIps = newClient.PublicIps,
-                TotalVMs = newClient.TotalVMs,
-                VPNClients = newClient.VPNClients
+                ISPID = newClient.ISPID
             };
             EGITRepository.AddClient(mapper.Map<Client>(c));
         }
 
         public void AddCluster(CreateClusterDto newCluster)
         {
-            ClusterDto c = new ClusterDto { ClusterName = newCluster.ClusterName, ClusterType = newCluster.ClusterType };
+            ClusterDto c = new ClusterDto { ClusterType = newCluster.ClusterType, NumberOfNodes = newCluster.NumberOfNodes,
+                ClusterRemainingCPUCores = newCluster.ClusterRemainingCPUCores, 
+                ClusterRemainingRAM = newCluster.ClusterRemainingRAM, ClusterTotalCPUCores = newCluster.ClusterTotalCPUCores, ClusterTotalRAM = newCluster.ClusterTotalRAM};
+
             EGITRepository.AddCluster(mapper.Map<Cluster>(c));
         }
 
         public void AddNode(CreateNodeDto newNode)
         {
             NodeDto n = new NodeDto
-            { 
-                NodeName = newNode.NodeName,
-                NodeType = newNode.NodeType,
-                TotalCPUCores = newNode.TotalCPUCores,
-                RemainingCPUCores = newNode.RemainingCPUCores,
-                TotalRAM = newNode.TotalRAM,
-                RemainingRAM = newNode.RemainingRAM,
+            {
+                NodeTotalCPUCores = newNode.NodeTotalCPUCores,
+                NodeRemainingCPUCores = newNode.NodeRemainingCPUCores,
+                NodeTotalRAM = newNode.NodeTotalRAM,
+                NodeRemainingRAM = newNode.NodeRemainingRAM,
                 ClusterID = newNode.ClusterID
             };
             EGITRepository.AddNode(mapper.Map<Node>(n));
@@ -111,14 +107,10 @@ namespace BLL
             ClientDto oldClient = GetClientByID(ClientID);
             if (oldClient != null)
             {
-                oldClient.TotalVMs = newClient.TotalVMs;
-                oldClient.Bandwidth = newClient.Bandwidth;
                 oldClient.ClientName = newClient.ClientName;
                 oldClient.ClientSector = newClient.ClientSector;
-                oldClient.CurrentVMs = newClient.CurrentVMs;
                 oldClient.ISPID = newClient.ISPID;
-                oldClient.PublicIps = newClient.PublicIps;
-                oldClient.VPNClients = newClient.VPNClients;
+
                 EGITRepository.UpdateClient(mapper.Map<Client>(oldClient));
             }
         }
@@ -128,8 +120,13 @@ namespace BLL
             ClusterDto oldCluster = GetClusterByID(ClusterID);
             if (oldCluster != null)
             {
-                oldCluster.ClusterName = newCluster.ClusterName;
                 oldCluster.ClusterType = newCluster.ClusterType;
+                oldCluster.NumberOfNodes = newCluster.NumberOfNodes;
+                oldCluster.ClusterRemainingCPUCores = newCluster.ClusterRemainingCPUCores;
+                oldCluster.ClusterRemainingRAM = newCluster.ClusterRemainingRAM;
+                oldCluster.ClusterTotalCPUCores = newCluster.ClusterTotalCPUCores;
+                oldCluster.ClusterTotalRAM = newCluster.ClusterTotalRAM;
+
                 EGITRepository.UpdateCluster(mapper.Map<Cluster>(oldCluster));
             }
         }
@@ -139,13 +136,12 @@ namespace BLL
             NodeDto oldNode = GetNodeByID(NodeID);
             if (oldNode != null)
             {
-                oldNode.NodeName = newNode.NodeName;
-                oldNode.NodeType = newNode.NodeType;
-                oldNode.TotalCPUCores = newNode.TotalCPUCores;
-                oldNode.RemainingCPUCores = newNode.RemainingCPUCores;
-                oldNode.TotalRAM = newNode.TotalRAM;
-                oldNode.RemainingRAM = newNode.RemainingRAM;
+                oldNode.NodeTotalCPUCores = newNode.NodeTotalCPUCores;
+                oldNode.NodeRemainingCPUCores = newNode.NodeRemainingCPUCores;
+                oldNode.NodeTotalRAM = newNode.NodeTotalRAM;
+                oldNode.NodeRemainingRAM = newNode.NodeRemainingRAM;
                 oldNode.ClusterID = newNode.ClusterID;
+
                 EGITRepository.UpdateNode(mapper.Map<Node>(oldNode));
             }
         }
@@ -177,13 +173,11 @@ namespace BLL
             if (newlun != null)
             {
                 newlun.LunName = lun.LunName;
-                newlun.LunType = lun.LunType;
-                newlun.LunRSpace = lun.LunRSpace;
-                newlun.LunTSpace = lun.LunTSpace;
+                newlun.LunRemainingRAM = lun.LunRemainingRAM;
+                newlun.LunTotalRAM = lun.LunTotalRAM;
                 newlun.StorageID = lun.StorageID;
             }
 
-          
             EGITRepository.UpdateLun(mapper.Map<Lun>(newlun));
         }
         public int getTSpaceByStockId(int StockID)
@@ -210,8 +204,8 @@ namespace BLL
             {
                 StorageName = storage.StorageName,
                 StorageType = storage.StorageType,
-                StorageRSpace = storage.StorageRSpace,
-                StorageTSpace = storage.StorageTSpace
+                StorageRemainingRAM = storage.StorageRemainingRAM,
+                StorageTotalRAM = storage.StorageTotalRAM
 
             };
             EGITRepository.AddStorage(mapper.Map<Storage>(storage));
@@ -229,8 +223,8 @@ namespace BLL
             {
                 newStorage.StorageName = storage.StorageName;
                 newStorage.StorageType = storage.StorageType;
-                newStorage.StorageRSpace = storage.StorageRSpace;
-                newStorage.StorageTSpace = storage.StorageTSpace;
+                newStorage.StorageRemainingRAM = storage.StorageRemainingRAM;
+                newStorage.StorageTotalRAM = storage.StorageTotalRAM;
             }
             EGITRepository.UpdateStorage(mapper.Map<Storage>(newStorage));
         }

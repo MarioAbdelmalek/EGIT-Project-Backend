@@ -30,7 +30,6 @@ namespace DAL
             context.SaveChanges();
 
         }
-
         public void DeleteLun(int id)
         {
             var entity = context.Luns.FirstOrDefault(t => t.LunID == id);
@@ -46,22 +45,14 @@ namespace DAL
 
         public int getTSpaceByStockId(int id)
         {
-            return context.Luns.Where(t => t.StorageID == id).Sum(i => i.LunTSpace);
+            return context.Luns.Where(t => t.StorageID == id).Sum(i => i.LunTotalRAM);
 
         }
 
         public void updateRSpace(Lun lun)
         {
             var luns = context.Luns.Where(p => p.LunID == lun.LunID).ToList();
-            luns.ForEach(p => p.LunRSpace = lun.LunRSpace);
-            context.SaveChanges();
-        }
-
-
-        public void updateLunTypes(Lun lun)
-        {
-            var luns = context.Luns.Where(p => p.StorageID == lun.StorageID).ToList();
-            luns.ForEach(p => p.LunType = lun.LunType);
+            luns.ForEach(p => p.LunRemainingRAM = lun.LunRemainingRAM);
             context.SaveChanges();
         }
 
@@ -71,9 +62,9 @@ namespace DAL
         {
             return context.Storages.ToList();
         }
-        public Storage GetStorage(int SorageID)
+        public Storage GetStorage(int StorageID)
         {
-            return (Storage)context.Storages.FirstOrDefault(l => l.StorageID == SorageID);
+            return (Storage)context.Storages.FirstOrDefault(l => l.StorageID == StorageID);
         }
 
         public void AddStorage(Storage storage)

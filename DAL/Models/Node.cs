@@ -8,12 +8,10 @@ namespace DAL.Models
     public class Node
     {
         public int NodeID { get; set; }
-        public string NodeName { get; set; }
-        public string NodeType { get; set; }
-        public int TotalRAM { get; set; }
-        public int RemainingRAM { get; set; }
-        public int TotalCPUCores { get; set; }
-        public int RemainingCPUCores { get; set; }
+        public int NodeTotalRAM { get; set; }
+        public int NodeRemainingRAM { get; set; }
+        public int NodeTotalCPUCores { get; set; }
+        public int NodeRemainingCPUCores { get; set; }
 
         [ForeignKey("Cluster")]
         public int ClusterID { get; set; }
