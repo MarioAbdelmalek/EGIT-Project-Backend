@@ -169,15 +169,21 @@ namespace BLL
         {
             EGITRepository.DeleteLun(LunID);
         }
-        public void UpdateLun(LunDto lun) {
-            LunDto newlun = new LunDto
+        public void UpdateLun(LunDto lun,int LunID)
+        {
+
+            LunDto newlun = GetLun(LunID);
+
+            if (newlun != null)
             {
-                LunName = lun.LunName,
-                LunType = lun.LunType,
-                LunRSpace = lun.LunRSpace,
-                LunTSpace = lun.LunTSpace,
-                StorageID = lun.StorageID
-            };
+                newlun.LunName = lun.LunName;
+                newlun.LunType = lun.LunType;
+                newlun.LunRSpace = lun.LunRSpace;
+                newlun.LunTSpace = lun.LunTSpace;
+                newlun.StorageID = lun.StorageID;
+            }
+
+          
             EGITRepository.UpdateLun(mapper.Map<Lun>(newlun));
         }
         public int getTSpaceByStockId(int StockID)
@@ -216,17 +222,16 @@ namespace BLL
             EGITRepository.DeleteStorage(StorageID);
 
         }
-        public void UpdateStorage(StorageDto storage)
+        public void UpdateStorage(StorageDto storage ,int StorageID)
         {
-            StorageDto newStorage = new StorageDto
+            StorageDto newStorage = GetStorage(StorageID);
+            if (newStorage != null)
             {
-                StorageName = storage.StorageName,
-                StorageType = storage.StorageType,
-                StorageRSpace = storage.StorageRSpace,
-                StorageTSpace = storage.StorageTSpace
-
-            };
-
+                newStorage.StorageName = storage.StorageName;
+                newStorage.StorageType = storage.StorageType;
+                newStorage.StorageRSpace = storage.StorageRSpace;
+                newStorage.StorageTSpace = storage.StorageTSpace;
+            }
             EGITRepository.UpdateStorage(mapper.Map<Storage>(newStorage));
         }
     }

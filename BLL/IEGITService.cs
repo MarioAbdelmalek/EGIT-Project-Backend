@@ -12,7 +12,7 @@ namespace BLL
         public void AddLun(LunDto lun);
         public LunDto GetLun(int id);
         public void DeleteLun(int id);
-        public void UpdateLun(LunDto lun);
+        public void UpdateLun(LunDto lun, int LunID);
         public int getTSpaceByStockId(int id);
 
         // Stock functions
@@ -20,7 +20,7 @@ namespace BLL
         public StorageDto GetStorage(int id);
         public void AddStorage(StorageDto storage);
         public void DeleteStorage(int id);
-        public void UpdateStorage(StorageDto storage);
+        public void UpdateStorage(StorageDto storage, int StorageID);
 
         void AddCluster(CreateClusterDto newCluster);
         void AddClient(CreateClientDto newClient);
