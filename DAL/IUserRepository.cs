@@ -13,7 +13,7 @@ namespace DAL
         List<User> GetAllUsers();
         User GetUserByID(int UserID);
         void UpdateUser(User newUser);
-        User Login(User user);
+        User Login(string Username, string Password);
         void ChangePassword(int UserID, string NewPassword);
 
     }

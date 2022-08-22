@@ -42,9 +42,9 @@ namespace DAL
             context.Users.Add(newUser);
             context.SaveChanges();
         }
-        public User Login(User user)
+        public User Login(string Username, string Password)
         {
-            Func<User, bool> expression = p => p.UserName == user.UserName && p.Password == user.Password;
+            Func<User, bool> expression = u => u.UserName == Username && u.Password == Password;
             return context.Users.FirstOrDefault(expression);
         }
 

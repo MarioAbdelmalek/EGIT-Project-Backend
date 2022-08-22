@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EGITBackend.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -55,11 +56,12 @@ namespace EGITBackend.Controllers
             return UserService.GetAllUsers();
         }
 
+        [AllowAnonymous]
         [Route("login")]
         [HttpPost]
-        public IActionResult Login(UserDto user)
+        public IActionResult Login([FromBody] UserCredentialsDto userCred)
         {
-            var token = UserService.Login(user);
+            var token = UserService.Login(userCred);
 
             if (token == null)
             {
@@ -67,8 +69,6 @@ namespace EGITBackend.Controllers
             }
             return Ok(token);
         }
-
-        [Authorize]
         [Route("changePassword")]
         [HttpPost]
         public string ChangePassword(int UserID, string NewPassword)
