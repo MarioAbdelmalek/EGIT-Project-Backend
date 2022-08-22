@@ -22,7 +22,7 @@ namespace DAL
 
         public Lun GetLun(int id)
         {
-            return (Lun)context.Luns.Select(l => l.LunID == id);
+            return (Lun)context.Luns.FirstOrDefault(l => l.LunID == id);
         }
         public void AddLun(Lun lun)
         {
@@ -73,7 +73,7 @@ namespace DAL
         }
         public Storage GetStorage(int SorageID)
         {
-            return (Storage)context.Storages.Select(l => l.StorageID == SorageID);
+            return (Storage)context.Storages.FirstOrDefault(l => l.StorageID == SorageID);
         }
 
         public void AddStorage(Storage storage)

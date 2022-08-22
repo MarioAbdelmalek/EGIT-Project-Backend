@@ -50,9 +50,9 @@ namespace EGITBackend.Controllers
         }
 
         [HttpPost("updatestorage")]
-        public void UpdateStorage(StorageDto storage)
+        public void UpdateStorage(StorageDto storage, int StorageID)
         {
-            EGITService.UpdateStorage(storage);
+            EGITService.UpdateStorage(storage, StorageID);
         }
 
     }

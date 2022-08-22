@@ -48,9 +48,9 @@ namespace EGITBackend.Controllers
 
         [Route("updateLun")]
         [HttpPost]
-        public void UpdateLun(LunDto lun)
+        public void UpdateLun(LunDto lun, int LunID)
         {
-            EGITService.UpdateLun(lun);
+            EGITService.UpdateLun(lun,LunID);
         }
 
 
