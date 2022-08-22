@@ -49,7 +49,8 @@ namespace EGITBackend.Controllers
             EGITService.DeleteStorage(id);
         }
 
-        [HttpPost("updatestorage")]
+        [Route("updateStorage")]
+        [HttpPut]
         public void UpdateStorage(StorageDto storage, int StorageID)
         {
             EGITService.UpdateStorage(storage, StorageID);
