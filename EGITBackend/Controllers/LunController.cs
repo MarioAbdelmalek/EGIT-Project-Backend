@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace EGITBackend.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class LunController : ControllerBase
@@ -47,7 +48,7 @@ namespace EGITBackend.Controllers
         }
 
         [Route("updateLun")]
-        [HttpPost]
+        [HttpPut]
         public void UpdateLun(LunDto lun, int LunID)
         {
             EGITService.UpdateLun(lun,LunID);
