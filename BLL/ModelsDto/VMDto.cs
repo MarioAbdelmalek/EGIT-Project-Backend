@@ -10,7 +10,7 @@ namespace BLL.ModelsDto
 
         public int CpuCores { get; set; }
 
-        public int Ram { get; set; }
+        public int RAM { get; set; }
 
         public string? IP { get; set; }
 

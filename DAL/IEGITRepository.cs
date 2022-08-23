@@ -37,6 +37,8 @@ namespace DAL
         public void AddStorage(Storage storage);
         public void DeleteStorage(int id);
         public void UpdateStorage(Storage storage);
+        public void CalculateRAM(Storage storage);
+
 
         //VM functions
         public List<VM> GetAllVMs();

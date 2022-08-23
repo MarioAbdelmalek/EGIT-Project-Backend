@@ -13,7 +13,7 @@ namespace DAL.Models
 
         public int CpuCores { get; set; }
 
-        public int Ram { get; set; }
+        public int RAM { get; set; }
 
         public string? IP { get; set; }
 
@@ -30,8 +30,6 @@ namespace DAL.Models
         [ForeignKey("LunID")]
 
         public int LunID { get; set; }
-
-
         public Client Client { get; set; }
 
         public Node Node { get; set; }

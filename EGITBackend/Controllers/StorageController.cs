@@ -57,5 +57,11 @@ namespace EGITBackend.Controllers
             EGITService.UpdateStorage(storage, StorageID);
         }
 
+        public void CalculateRAM(StorageDto storage)
+        {
+            EGITService.CalculateRAM(storage);
+        }
+
+
     }
 }

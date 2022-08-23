@@ -2,15 +2,17 @@
 using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DAL.Migrations
 {
     [DbContext(typeof(PostgreSqlContext))]
-    partial class PostgreSqlContextModelSnapshot : ModelSnapshot
+    [Migration("20220822131758_Updating The Entities")]
+    partial class UpdatingTheEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,16 +107,16 @@ namespace DAL.Migrations
                     b.Property<int>("ClusterID")
                         .HasColumnType("integer");
 
-                    b.Property<int>("NodeRemainingCPUCores")
+                    b.Property<int>("RemainingCPUCores")
                         .HasColumnType("integer");
 
-                    b.Property<int>("NodeRemainingRAM")
+                    b.Property<int>("RemainingRAM")
                         .HasColumnType("integer");
 
-                    b.Property<int>("NodeTotalCPUCores")
+                    b.Property<int>("TotalCPUCores")
                         .HasColumnType("integer");
 
-                    b.Property<int>("NodeTotalRAM")
+                    b.Property<int>("TotalRAM")
                         .HasColumnType("integer");
 
                     b.HasKey("NodeID");

@@ -22,6 +22,8 @@ namespace BLL
         public void AddStorage(StorageDto storage);
         public void DeleteStorage(int id);
         public void UpdateStorage(StorageDto storage, int StorageID);
+        public void CalculateRAM(StorageDto storage);
+
 
         //VM functions
         public List<VMDto> GetAllVMs();

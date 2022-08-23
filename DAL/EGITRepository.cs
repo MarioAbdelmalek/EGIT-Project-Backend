@@ -30,7 +30,6 @@ namespace DAL
             context.SaveChanges();
 
         }
-
         public void DeleteLun(int id)
         {
             var entity = context.Luns.FirstOrDefault(t => t.LunID == id);
@@ -46,14 +45,14 @@ namespace DAL
 
         public int getTSpaceByStockId(int id)
         {
-            return context.Luns.Where(t => t.StorageID == id).Sum(i => i.LunTSpace);
+            return context.Luns.Where(t => t.StorageID == id).Sum(i => i.LunTotalRAM);
 
         }
 
         public void updateRSpace(Lun lun)
         {
             var luns = context.Luns.Where(p => p.LunID == lun.LunID).ToList();
-            luns.ForEach(p => p.LunRSpace = lun.LunRSpace);
+            luns.ForEach(p => p.LunRemainingRAM = lun.LunRemainingRAM);
             context.SaveChanges();
         }
 
@@ -63,9 +62,9 @@ namespace DAL
         {
             return context.Storages.ToList();
         }
-        public Storage GetStorage(int SorageID)
+        public Storage GetStorage(int StorageID)
         {
-            return (Storage)context.Storages.FirstOrDefault(l => l.StorageID == SorageID);
+            return (Storage)context.Storages.FirstOrDefault(l => l.StorageID == StorageID);
         }
 
         public void AddStorage(Storage storage)
@@ -86,6 +85,17 @@ namespace DAL
             context.Storages.Remove(entity);
             context.SaveChanges();
         }
+
+
+        public void CalculateRAM(Storage storage) 
+        {
+            int TotalSum = context.Luns.Where(l => l.StorageID == storage.StorageID).Sum(l => l.LunTotalRAM);
+            int RemainingSum = context.Luns.Where(l => l.StorageID == storage.StorageID).Sum(l => l.LunRemainingRAM);
+            storage.StorageTotalRAM = TotalSum;
+            storage.StorageRemainingRAM = RemainingSum;
+            UpdateStorage(storage);
+        }
+
         //vpn functions
 
         public List<Vpn> GetAllVpns()
@@ -129,9 +139,13 @@ namespace DAL
 
         public void AddVM(VM VM)
         {
-            context.VMs.Add(VM);
-            context.SaveChanges();
-
+            Lun addedLun = context.Luns.FirstOrDefault(l => l.LunID == VM.LunID);
+            Client addedClient = context.Clients.FirstOrDefault(c => c.ClientID == VM.ClientID);
+            if(addedClient != null && addedLun != null)
+            {
+                context.VMs.Add(VM);
+                context.SaveChanges();
+            }
         }
         public void UpdateVM(VM VM)
         {
