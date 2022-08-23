@@ -56,5 +56,12 @@ namespace EGITBackend.Controllers
         {
             EGITService.DeleteCluster(ClusterID);
         }
+
+        [Route("calculateClusterSpace")]
+        [HttpPost]
+        public void CalculateClusterSpace(int ClusterID)
+        {
+            EGITService.CalculateClusterSpace(ClusterID);
+        }
     }
 }

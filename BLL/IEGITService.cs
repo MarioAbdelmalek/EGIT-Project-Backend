@@ -7,15 +7,12 @@ namespace BLL
 {
     public interface IEGITService
     {
-        // Lun functions
         public List<LunDto> GetAllLuns();
         public void AddLun(LunDto lun);
         public LunDto GetLun(int id);
         public void DeleteLun(int id);
         public void UpdateLun(LunDto lun, int LunID);
         public int getTSpaceByStockId(int id);
-
-        // Stock functions
         public List<StorageDto> GetAllStorages();
         public StorageDto GetStorage(int id);
         public void AddStorage(StorageDto storage);
@@ -37,6 +34,7 @@ namespace BLL
         void DeleteCluster(int ClusterID);
         void DeleteClient(int ClientID);
         void DeleteNode(int NodeID);
+        void CalculateClusterSpace(int ClusterID);
 
     }
 }

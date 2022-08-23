@@ -14,7 +14,7 @@ namespace DAL
             this.context = context;
 
         }
-        //Lun functions
+
         public List<Lun> GetAllLuns()
         {
             return context.Luns.ToList();
@@ -24,19 +24,20 @@ namespace DAL
         {
             return (Lun)context.Luns.FirstOrDefault(l => l.LunID == id);
         }
+
         public void AddLun(Lun lun)
         {
             context.Luns.Add(lun);
             context.SaveChanges();
 
         }
+
         public void DeleteLun(int id)
         {
             var entity = context.Luns.FirstOrDefault(t => t.LunID == id);
             context.Luns.Remove(entity);
             context.SaveChanges();
         }
-
         public void UpdateLun(Lun lun)
         {
             context.Luns.Update(lun);
@@ -56,12 +57,11 @@ namespace DAL
             context.SaveChanges();
         }
 
-        //Storage functions
-
         public List<Storage> GetAllStorages()
         {
             return context.Storages.ToList();
         }
+
         public Storage GetStorage(int StorageID)
         {
             return (Storage)context.Storages.FirstOrDefault(l => l.StorageID == StorageID);
@@ -73,6 +73,7 @@ namespace DAL
             context.SaveChanges();
 
         }
+
         public void UpdateStorage(Storage storage)
         {
             context.Storages.Update(storage);
@@ -157,6 +158,11 @@ namespace DAL
             var returnedNode = GetNodeByID(NodeID);
             context.Nodes.Remove(returnedNode);
             context.SaveChanges();
+        }
+
+        public List<Node> GetClusterNodes(int ClusterID)
+        {
+            return context.Nodes.Where(n => n.ClusterID == ClusterID).ToList();
         }
 
     }

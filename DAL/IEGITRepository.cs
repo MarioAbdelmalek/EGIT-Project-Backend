@@ -22,20 +22,17 @@ namespace DAL
         void DeleteCluster(int ClusterID);
         void DeleteClient(int ClientID);
         void DeleteNode(int NodeID);
-        //Lun Functions
         public List<Lun> GetAllLuns();
-        public void AddLun(Lun lun);
-        public Lun GetLun(int id);
-        public void DeleteLun(int id);
-        public void UpdateLun(Lun lun);
-        public int getTSpaceByStockId(int id);
-
-        //Storage functions
-
-        public List<Storage> GetAllStorages();
-        public Storage GetStorage(int id);
-        public void AddStorage(Storage storage);
-        public void DeleteStorage(int id);
-        public void UpdateStorage(Storage storage);
+        void AddLun(Lun lun);
+        Lun GetLun(int id);
+        void DeleteLun(int id);
+        void UpdateLun(Lun lun);
+        int getTSpaceByStockId(int id);
+        List<Storage> GetAllStorages();
+        Storage GetStorage(int id);
+        void AddStorage(Storage storage);
+        void DeleteStorage(int id);
+        void UpdateStorage(Storage storage);
+        List<Node> GetClusterNodes(int ClusterID);
     }
 }

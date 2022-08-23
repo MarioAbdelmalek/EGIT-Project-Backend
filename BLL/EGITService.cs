@@ -4,6 +4,7 @@ using DAL;
 using DAL.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BLL
 {
@@ -227,6 +228,30 @@ namespace BLL
                 newStorage.StorageTotalRAM = storage.StorageTotalRAM;
             }
             EGITRepository.UpdateStorage(mapper.Map<Storage>(newStorage));
+        }
+
+        public void CalculateClusterSpace(int ClusterID)
+        {
+            Cluster returnedCluster = EGITRepository.GetClusterByID(ClusterID);
+            if(returnedCluster != null)
+            {
+                List<Node> returnedClusterNodes = EGITRepository.GetClusterNodes(ClusterID);
+
+                var totalRAM = returnedClusterNodes.Sum(n => n.NodeTotalRAM);
+                var remainingRAM = returnedClusterNodes.Sum(n => n.NodeRemainingRAM);
+                var totalCPUCores = returnedClusterNodes.Sum(n => n.NodeTotalCPUCores);
+                var remainingCPUCores = returnedClusterNodes.Sum(n => n.NodeRemainingCPUCores);
+                var totalNodes = returnedClusterNodes.Count();
+
+                returnedCluster.ClusterTotalRAM = totalRAM;
+                returnedCluster.ClusterRemainingRAM = remainingRAM;
+                returnedCluster.NumberOfNodes = totalNodes;
+                returnedCluster.ClusterTotalCPUCores = totalCPUCores;
+                returnedCluster.ClusterRemainingCPUCores = remainingCPUCores;
+
+                EGITRepository.UpdateCluster(returnedCluster);
+            }
+           
         }
     }
 }
