@@ -29,6 +29,15 @@ namespace EGITBackend
 
             CreateMap<Client, ClientDto>();
             CreateMap<ClientDto, Client>();
+
+            CreateMap<Vpn, VpnDto>();
+            CreateMap<VpnDto, Vpn>();
+
+            CreateMap<VM, VMDto>();
+            CreateMap<VMDto, VM>();
+
+
+
         }
     }
 }

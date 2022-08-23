@@ -2,6 +2,7 @@
 using BLL.ModelsDto;
 using DAL;
 using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
@@ -228,9 +229,19 @@ namespace BLL
             }
             EGITRepository.UpdateStorage(mapper.Map<Storage>(newStorage));
         }
-        public void CalculateRAM(StorageDto storage)
+        public GenerateErrorDto CalculateRAM(int StorageID)
         {
-            EGITRepository.CalculateRAM(mapper.Map<Storage>(storage));
+            try
+            {
+                EGITRepository.CalculateRAM(StorageID);
+                return new GenerateErrorDto { Response = " RAM Calculated Successfully!", IsValid = true };
+            }
+
+            catch (Exception)
+            {
+                return new GenerateErrorDto { Response = "Error Calculating RAM!", IsValid = false };
+            }
+            
         }
 
         //VM functions
@@ -244,7 +255,7 @@ namespace BLL
             VM VM = EGITRepository.GetVM(VMID);
             return mapper.Map<VMDto>(VM);
         }
-        public void AddVM(VMDto VM)
+        public GenerateErrorDto AddVM(VMDto VM)
         {
             VMDto newVM = new VMDto
             {
@@ -257,10 +268,20 @@ namespace BLL
                 NodeID = VM.NodeID,
                 LunID = VM.LunID
             };
-            EGITRepository.AddVM(mapper.Map<VM>(newVM));
+
+            try
+            {
+                EGITRepository.AddVM(mapper.Map<VM>(newVM));
+                return new GenerateErrorDto { Response = "VM Added Successfully!", IsValid = true };
+            }
+
+            catch (DbUpdateException)
+            {
+                return new GenerateErrorDto { Response = "Error Adding The VM!", IsValid = false };
+            }
 
         }
-        public void UpdateVM(VMDto VM, int VMID)
+        public GenerateErrorDto UpdateVM(VMDto VM, int VMID)
         {
             VMDto newVM = GetVM(VMID);
             if (newVM != null)
@@ -274,11 +295,29 @@ namespace BLL
                 newVM.LunID = VM.LunID;
 
             }
-            EGITRepository.UpdateVM(mapper.Map<VM>(newVM));
+            try
+            {
+                EGITRepository.UpdateVM(mapper.Map<VM>(newVM));
+                return new GenerateErrorDto { Response = "VM Updated Successfully!", IsValid = true };
+            }
+
+            catch (Exception)
+            {
+                return new GenerateErrorDto { Response = "Error Updating The VM!", IsValid = false };
+            }
         }
-        public void DeleteVM(int VMID)
+        public GenerateErrorDto DeleteVM(int VMID)
         {
-            EGITRepository.DeleteVM(VMID);
+            try
+            {
+                EGITRepository.DeleteVM(VMID);
+                return new GenerateErrorDto { Response = "VM Deleted Successfully!", IsValid = true };
+            }
+
+            catch (Exception)
+            {
+                return new GenerateErrorDto { Response = "Error Deleting The VM!", IsValid = false };
+            }
 
         }
 

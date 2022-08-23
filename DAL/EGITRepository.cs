@@ -87,13 +87,19 @@ namespace DAL
         }
 
 
-        public void CalculateRAM(Storage storage) 
+        public void CalculateRAM(int StorageID) 
         {
-            int TotalSum = context.Luns.Where(l => l.StorageID == storage.StorageID).Sum(l => l.LunTotalRAM);
-            int RemainingSum = context.Luns.Where(l => l.StorageID == storage.StorageID).Sum(l => l.LunRemainingRAM);
-            storage.StorageTotalRAM = TotalSum;
-            storage.StorageRemainingRAM = RemainingSum;
-            UpdateStorage(storage);
+            Storage storage = GetStorage(StorageID);
+            if (storage != null)
+            {
+                int TotalSum = context.Luns.Where(l => l.StorageID == StorageID).Sum(l => l.LunTotalRAM);
+                int RemainingSum = context.Luns.Where(l => l.StorageID == StorageID).Sum(l => l.LunRemainingRAM);
+                storage.StorageTotalRAM = TotalSum;
+                storage.StorageRemainingRAM = RemainingSum;
+                UpdateStorage(storage);
+            }
+
+            
         }
 
         //vpn functions
@@ -139,13 +145,9 @@ namespace DAL
 
         public void AddVM(VM VM)
         {
-            Lun addedLun = context.Luns.FirstOrDefault(l => l.LunID == VM.LunID);
-            Client addedClient = context.Clients.FirstOrDefault(c => c.ClientID == VM.ClientID);
-            if(addedClient != null && addedLun != null)
-            {
-                context.VMs.Add(VM);
-                context.SaveChanges();
-            }
+            context.VMs.Add(VM);
+            context.SaveChanges();
+
         }
         public void UpdateVM(VM VM)
         {

@@ -19,24 +19,38 @@ namespace EGITBackend.Controllers
             this.EGITService = EGITService;
         }
 
+        [Route("getAllVpns")]
+        [HttpGet]
         public List<VpnDto> GetAllVpns()
         {
             return EGITService.GetAllVpns();
         }
+
+        [Route("getVpn")]
+        [HttpGet]
         public VpnDto GetVpn(int VpnID)
         {
             return EGITService.GetVpn(VpnID);
 
         }
+
+        [Route("addVpn")]
+        [HttpPost]
         public void AddVpn(VpnDto vpn)
         {
             EGITService.AddVpn(vpn);
         }
+
+        [Route("updateVpn")]
+        [HttpPut]
         public void UpdateVpn(VpnDto vpn, int VpnID)
         {
             EGITService.UpdateVpn(vpn, VpnID);
 
         }
+
+        [Route("deleteVpn")]
+        [HttpDelete]
         public void DeleteVpn(int VpnID)
         {
             EGITService.DeleteVpn(VpnID);

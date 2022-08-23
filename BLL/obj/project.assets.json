@@ -4496,6 +4496,7 @@
     ".NETStandard,Version=v2.1": [
       "AutoMapper >= 11.0.1",
       "DAL >= 1.0.0",
+      "Microsoft.EntityFrameworkCore >= 5.0.17",
       "Microsoft.Extensions.Configuration.Abstractions >= 6.0.0",
       "System.IdentityModel.Tokens.Jwt >= 5.6.0"
     ]
@@ -4546,6 +4547,10 @@
           "AutoMapper": {
             "target": "Package",
             "version": "[11.0.1, )"
+          },
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[5.0.17, )"
           },
           "Microsoft.Extensions.Configuration.Abstractions": {
             "target": "Package",
