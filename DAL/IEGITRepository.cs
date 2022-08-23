@@ -34,5 +34,20 @@ namespace DAL
         void DeleteStorage(int id);
         void UpdateStorage(Storage storage);
         List<Node> GetClusterNodes(int ClusterID);
+        List<VM> GetNodeVMs(int NodeID);
+        public void CalculateRAM(Storage storage);
+
+        public List<VM> GetAllVMs();
+        public VM GetVM(int VMID);
+        public void AddVM(VM VM);
+        public void UpdateVM(VM VM);
+        public void DeleteVM(int VMID);
+
+        public List<Vpn> GetAllVpns();
+        public Vpn GetVpn(int VpnID);
+        public void AddVpn(Vpn vpn);
+        public void UpdateVpn(Vpn vpn);
+        public void DeleteVpn(int VpnID);
+
     }
 }

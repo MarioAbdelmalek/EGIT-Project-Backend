@@ -24,9 +24,9 @@ namespace EGITBackend.Controllers
 
         [Route("addCluster")]
         [HttpPost]
-        public void AddCluster(CreateClusterDto newCluster)
+        public GenerateErrorDto AddCluster(CreateClusterDto newCluster)
         {
-            EGITService.AddCluster(newCluster);
+            return EGITService.AddCluster(newCluster);
         }
 
         [Route("getClusterById")]
@@ -38,9 +38,9 @@ namespace EGITBackend.Controllers
 
         [Route("updateCluster")]
         [HttpPut]
-        public void UpdateCluster(int ClusterID, CreateClusterDto newCluster)
+        public GenerateErrorDto UpdateCluster(int ClusterID, CreateClusterDto newCluster)
         {
-            EGITService.UpdateCluster(ClusterID, newCluster);
+            return EGITService.UpdateCluster(ClusterID, newCluster);
         }
 
         [Route("getAllClusters")]
@@ -52,16 +52,16 @@ namespace EGITBackend.Controllers
 
         [Route("deleteCluster")]
         [HttpDelete]
-        public void DeleteCluster(int ClusterID)
+        public GenerateErrorDto DeleteCluster(int ClusterID)
         {
-            EGITService.DeleteCluster(ClusterID);
+            return EGITService.DeleteCluster(ClusterID);
         }
 
         [Route("calculateClusterSpace")]
         [HttpPost]
-        public void CalculateClusterSpace(int ClusterID)
+        public GenerateErrorDto CalculateClusterSpace(int ClusterID)
         {
-            EGITService.CalculateClusterSpace(ClusterID);
+            return EGITService.CalculateClusterSpace(ClusterID);
         }
     }
 }

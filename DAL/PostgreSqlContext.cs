@@ -18,6 +18,9 @@ namespace DAL
         public DbSet<Storage> Storages { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Client> Clients { get; set; }
+        public DbSet<VM> VMs { get; set; }
+        public DbSet<Vpn> Vpns { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder builder)

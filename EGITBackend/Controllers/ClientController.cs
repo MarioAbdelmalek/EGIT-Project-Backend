@@ -23,9 +23,9 @@ namespace EGITBackend.Controllers
 
         [Route("addClient")]
         [HttpPost]
-        public void AddClient(CreateClientDto newClient)
+        public GenerateErrorDto AddClient(CreateClientDto newClient)
         {
-            EGITService.AddClient(newClient);
+            return EGITService.AddClient(newClient);
         }
 
         [Route("getClientById")]
@@ -37,9 +37,9 @@ namespace EGITBackend.Controllers
 
         [Route("updateClient")]
         [HttpPut]
-        public void UpdateClient(int ClientID, CreateClientDto newClient)
+        public GenerateErrorDto UpdateClient(int ClientID, CreateClientDto newClient)
         {
-            EGITService.UpdateClient(ClientID, newClient);
+            return EGITService.UpdateClient(ClientID, newClient);
         }
 
         [Route("getAllClients")]
@@ -51,9 +51,9 @@ namespace EGITBackend.Controllers
 
         [Route("deleteClient")]
         [HttpDelete]
-        public void DeleteClient(int ClientID)
+        public GenerateErrorDto DeleteClient(int ClientID)
         {
-            EGITService.DeleteClient(ClientID);
+            return EGITService.DeleteClient(ClientID);
         }
     }
 }

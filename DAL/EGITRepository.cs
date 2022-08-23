@@ -87,6 +87,81 @@ namespace DAL
             context.SaveChanges();
         }
 
+
+        public void CalculateRAM(Storage storage) 
+        {
+            int TotalSum = context.Luns.Where(l => l.StorageID == storage.StorageID).Sum(l => l.LunTotalRAM);
+            int RemainingSum = context.Luns.Where(l => l.StorageID == storage.StorageID).Sum(l => l.LunRemainingRAM);
+            storage.StorageTotalRAM = TotalSum;
+            storage.StorageRemainingRAM = RemainingSum;
+            UpdateStorage(storage);
+        }
+
+        //vpn functions
+
+        public List<Vpn> GetAllVpns()
+        {
+            return context.Vpns.ToList();
+        }
+        public Vpn GetVpn(int VpnID)
+        {
+            return context.Vpns.FirstOrDefault(l => l.VpnID == VpnID);
+        }
+
+        public void AddVpn(Vpn vpn)
+        {
+            context.Vpns.Add(vpn);
+            context.SaveChanges();
+
+        }
+        public void UpdateVpn(Vpn vpn)
+        {
+            context.Vpns.Update(vpn);
+            context.SaveChanges();
+        }
+
+        public void DeleteVpn(int VpnID)
+        {
+            var entity = context.Vpns.FirstOrDefault(t => t.VpnID == VpnID);
+            context.Vpns.Remove(entity);
+            context.SaveChanges();
+        }
+
+        //VM functions
+
+        public List<VM> GetAllVMs()
+        {
+            return context.VMs.ToList();
+        }
+        public VM GetVM(int VMID)
+        {
+            return context.VMs.FirstOrDefault(l => l.VMID == VMID);
+        }
+
+        public void AddVM(VM VM)
+        {
+            Lun addedLun = context.Luns.FirstOrDefault(l => l.LunID == VM.LunID);
+            Client addedClient = context.Clients.FirstOrDefault(c => c.ClientID == VM.ClientID);
+            if(addedClient != null && addedLun != null)
+            {
+                context.VMs.Add(VM);
+                context.SaveChanges();
+            }
+        }
+        public void UpdateVM(VM VM)
+        {
+            context.VMs.Update(VM);
+            context.SaveChanges();
+        }
+
+        public void DeleteVM(int VMID)
+        {
+            var entity = context.VMs.FirstOrDefault(t => t.VMID == VMID);
+            context.VMs.Remove(entity);
+            context.SaveChanges();
+        }
+
+        //
         public void AddCluster(Cluster newCluster)
         {
             context.Clusters.Add(newCluster);
@@ -165,5 +240,9 @@ namespace DAL
             return context.Nodes.Where(n => n.ClusterID == ClusterID).ToList();
         }
 
+        public List<VM> GetNodeVMs(int NodeID)
+        {
+            return context.VMs.Where(vm => vm.NodeID == NodeID).ToList();
+        }
     }
 }

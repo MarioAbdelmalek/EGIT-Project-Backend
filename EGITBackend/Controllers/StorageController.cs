@@ -38,24 +38,31 @@ namespace EGITBackend.Controllers
 
         [Route("addStorage")]
         [HttpPost]
-        public void AddStorage(StorageDto storage)
+        public GenerateErrorDto AddStorage(StorageDto storage)
         {
-            EGITService.AddStorage(storage);
+            return EGITService.AddStorage(storage);
         }
 
         [Route("deleteById")]
         [HttpDelete]
-        public void DeleteStorage(int id)
+        public GenerateErrorDto DeleteStorage(int id)
         {
-            EGITService.DeleteStorage(id);
+            return EGITService.DeleteStorage(id);
         }
 
         [Route("updateStorage")]
         [HttpPut]
-        public void UpdateStorage(StorageDto storage, int StorageID)
+        public GenerateErrorDto UpdateStorage(StorageDto storage, int StorageID)
         {
-            EGITService.UpdateStorage(storage, StorageID);
+            return EGITService.UpdateStorage(storage, StorageID);
         }
+        [Route("calculateStorageRAM")]
+        [HttpPost]
+        public void CalculateRAM(StorageDto storage)
+        {
+             EGITService.CalculateRAM(storage);
+        }
+
 
     }
 }
