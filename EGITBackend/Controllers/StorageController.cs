@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EGITBackend.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class StorageController : ControllerBase

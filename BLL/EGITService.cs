@@ -177,7 +177,6 @@ namespace BLL
             if (newlun != null)
             {
                 newlun.LunName = lun.LunName;
-                newlun.LunType = lun.LunType;
                 newlun.LunRSpace = lun.LunRSpace;
                 newlun.LunTSpace = lun.LunTSpace;
                 newlun.StorageID = lun.StorageID;
@@ -209,9 +208,8 @@ namespace BLL
             StorageDto newStorage = new StorageDto
             {
                 StorageName = storage.StorageName,
-                StorageType = storage.StorageType,
-                StorageRSpace = storage.StorageRSpace,
-                StorageTSpace = storage.StorageTSpace
+                StorageRemainingRAM = storage.StorageRemainingRAM,
+                StorageTotalRAM = storage.StorageTotalRAM
 
             };
             EGITRepository.AddStorage(mapper.Map<Storage>(storage));
@@ -228,11 +226,100 @@ namespace BLL
             if (newStorage != null)
             {
                 newStorage.StorageName = storage.StorageName;
-                newStorage.StorageType = storage.StorageType;
-                newStorage.StorageRSpace = storage.StorageRSpace;
-                newStorage.StorageTSpace = storage.StorageTSpace;
+                newStorage.StorageRemainingRAM = storage.StorageRemainingRAM;
+                newStorage.StorageTotalRAM = storage.StorageTotalRAM;
             }
             EGITRepository.UpdateStorage(mapper.Map<Storage>(newStorage));
         }
+
+        //VM functions
+        public List<VMDto> GetAllVMs()
+        {
+            List<VM> VMs = EGITRepository.GetAllVMs();
+            return mapper.Map<List<VMDto>>(VMs);
+        }
+        public VMDto GetVM(int VMID)
+        {
+            VM VM = EGITRepository.GetVM(VMID);
+            return mapper.Map<VMDto>(VM);
+        }
+        public void AddVM(VMDto VM)
+        {
+            VMDto newVM = new VMDto
+            {
+
+                CpuCores = VM.CpuCores,
+                Ram = VM.Ram,
+                IP = VM.IP,
+                Bandwidth = VM.Bandwidth,
+                ClientID = VM.ClientID,
+                NodeID = VM.NodeID,
+                LunID = VM.LunID
+            };
+            EGITRepository.AddVM(mapper.Map<VM>(newVM));
+
+        }
+        public void UpdateVM(VMDto VM, int VMID)
+        {
+            VMDto newVM = GetVM(VMID);
+            if (newVM != null)
+            {
+                newVM.CpuCores = VM.CpuCores;
+                newVM.Ram = VM.Ram;
+                newVM.IP = VM.IP;
+                newVM.Bandwidth = VM.Bandwidth;
+                newVM.ClientID = VM.ClientID;
+                newVM.NodeID = VM.NodeID;
+                newVM.LunID = VM.LunID;
+
+            }
+            EGITRepository.UpdateVM(mapper.Map<VM>(newVM));
+        }
+        public void DeleteVM(int VMID)
+        {
+            EGITRepository.DeleteVM(VMID);
+
+        }
+
+        // Vpn Functions
+        public List<VpnDto> GetAllVpns()
+        {
+            List<Vpn> Vpns = EGITRepository.GetAllVpns();
+            return mapper.Map<List<VpnDto>>(Vpns);
+        }
+        public VpnDto GetVpn(int VpnID)
+        {
+            Vpn vpn = EGITRepository.GetVpn(VpnID);
+            return mapper.Map<VpnDto>(vpn);
+        }
+        public void AddVpn(VpnDto vpn)
+
+        {
+            VpnDto newVpn = new VpnDto
+            {
+                Username = vpn.Username,
+                ClientID = vpn.ClientID
+
+
+            };
+            EGITRepository.AddVpn(mapper.Map<Vpn>(newVpn));
+
+        }
+        public void DeleteVpn(int VpnID)
+        {
+            EGITRepository.DeleteVpn(VpnID);
+
+        }
+        public void UpdateVpn(VpnDto vpn, int VpnID)
+        {
+            VpnDto newVpn = GetVpn(VpnID);
+            if (newVpn != null)
+            {
+                newVpn.Username = vpn.Username;
+                newVpn.ClientID = vpn.ClientID;
+            }
+            EGITRepository.UpdateVpn(mapper.Map<Vpn>(newVpn));
+        }
+
     }
 }

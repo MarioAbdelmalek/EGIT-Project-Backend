@@ -1,4 +1,5 @@
 ﻿using BLL.ModelsDto;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,12 +16,26 @@ namespace BLL
         public void UpdateLun(LunDto lun, int LunID);
         public int getTSpaceByStockId(int id);
 
-        // Stock functions
+        // Storage functions
         public List<StorageDto> GetAllStorages();
         public StorageDto GetStorage(int id);
         public void AddStorage(StorageDto storage);
         public void DeleteStorage(int id);
         public void UpdateStorage(StorageDto storage, int StorageID);
+
+        //VM functions
+        public List<VMDto> GetAllVMs();
+        public VMDto GetVM(int VMID);
+        public void AddVM(VMDto VM);
+        public void UpdateVM(VMDto VM, int VMID);
+        public void DeleteVM(int VMID);
+        //vpn functions
+        public List<VpnDto> GetAllVpns();
+        public VpnDto GetVpn(int VpnID);
+        public void AddVpn(VpnDto vpn);
+        public void UpdateVpn(VpnDto vpn, int VpnID);
+        public void DeleteVpn(int VpnID);
+
 
         void AddCluster(CreateClusterDto newCluster);
         void AddClient(CreateClientDto newClient);

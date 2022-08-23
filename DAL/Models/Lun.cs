@@ -11,8 +11,6 @@ namespace DAL.Models
         [Key]
         public int LunID { get; set; }
         public string LunName { get; set; }
-        public string LunType { get; set; }
-
         public int LunTSpace { get; set; }
         public int LunRSpace { get; set; }
 

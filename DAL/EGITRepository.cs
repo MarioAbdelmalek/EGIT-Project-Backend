@@ -57,14 +57,6 @@ namespace DAL
             context.SaveChanges();
         }
 
-
-        public void updateLunTypes(Lun lun)
-        {
-            var luns = context.Luns.Where(p => p.StorageID == lun.StorageID).ToList();
-            luns.ForEach(p => p.LunType = lun.LunType);
-            context.SaveChanges();
-        }
-
         //Storage functions
 
         public List<Storage> GetAllStorages()
@@ -94,7 +86,67 @@ namespace DAL
             context.Storages.Remove(entity);
             context.SaveChanges();
         }
+        //vpn functions
 
+        public List<Vpn> GetAllVpns()
+        {
+            return context.Vpns.ToList();
+        }
+        public Vpn GetVpn(int VpnID)
+        {
+            return context.Vpns.FirstOrDefault(l => l.VpnID == VpnID);
+        }
+
+        public void AddVpn(Vpn vpn)
+        {
+            context.Vpns.Add(vpn);
+            context.SaveChanges();
+
+        }
+        public void UpdateVpn(Vpn vpn)
+        {
+            context.Vpns.Update(vpn);
+            context.SaveChanges();
+        }
+
+        public void DeleteVpn(int VpnID)
+        {
+            var entity = context.Vpns.FirstOrDefault(t => t.VpnID == VpnID);
+            context.Vpns.Remove(entity);
+            context.SaveChanges();
+        }
+
+        //VM functions
+
+        public List<VM> GetAllVMs()
+        {
+            return context.VMs.ToList();
+        }
+        public VM GetVM(int VMID)
+        {
+            return context.VMs.FirstOrDefault(l => l.VMID == VMID);
+        }
+
+        public void AddVM(VM VM)
+        {
+            context.VMs.Add(VM);
+            context.SaveChanges();
+
+        }
+        public void UpdateVM(VM VM)
+        {
+            context.VMs.Update(VM);
+            context.SaveChanges();
+        }
+
+        public void DeleteVM(int VMID)
+        {
+            var entity = context.VMs.FirstOrDefault(t => t.VMID == VMID);
+            context.VMs.Remove(entity);
+            context.SaveChanges();
+        }
+
+        //
         public void AddCluster(Cluster newCluster)
         {
             context.Clusters.Add(newCluster);

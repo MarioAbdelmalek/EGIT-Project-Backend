@@ -1,9 +1,3 @@
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.AssemblyInfoInputs.cache
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.AssemblyInfo.cs
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csproj.CoreCompileInputs.cache
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csproj.AssemblyReference.cache
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\EGITBackend.exe
@@ -68,7 +62,13 @@ C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBack
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\DAL.dll
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\BLL.pdb
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\DAL.pdb
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csproj.AssemblyReference.cache
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.AssemblyInfoInputs.cache
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.AssemblyInfo.cs
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csproj.CoreCompileInputs.cache
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\staticwebassets\EGITBackend.StaticWebAssets.Manifest.cache
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.RazorTargetAssemblyInfo.cache
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csproj.CopyComplete
