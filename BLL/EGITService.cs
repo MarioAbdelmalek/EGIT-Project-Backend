@@ -43,9 +43,7 @@ namespace BLL
 
         public GenerateErrorDto AddCluster(CreateClusterDto newCluster)
         {
-            ClusterDto c = new ClusterDto { ClusterType = newCluster.ClusterType, NumberOfNodes = newCluster.NumberOfNodes,
-                ClusterRemainingCPUCores = newCluster.ClusterRemainingCPUCores, 
-                ClusterRemainingRAM = newCluster.ClusterRemainingRAM, ClusterTotalCPUCores = newCluster.ClusterTotalCPUCores, ClusterTotalRAM = newCluster.ClusterTotalRAM};
+            ClusterDto c = new ClusterDto { ClusterType = newCluster.ClusterType, NumberOfNodes = newCluster.NumberOfNodes};
             try
             {
                 EGITRepository.AddCluster(mapper.Map<Cluster>(c));
@@ -64,9 +62,7 @@ namespace BLL
             NodeDto n = new NodeDto
             {
                 NodeTotalCPUCores = newNode.NodeTotalCPUCores,
-                NodeRemainingCPUCores = newNode.NodeRemainingCPUCores,
                 NodeTotalRAM = newNode.NodeTotalRAM,
-                NodeRemainingRAM = newNode.NodeRemainingRAM,
                 ClusterID = newNode.ClusterID
             };
             try
@@ -188,10 +184,6 @@ namespace BLL
             {
                 oldCluster.ClusterType = newCluster.ClusterType;
                 oldCluster.NumberOfNodes = newCluster.NumberOfNodes;
-                oldCluster.ClusterRemainingCPUCores = newCluster.ClusterRemainingCPUCores;
-                oldCluster.ClusterRemainingRAM = newCluster.ClusterRemainingRAM;
-                oldCluster.ClusterTotalCPUCores = newCluster.ClusterTotalCPUCores;
-                oldCluster.ClusterTotalRAM = newCluster.ClusterTotalRAM;
 
                 EGITRepository.UpdateCluster(mapper.Map<Cluster>(oldCluster));
                 return new GenerateErrorDto { Response = "Cluster Updated Successfully!", IsValid = true };
@@ -208,9 +200,7 @@ namespace BLL
             if (oldNode != null)
             {
                 oldNode.NodeTotalCPUCores = newNode.NodeTotalCPUCores;
-                oldNode.NodeRemainingCPUCores = newNode.NodeRemainingCPUCores;
                 oldNode.NodeTotalRAM = newNode.NodeTotalRAM;
-                oldNode.NodeRemainingRAM = newNode.NodeRemainingRAM;
                 oldNode.ClusterID = newNode.ClusterID;
 
                 EGITRepository.UpdateNode(mapper.Map<Node>(oldNode));
