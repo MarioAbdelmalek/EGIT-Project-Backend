@@ -65,7 +65,9 @@ namespace BLL
             {
                 NodeTotalCPUCores = newNode.NodeTotalCPUCores,
                 NodeTotalRAM = newNode.NodeTotalRAM,
-                ClusterID = newNode.ClusterID
+                ClusterID = newNode.ClusterID,
+                NodeRemainingCPUCores = newNode.NodeTotalCPUCores,
+                NodeRemainingRAM = newNode.NodeTotalRAM
             };
 
             ClusterDto nodeCluster = this.GetClusterByID(newNode.ClusterID);
@@ -436,7 +438,6 @@ namespace BLL
         {
             VMDto newVM = new VMDto
             {
-
                 CpuCores = VM.CpuCores,
                 RAM = VM.RAM,
                 IP = VM.IP,
@@ -492,8 +493,33 @@ namespace BLL
         {
             VMDto newVM = GetVM(VMID);
 
+            NodeDto VMNode = this.GetNodeByID(VM.NodeID);
+            ClientDto VMClient = this.GetClientByID(VM.ClientID);
+            LunDto VMLun = this.GetLun(VM.LunID);
+
+            if (VMNode == null)
+            {
+                return new GenerateErrorDto { Response = "Node Not Found, Cannot Update This VM!", IsValid = false };
+            }
+
+            if (VMClient == null)
+            {
+                return new GenerateErrorDto { Response = "Client Not Found, Cannot Update This VM!", IsValid = false };
+            }
+
+            if (VMLun == null)
+            {
+                return new GenerateErrorDto { Response = "Lun Not Found, Cannot Update This VM!", IsValid = false };
+            }
+
+            var remainingRAMs = 0;
+            var remainingCPUCors = 0;
+
             if (newVM != null)
             {
+                remainingRAMs = newVM.RAM + VMNode.NodeRemainingRAM;
+                remainingCPUCors = newVM.CpuCores + VMNode.NodeRemainingCPUCores;
+
                 newVM.CpuCores = VM.CpuCores;
                 newVM.RAM = VM.RAM;
                 newVM.IP = VM.IP;
@@ -501,7 +527,6 @@ namespace BLL
                 newVM.ClientID = VM.ClientID;
                 newVM.NodeID = VM.NodeID;
                 newVM.LunID = VM.LunID;
-
             }
 
             else
@@ -511,26 +536,8 @@ namespace BLL
 
             try
             {
-                NodeDto VMNode = this.GetNodeByID(newVM.NodeID);
-                ClientDto VMClient = this.GetClientByID(newVM.ClientID);
-                LunDto VMLun = this.GetLun(newVM.LunID);
 
-                if (VMNode == null)
-                {
-                    return new GenerateErrorDto { Response = "Node Not Found, Cannot Update This VM!", IsValid = false };
-                }
-
-                if (VMClient == null)
-                {
-                    return new GenerateErrorDto { Response = "Client Not Found, Cannot Update This VM!", IsValid = false };
-                }
-
-                if (VMLun == null)
-                {
-                    return new GenerateErrorDto { Response = "Lun Not Found, Cannot Update This VM!", IsValid = false };
-                }
-
-                if (newVM.RAM > VMNode.NodeRemainingRAM || newVM.CpuCores > VMNode.NodeRemainingCPUCores)
+                if (VM.RAM > remainingRAMs || VM.CpuCores > remainingCPUCors)
                 {
                     return new GenerateErrorDto { Response = "No Enough RAM or CPU Cores!", IsValid = false };
                 }
