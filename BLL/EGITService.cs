@@ -723,6 +723,7 @@ namespace BLL
 
             if (returnedNode != null)
             {
+                ClusterDto nodeCluster = this.GetClusterByID(returnedNode.ClusterID);
                 List<VM> returnedNodeVMs = EGITRepository.GetNodeVMs(NodeID);
 
                 var totalVMsRAM = returnedNodeVMs.Sum(vm => vm.RAM);
@@ -736,6 +737,7 @@ namespace BLL
 
 
                 EGITRepository.UpdateNode(returnedNode);
+                this.CalculateClusterSpace(nodeCluster.ClusterID);
                 return new GenerateErrorDto { Response = "Node Updated Successfully!", IsValid = true };
             }
 

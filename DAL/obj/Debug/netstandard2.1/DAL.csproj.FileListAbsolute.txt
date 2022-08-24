@@ -1,7 +1,6 @@
 F:\EGIT\EGITBackend\DAL\bin\Debug\netstandard2.1\DAL.deps.json
 F:\EGIT\EGITBackend\DAL\bin\Debug\netstandard2.1\DAL.dll
 F:\EGIT\EGITBackend\DAL\bin\Debug\netstandard2.1\DAL.pdb
-F:\EGIT\EGITBackend\DAL\obj\Debug\netstandard2.1\DAL.csprojAssemblyReference.cache
 F:\EGIT\EGITBackend\DAL\obj\Debug\netstandard2.1\DAL.AssemblyInfoInputs.cache
 F:\EGIT\EGITBackend\DAL\obj\Debug\netstandard2.1\DAL.AssemblyInfo.cs
 F:\EGIT\EGITBackend\DAL\obj\Debug\netstandard2.1\DAL.csproj.CoreCompileInputs.cache
