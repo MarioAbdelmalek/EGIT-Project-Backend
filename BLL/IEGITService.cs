@@ -8,36 +8,29 @@ namespace BLL
 {
     public interface IEGITService
     {
-        // Lun functions
         public List<LunDto> GetAllLuns();
-        public GenerateErrorDto AddLun(LunDto lun);
+        public GenerateErrorDto AddLun(CreateLunDto lun);
         public LunDto GetLun(int id);
         public GenerateErrorDto DeleteLun(int id);
-        public GenerateErrorDto UpdateLun(LunDto lun, int LunID);
-        public int getTSpaceByStockId(int id);
-
-        // Storage functions
+        public GenerateErrorDto UpdateLun(CreateLunDto lun, int LunID);
         public List<StorageDto> GetAllStorages();
         public StorageDto GetStorage(int id);
-        public GenerateErrorDto AddStorage(StorageDto storage);
+        public GenerateErrorDto AddStorage(CreateStorageDto storage);
         public GenerateErrorDto DeleteStorage(int id);
-        public GenerateErrorDto UpdateStorage(StorageDto storage, int StorageID);
-        public GenerateErrorDto CalculateRAM(int StorageID);
-
-
-        //VM functions
+        public GenerateErrorDto UpdateStorage(CreateStorageDto storage, int StorageID);
+        public GenerateErrorDto CalculateStorageRAM(int StorageID);
         public List<VMDto> GetAllVMs();
         public VMDto GetVM(int VMID);
-        public GenerateErrorDto AddVM(VMDto VM);
-        public GenerateErrorDto UpdateVM(VMDto VM, int VMID);
+        public GenerateErrorDto AddVM(CreateVMDto VM);
+        public GenerateErrorDto UpdateVM(CreateVMDto VM, int VMID);
         public GenerateErrorDto DeleteVM(int VMID);
         //vpn functions
+
         public List<VpnDto> GetAllVpns();
         public VpnDto GetVpn(int VpnID);
-        public GenerateErrorDto AddVpn(VpnDto vpn);
-        public GenerateErrorDto UpdateVpn(VpnDto vpn, int VpnID);
+        public GenerateErrorDto AddVpn(CreateVpnDto vpn);
+        public GenerateErrorDto UpdateVpn(CreateVpnDto vpn, int VpnID);
         public GenerateErrorDto DeleteVpn(int VpnID);
-
 
         GenerateErrorDto AddCluster(CreateClusterDto newCluster);
         GenerateErrorDto AddClient(CreateClientDto newClient);
@@ -54,6 +47,7 @@ namespace BLL
         GenerateErrorDto DeleteCluster(int ClusterID);
         GenerateErrorDto DeleteClient(int ClientID);
         GenerateErrorDto DeleteNode(int NodeID);
-
+        GenerateErrorDto CalculateClusterSpace(int ClusterID);
+        GenerateErrorDto CalculateNodeRemainingSpace(int NodeID);
     }
 }

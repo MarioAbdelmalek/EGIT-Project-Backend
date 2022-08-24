@@ -1,5 +1,6 @@
 ﻿using BLL;
 using BLL.ModelsDto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace EGITBackend.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class VMController : ControllerBase
@@ -26,7 +28,7 @@ namespace EGITBackend.Controllers
             return EGITService.GetAllVMs();
         }
 
-        [Route("getVM")]
+        [Route("getVMById")]
         [HttpGet]
         public VMDto GetVM(int VMID)
         {
@@ -35,23 +37,23 @@ namespace EGITBackend.Controllers
 
         [Route("addVM")]
         [HttpPost]
-        public GenerateErrorDto AddVM(VMDto VM)
+        public GenerateErrorDto AddVM(CreateVMDto VM)
         {
-             GenerateErrorDto Response=EGITService.AddVM(VM);
-            return Response;
+             return EGITService.AddVM(VM);
         }
 
         [Route("updateVM")]
         [HttpPut]
-        public void UpdateVM(VMDto VM, int VMID)
+        public GenerateErrorDto UpdateVM(CreateVMDto VM, int VMID)
         {
-            EGITService.UpdateVM(VM, VMID);
+            return EGITService.UpdateVM(VM, VMID);
         }
+
         [Route("deleteVM")]
         [HttpDelete]
-        public void DeleteVM(int VMID)
+        public GenerateErrorDto DeleteVM(int VMID)
         {
-            EGITService.DeleteVM(VMID);
+            return EGITService.DeleteVM(VMID);
         }
     }
 }

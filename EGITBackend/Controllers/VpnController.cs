@@ -1,5 +1,6 @@
 ﻿using BLL;
 using BLL.ModelsDto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace EGITBackend.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class VpnController : ControllerBase
@@ -19,14 +21,14 @@ namespace EGITBackend.Controllers
             this.EGITService = EGITService;
         }
 
-        [Route("getAllVpns")]
+        [Route("getAllVPNs")]
         [HttpGet]
         public List<VpnDto> GetAllVpns()
         {
             return EGITService.GetAllVpns();
         }
 
-        [Route("getVpn")]
+        [Route("getVPNById")]
         [HttpGet]
         public VpnDto GetVpn(int VpnID)
         {
@@ -34,27 +36,26 @@ namespace EGITBackend.Controllers
 
         }
 
-        [Route("addVpn")]
+        [Route("addVPN")]
         [HttpPost]
-        public void AddVpn(VpnDto vpn)
+        public GenerateErrorDto AddVpn(CreateVpnDto vpn)
         {
-            EGITService.AddVpn(vpn);
+            return EGITService.AddVpn(vpn);
         }
 
-        [Route("updateVpn")]
+        [Route("updateVPN")]
         [HttpPut]
-        public void UpdateVpn(VpnDto vpn, int VpnID)
+        public GenerateErrorDto UpdateVpn(CreateVpnDto vpn, int VpnID)
         {
-            EGITService.UpdateVpn(vpn, VpnID);
+            return EGITService.UpdateVpn(vpn, VpnID);
 
         }
 
-        [Route("deleteVpn")]
+        [Route("deleteVPN")]
         [HttpDelete]
-        public void DeleteVpn(int VpnID)
+        public GenerateErrorDto DeleteVpn(int VpnID)
         {
-            EGITService.DeleteVpn(VpnID);
-
+            return EGITService.DeleteVpn(VpnID);
         }
     }
 }

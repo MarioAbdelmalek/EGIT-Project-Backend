@@ -38,7 +38,7 @@ namespace EGITBackend.Controllers
 
         [Route("addStorage")]
         [HttpPost]
-        public GenerateErrorDto AddStorage(StorageDto storage)
+        public GenerateErrorDto AddStorage(CreateStorageDto storage)
         {
             return EGITService.AddStorage(storage);
         }
@@ -52,16 +52,16 @@ namespace EGITBackend.Controllers
 
         [Route("updateStorage")]
         [HttpPut]
-        public GenerateErrorDto UpdateStorage(StorageDto storage, int StorageID)
+        public GenerateErrorDto UpdateStorage(CreateStorageDto storage, int StorageID)
         {
             return EGITService.UpdateStorage(storage, StorageID);
         }
 
         [Route("calculateRAM")]
         [HttpPost]
-        public GenerateErrorDto CalculateRAM(int StorageID)
+        public GenerateErrorDto CalculateStorageRAM(int StorageID)
         {
-            return EGITService.CalculateRAM(StorageID);
+            return EGITService.CalculateStorageRAM(StorageID);
         }
 
 

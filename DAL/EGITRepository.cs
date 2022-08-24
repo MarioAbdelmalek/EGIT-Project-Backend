@@ -14,7 +14,7 @@ namespace DAL
             this.context = context;
 
         }
-        //Lun functions
+
         public List<Lun> GetAllLuns()
         {
             return context.Luns.ToList();
@@ -24,44 +24,38 @@ namespace DAL
         {
             return (Lun)context.Luns.FirstOrDefault(l => l.LunID == id);
         }
+
         public void AddLun(Lun lun)
         {
             context.Luns.Add(lun);
             context.SaveChanges();
 
         }
+
         public void DeleteLun(int id)
         {
             var entity = context.Luns.FirstOrDefault(t => t.LunID == id);
             context.Luns.Remove(entity);
             context.SaveChanges();
         }
-
         public void UpdateLun(Lun lun)
         {
             context.Luns.Update(lun);
             context.SaveChanges();
         }
 
-        public int getTSpaceByStockId(int id)
+        public List<Lun> GetStorageLuns(int StorageID)
         {
-            return context.Luns.Where(t => t.StorageID == id).Sum(i => i.LunTotalRAM);
+            return context.Luns.Where(t => t.StorageID == StorageID).ToList();
 
         }
 
-        public void updateRSpace(Lun lun)
-        {
-            var luns = context.Luns.Where(p => p.LunID == lun.LunID).ToList();
-            luns.ForEach(p => p.LunRemainingRAM = lun.LunRemainingRAM);
-            context.SaveChanges();
-        }
-
-        //Storage functions
 
         public List<Storage> GetAllStorages()
         {
             return context.Storages.ToList();
         }
+
         public Storage GetStorage(int StorageID)
         {
             return (Storage)context.Storages.FirstOrDefault(l => l.StorageID == StorageID);
@@ -73,6 +67,7 @@ namespace DAL
             context.SaveChanges();
 
         }
+
         public void UpdateStorage(Storage storage)
         {
             context.Storages.Update(storage);
@@ -87,20 +82,7 @@ namespace DAL
         }
 
 
-        public void CalculateRAM(int StorageID) 
-        {
-            Storage storage = GetStorage(StorageID);
-            if (storage != null)
-            {
-                int TotalSum = context.Luns.Where(l => l.StorageID == StorageID).Sum(l => l.LunTotalRAM);
-                int RemainingSum = context.Luns.Where(l => l.StorageID == StorageID).Sum(l => l.LunRemainingRAM);
-                storage.StorageTotalRAM = TotalSum;
-                storage.StorageRemainingRAM = RemainingSum;
-                UpdateStorage(storage);
-            }
 
-            
-        }
 
         //vpn functions
 
@@ -236,5 +218,14 @@ namespace DAL
             context.SaveChanges();
         }
 
+        public List<Node> GetClusterNodes(int ClusterID)
+        {
+            return context.Nodes.Where(n => n.ClusterID == ClusterID).ToList();
+        }
+
+        public List<VM> GetNodeVMs(int NodeID)
+        {
+            return context.VMs.Where(vm => vm.NodeID == NodeID).ToList();
+        }
     }
 }

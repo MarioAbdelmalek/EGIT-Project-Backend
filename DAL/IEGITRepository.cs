@@ -22,13 +22,12 @@ namespace DAL
         void DeleteCluster(int ClusterID);
         void DeleteClient(int ClientID);
         void DeleteNode(int NodeID);
-        //Lun Functions
         public List<Lun> GetAllLuns();
         public void AddLun(Lun lun);
         public Lun GetLun(int id);
         public void DeleteLun(int id);
         public void UpdateLun(Lun lun);
-        public int getTSpaceByStockId(int id);
+        public List<Lun> GetStorageLuns(int StorageID);
 
         //Storage functions
 
@@ -37,17 +36,14 @@ namespace DAL
         public void AddStorage(Storage storage);
         public void DeleteStorage(int id);
         public void UpdateStorage(Storage storage);
-        public void CalculateRAM(int StorageID);
+        List<Node> GetClusterNodes(int ClusterID);
+        List<VM> GetNodeVMs(int NodeID);
 
-
-        //VM functions
         public List<VM> GetAllVMs();
         public VM GetVM(int VMID);
         public void AddVM(VM VM);
         public void UpdateVM(VM VM);
         public void DeleteVM(int VMID);
-
-        //VPN functions
 
         public List<Vpn> GetAllVpns();
         public Vpn GetVpn(int VpnID);

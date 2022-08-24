@@ -23,9 +23,9 @@ namespace EGITBackend.Controllers
 
         [Route("addNode")]
         [HttpPost]
-        public void AddNode(CreateNodeDto newNode)
+        public GenerateErrorDto AddNode(CreateNodeDto newNode)
         {
-            EGITService.AddNode(newNode);
+            return EGITService.AddNode(newNode);
         }
 
         [Route("getNodeById")]
@@ -37,9 +37,9 @@ namespace EGITBackend.Controllers
 
         [Route("updateNode")]
         [HttpPut]
-        public void UpdateNode(int NodeID, CreateNodeDto newNode)
+        public GenerateErrorDto UpdateNode(int NodeID, CreateNodeDto newNode)
         {
-            EGITService.UpdateNode(NodeID, newNode);
+            return EGITService.UpdateNode(NodeID, newNode);
         }
 
         [Route("getAllNodes")]
@@ -51,9 +51,16 @@ namespace EGITBackend.Controllers
 
         [Route("deleteNode")]
         [HttpDelete]
-        public void DeleteNode(int NodeID)
+        public GenerateErrorDto DeleteNode(int NodeID)
         {
-            EGITService.DeleteNode(NodeID);
+            return EGITService.DeleteNode(NodeID);
+        }
+
+        [Route("calculateNodeRemainingSpace")]
+        [HttpPost]
+        public GenerateErrorDto CalculateNodeRemainingSpace(int NodeID)
+        {
+            return EGITService.CalculateNodeRemainingSpace(NodeID);
         }
     }
 }

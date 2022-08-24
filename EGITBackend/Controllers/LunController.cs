@@ -28,9 +28,9 @@ namespace EGITBackend.Controllers
         }
         [Route("addLun")]
         [HttpPost]
-        public void AddLun(LunDto lun)
+        public GenerateErrorDto AddLun(CreateLunDto lun)
         {
-            EGITService.AddLun(lun);
+            return EGITService.AddLun(lun);
         }
 
         [Route("getLun")]
@@ -42,16 +42,16 @@ namespace EGITBackend.Controllers
 
         [Route("deleteLun")]
         [HttpDelete]
-        public void DeleteLun(int id)
+        public GenerateErrorDto DeleteLun(int id)
         {
-            EGITService.DeleteLun(id);
+            return EGITService.DeleteLun(id);
         }
 
         [Route("updateLun")]
         [HttpPut]
-        public void UpdateLun(LunDto lun, int LunID)
+        public GenerateErrorDto UpdateLun(CreateLunDto lun, int LunID)
         {
-            EGITService.UpdateLun(lun,LunID);
+            return EGITService.UpdateLun(lun,LunID);
         }
 
 

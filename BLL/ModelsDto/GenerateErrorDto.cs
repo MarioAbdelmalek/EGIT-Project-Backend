@@ -6,7 +6,8 @@ namespace BLL.ModelsDto
 {
     public class GenerateErrorDto
     {
-        public bool IsValid { get; set; }
         public string Response { get; set; }
+        public bool IsValid { get; set; }
+
     }
 }
