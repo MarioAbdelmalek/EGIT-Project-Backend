@@ -1,13 +1,25 @@
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\obj\Debug\netstandard2.1\BLL.csproj.AssemblyReference.cache
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\obj\Debug\netstandard2.1\BLL.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\obj\Debug\netstandard2.1\BLL.AssemblyInfoInputs.cache
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\obj\Debug\netstandard2.1\BLL.AssemblyInfo.cs
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\obj\Debug\netstandard2.1\BLL.csproj.CoreCompileInputs.cache
+F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.csprojAssemblyReference.cache
+F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.AssemblyInfoInputs.cache
+F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.AssemblyInfo.cs
+F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.csproj.CoreCompileInputs.cache
+F:\EGIT\EGITBackend\BLL\bin\Debug\netstandard2.1\BLL.deps.json
+F:\EGIT\EGITBackend\BLL\bin\Debug\netstandard2.1\BLL.dll
+F:\EGIT\EGITBackend\BLL\bin\Debug\netstandard2.1\BLL.pdb
+F:\EGIT\EGITBackend\BLL\bin\Debug\netstandard2.1\DAL.dll
+F:\EGIT\EGITBackend\BLL\bin\Debug\netstandard2.1\DAL.pdb
+F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.csproj.CopyComplete
+F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.dll
+F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.pdb
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\bin\Debug\netstandard2.1\BLL.deps.json
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\bin\Debug\netstandard2.1\BLL.dll
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\bin\Debug\netstandard2.1\BLL.pdb
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\bin\Debug\netstandard2.1\DAL.dll
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\bin\Debug\netstandard2.1\DAL.pdb
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\obj\Debug\netstandard2.1\BLL.csproj.AssemblyReference.cache
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\obj\Debug\netstandard2.1\BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\obj\Debug\netstandard2.1\BLL.AssemblyInfoInputs.cache
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\obj\Debug\netstandard2.1\BLL.AssemblyInfo.cs
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\obj\Debug\netstandard2.1\BLL.csproj.CoreCompileInputs.cache
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\obj\Debug\netstandard2.1\BLL.csproj.CopyComplete
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\obj\Debug\netstandard2.1\BLL.dll
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\BLL\obj\Debug\netstandard2.1\BLL.pdb

@@ -1,10 +1,81 @@
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csproj.AssemblyReference.cache
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.AssemblyInfoInputs.cache
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.AssemblyInfo.cs
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csproj.CoreCompileInputs.cache
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.MvcApplicationPartsAssemblyInfo.cache
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\appsettings.Development.json
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\appsettings.json
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\EGITBackend.exe
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\EGITBackend.deps.json
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\EGITBackend.runtimeconfig.json
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\EGITBackend.runtimeconfig.dev.json
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\EGITBackend.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\EGITBackend.pdb
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\AutoMapper.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\EntityFramework.SqlServer.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\EntityFramework.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\EntityFramework6.Npgsql.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Humanizer.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\System.Web.Cors.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\System.Web.Http.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\System.Web.Http.Cors.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Npgsql.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\System.CodeDom.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\BLL.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\DAL.dll
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\BLL.pdb
+F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\DAL.pdb
+F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csprojAssemblyReference.cache
+F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.AssemblyInfoInputs.cache
+F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.AssemblyInfo.cs
+F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csproj.CoreCompileInputs.cache
+F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.MvcApplicationPartsAssemblyInfo.cs
+F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.MvcApplicationPartsAssemblyInfo.cache
+F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.RazorTargetAssemblyInfo.cache
+F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csproj.CopyComplete
+F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\staticwebassets\EGITBackend.StaticWebAssets.Manifest.cache
+F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\staticwebassets\EGITBackend.StaticWebAssets.xml
+F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.dll
+F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.pdb
+F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.genruntimeconfig.cache
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\EGITBackend.exe
@@ -69,6 +140,13 @@ C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBack
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\DAL.dll
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\BLL.pdb
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\bin\Debug\netcoreapp3.1\DAL.pdb
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csproj.AssemblyReference.cache
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.AssemblyInfoInputs.cache
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.AssemblyInfo.cs
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csproj.CoreCompileInputs.cache
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\staticwebassets\EGITBackend.StaticWebAssets.Manifest.cache
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.RazorTargetAssemblyInfo.cache
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csproj.CopyComplete
