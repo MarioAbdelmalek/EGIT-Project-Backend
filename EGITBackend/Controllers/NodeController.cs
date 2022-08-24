@@ -56,11 +56,5 @@ namespace EGITBackend.Controllers
             return EGITService.DeleteNode(NodeID);
         }
 
-        [Route("calculateNodeRemainingSpace")]
-        [HttpPost]
-        public GenerateErrorDto CalculateNodeRemainingSpace(int NodeID)
-        {
-            return EGITService.CalculateNodeRemainingSpace(NodeID);
-        }
     }
 }

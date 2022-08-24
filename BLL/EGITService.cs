@@ -68,6 +68,7 @@ namespace BLL
             try
             {
                 EGITRepository.AddNode(mapper.Map<Node>(n));
+                CalculateClusterSpace(n.ClusterID);
                 return new GenerateErrorDto { Response = "Node Added Successfully!", IsValid = true };
             }
 
@@ -109,9 +110,12 @@ namespace BLL
 
         public GenerateErrorDto DeleteNode(int NodeID)
         {
+            NodeDto nodeToBeDeleted = this.GetNodeByID(NodeID);
+
             try
             {
                 EGITRepository.DeleteNode(NodeID);
+                CalculateClusterSpace(nodeToBeDeleted.ClusterID);
                 return new GenerateErrorDto { Response = "Node Deleted Successfully!", IsValid = true };
             }
 
@@ -196,7 +200,8 @@ namespace BLL
 
         public GenerateErrorDto UpdateNode(int NodeID, CreateNodeDto newNode)
         {
-            NodeDto oldNode = GetNodeByID(NodeID);
+            NodeDto oldNode = this.GetNodeByID(NodeID);
+
             if (oldNode != null)
             {
                 oldNode.NodeTotalCPUCores = newNode.NodeTotalCPUCores;
@@ -204,6 +209,7 @@ namespace BLL
                 oldNode.ClusterID = newNode.ClusterID;
 
                 EGITRepository.UpdateNode(mapper.Map<Node>(oldNode));
+                CalculateClusterSpace(oldNode.ClusterID);
                 return new GenerateErrorDto { Response = "Node Updated Successfully!", IsValid = true };
             }
 
@@ -408,6 +414,7 @@ namespace BLL
             try
             {
                 EGITRepository.AddVM(mapper.Map<VM>(newVM));
+                this.CalculateNodeRemainingSpace(newVM.NodeID);
                 return new GenerateErrorDto { Response = "VM Added Successfully!", IsValid = true };
             }
 
@@ -436,6 +443,7 @@ namespace BLL
             try
             {
                 EGITRepository.UpdateVM(mapper.Map<VM>(newVM));
+                this.CalculateNodeRemainingSpace(newVM.NodeID);
                 return new GenerateErrorDto { Response = "VM Updated Successfully!", IsValid = true };
             }
 
@@ -447,9 +455,12 @@ namespace BLL
         }
         public GenerateErrorDto DeleteVM(int VMID)
         {
+            VMDto VMToBeDeleted = GetVM(VMID);
+
             try
             {
                 EGITRepository.DeleteVM(VMID);
+                this.CalculateNodeRemainingSpace(VMToBeDeleted.NodeID);
                 return new GenerateErrorDto { Response = "VM Deleted Successfully!", IsValid = true };
             }
 
