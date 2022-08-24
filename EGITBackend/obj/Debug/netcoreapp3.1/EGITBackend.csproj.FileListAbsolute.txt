@@ -1,7 +1,3 @@
-F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.AssemblyInfoInputs.cache
-F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.AssemblyInfo.cs
-F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csproj.CoreCompileInputs.cache
-F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.MvcApplicationPartsAssemblyInfo.cache
 F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\appsettings.Development.json
 F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\appsettings.json
 F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
@@ -68,7 +64,11 @@ F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\DAL.dll
 F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\BLL.pdb
 F:\EGIT\EGITBackend\EGITBackend\bin\Debug\netcoreapp3.1\DAL.pdb
 F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csprojAssemblyReference.cache
+F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.AssemblyInfoInputs.cache
+F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.AssemblyInfo.cs
+F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csproj.CoreCompileInputs.cache
 F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.MvcApplicationPartsAssemblyInfo.cs
+F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.MvcApplicationPartsAssemblyInfo.cache
 F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.RazorTargetAssemblyInfo.cache
 F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\EGITBackend.csproj.CopyComplete
 F:\EGIT\EGITBackend\EGITBackend\obj\Debug\netcoreapp3.1\staticwebassets\EGITBackend.StaticWebAssets.Manifest.cache

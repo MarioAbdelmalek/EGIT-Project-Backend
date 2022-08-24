@@ -1,12 +1,12 @@
-F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.csprojAssemblyReference.cache
-F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.AssemblyInfoInputs.cache
-F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.AssemblyInfo.cs
-F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.csproj.CoreCompileInputs.cache
 F:\EGIT\EGITBackend\BLL\bin\Debug\netstandard2.1\BLL.deps.json
 F:\EGIT\EGITBackend\BLL\bin\Debug\netstandard2.1\BLL.dll
 F:\EGIT\EGITBackend\BLL\bin\Debug\netstandard2.1\BLL.pdb
 F:\EGIT\EGITBackend\BLL\bin\Debug\netstandard2.1\DAL.dll
 F:\EGIT\EGITBackend\BLL\bin\Debug\netstandard2.1\DAL.pdb
+F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.csprojAssemblyReference.cache
+F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.AssemblyInfoInputs.cache
+F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.AssemblyInfo.cs
+F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.csproj.CoreCompileInputs.cache
 F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.csproj.CopyComplete
 F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.dll
 F:\EGIT\EGITBackend\BLL\obj\Debug\netstandard2.1\BLL.pdb
