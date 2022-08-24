@@ -227,5 +227,20 @@ namespace DAL
         {
             return context.VMs.Where(vm => vm.NodeID == NodeID).ToList();
         }
+
+        public List<VM> GetClientVMs(int ClientID)
+        {
+            return context.VMs.Where(vm => vm.ClientID == ClientID).ToList();
+        }
+
+        public List<Vpn> GetClientVPNs(int ClientID)
+        {
+            return context.Vpns.Where(vpn => vpn.ClientID == ClientID).ToList();
+        }
+
+        public List<VM> GetLunVMs(int LunID)
+        {
+            return context.VMs.Where(vm => vm.LunID == LunID).ToList();
+        }
     }
 }

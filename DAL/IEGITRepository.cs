@@ -27,10 +27,7 @@ namespace DAL
         public Lun GetLun(int id);
         public void DeleteLun(int id);
         public void UpdateLun(Lun lun);
-        public List<Lun> GetStorageLuns(int StorageID);
-
-        //Storage functions
-
+        List<Lun> GetStorageLuns(int StorageID);
         public List<Storage> GetAllStorages();
         public Storage GetStorage(int id);
         public void AddStorage(Storage storage);
@@ -38,7 +35,9 @@ namespace DAL
         public void UpdateStorage(Storage storage);
         List<Node> GetClusterNodes(int ClusterID);
         List<VM> GetNodeVMs(int NodeID);
-
+        List<VM> GetClientVMs(int ClientID);
+        List<Vpn> GetClientVPNs(int ClientID);
+        List<VM> GetLunVMs(int LunID);
         public List<VM> GetAllVMs();
         public VM GetVM(int VMID);
         public void AddVM(VM VM);
