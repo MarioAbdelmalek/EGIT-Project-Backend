@@ -7,7 +7,7 @@ namespace BLL.ModelsDto
     public class CreateClusterDto
     {
         public string ClusterType { get; set; }
-        public int NumberOfNodes { get; set; }
+        public string ClusterName{ get; set; }
 
     }
 }

@@ -43,7 +43,7 @@ namespace BLL
 
         public GenerateErrorDto AddCluster(CreateClusterDto newCluster)
         {
-            ClusterDto c = new ClusterDto { ClusterType = newCluster.ClusterType, NumberOfNodes = newCluster.NumberOfNodes};
+            ClusterDto c = new ClusterDto { ClusterType = newCluster.ClusterType, ClusterName = newCluster.ClusterName};
 
             try
             {
@@ -234,7 +234,7 @@ namespace BLL
             if (oldCluster != null)
             {
                 oldCluster.ClusterType = newCluster.ClusterType;
-                oldCluster.NumberOfNodes = newCluster.NumberOfNodes;
+                oldCluster.ClusterName = newCluster.ClusterName;
 
                 EGITRepository.UpdateCluster(mapper.Map<Cluster>(oldCluster));
                 return new GenerateErrorDto { Response = "Cluster Updated Successfully!", IsValid = true };
@@ -372,7 +372,6 @@ namespace BLL
             LunDto LunToBeUpdated = GetLun(LunID);
             StorageDto linkedStorage = GetStorage(LunToBeUpdated.StorageID);
             var StorageRemainingRAM = -1;
-
 
 
             if (LunToBeUpdated != null && linkedStorage!=null)
@@ -612,13 +611,11 @@ namespace BLL
         public GenerateErrorDto UpdateVM(UpdateVMDto VM, int VMID)
         {
             VMDto oldVM = GetVM(VMID);
-            NodeDto oldVMNode = this.GetNodeByID(oldVM.NodeID);
-            LunDto oldVMLun = this.GetLun(oldVM.LunID);
-
 
             if (oldVM != null)
             {
-
+                LunDto oldVMLun = this.GetLun(oldVM.LunID);
+                NodeDto oldVMNode = this.GetNodeByID(oldVM.NodeID);
                 var remainingRAMs = oldVM.RAM + oldVMNode.NodeRemainingRAM;
                 var remainingCPUCors = oldVM.CPUCores + oldVMNode.NodeRemainingCPUCores;
                 var remainingStorage = oldVM.Storage + oldVMLun.LunRemainingRAM;
@@ -665,12 +662,13 @@ namespace BLL
         public GenerateErrorDto DeleteVM(int VMID)
         {
             VMDto VMToBeDeleted = GetVM(VMID);
-            NodeDto VMNode = this.GetNodeByID(VMToBeDeleted.NodeID);
 
             if (VMToBeDeleted == null)
             {
                 return new GenerateErrorDto { Response = "VM Not Found, Cannot Delete This VM!", IsValid = false };
             }
+
+            NodeDto VMNode = this.GetNodeByID(VMToBeDeleted.NodeID);
 
             try
             {
