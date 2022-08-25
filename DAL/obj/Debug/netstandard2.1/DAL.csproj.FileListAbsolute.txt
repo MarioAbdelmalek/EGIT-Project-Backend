@@ -1,19 +1,9 @@
-F:\EGIT\EGITBackend\DAL\bin\Debug\netstandard2.1\DAL.deps.json
-F:\EGIT\EGITBackend\DAL\bin\Debug\netstandard2.1\DAL.dll
-F:\EGIT\EGITBackend\DAL\bin\Debug\netstandard2.1\DAL.pdb
-F:\EGIT\EGITBackend\DAL\obj\Debug\netstandard2.1\DAL.csprojAssemblyReference.cache
-F:\EGIT\EGITBackend\DAL\obj\Debug\netstandard2.1\DAL.AssemblyInfoInputs.cache
-F:\EGIT\EGITBackend\DAL\obj\Debug\netstandard2.1\DAL.AssemblyInfo.cs
-F:\EGIT\EGITBackend\DAL\obj\Debug\netstandard2.1\DAL.csproj.CoreCompileInputs.cache
-F:\EGIT\EGITBackend\DAL\obj\Debug\netstandard2.1\DAL.dll
-F:\EGIT\EGITBackend\DAL\obj\Debug\netstandard2.1\DAL.pdb
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\DAL\bin\Debug\netstandard2.1\DAL.deps.json
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\DAL\bin\Debug\netstandard2.1\DAL.dll
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\DAL\bin\Debug\netstandard2.1\DAL.pdb
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\DAL\obj\Debug\netstandard2.1\DAL.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\DAL\obj\Debug\netstandard2.1\DAL.AssemblyInfoInputs.cache
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\DAL\obj\Debug\netstandard2.1\DAL.AssemblyInfo.cs
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\DAL\obj\Debug\netstandard2.1\DAL.csproj.CoreCompileInputs.cache
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\DAL\bin\Debug\netstandard2.1\DAL.deps.json
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\DAL\bin\Debug\netstandard2.1\DAL.dll
+C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\DAL\bin\Debug\netstandard2.1\DAL.pdb
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\DAL\obj\Debug\netstandard2.1\DAL.dll
 C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\DAL\obj\Debug\netstandard2.1\DAL.pdb
-C:\Users\farah\OneDrive\Desktop\EGID fixed Project\EGIT-Project-Backend\DAL\obj\Debug\netstandard2.1\DAL.csproj.AssemblyReference.cache

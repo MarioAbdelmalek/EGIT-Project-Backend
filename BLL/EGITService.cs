@@ -43,7 +43,7 @@ namespace BLL
 
         public GenerateErrorDto AddCluster(CreateClusterDto newCluster)
         {
-            ClusterDto c = new ClusterDto { ClusterType = newCluster.ClusterType, NumberOfNodes = newCluster.NumberOfNodes};
+            ClusterDto c = new ClusterDto { ClusterType = newCluster.ClusterType, ClusterName = newCluster.ClusterName};
 
             try
             {
@@ -56,6 +56,36 @@ namespace BLL
                 return new GenerateErrorDto { Response = "Error Adding The Cluster!", IsValid = false };
             }
 
+        }
+
+        public GenerateErrorDto CalculateClusterSpace(int ClusterID)
+        {
+            Cluster returnedCluster = EGITRepository.GetClusterByID(ClusterID);
+
+            if (returnedCluster != null)
+            {
+                List<Node> returnedClusterNodes = EGITRepository.GetClusterNodes(ClusterID);
+
+                var totalRAM = returnedClusterNodes.Sum(n => n.NodeTotalRAM);
+                var remainingRAM = returnedClusterNodes.Sum(n => n.NodeRemainingRAM);
+                var totalCPUCores = returnedClusterNodes.Sum(n => n.NodeTotalCPUCores);
+                var remainingCPUCores = returnedClusterNodes.Sum(n => n.NodeRemainingCPUCores);
+                var totalNodes = returnedClusterNodes.Count();
+
+                returnedCluster.ClusterTotalRAM = totalRAM;
+                returnedCluster.ClusterRemainingRAM = remainingRAM;
+                returnedCluster.NumberOfNodes = totalNodes;
+                returnedCluster.ClusterTotalCPUCores = totalCPUCores;
+                returnedCluster.ClusterRemainingCPUCores = remainingCPUCores;
+
+                EGITRepository.UpdateCluster(returnedCluster);
+                return new GenerateErrorDto { Response = "Cluster Updated Successfully!", IsValid = true };
+            }
+
+            else
+            {
+                return new GenerateErrorDto { Response = "Cluster Not Found!", IsValid = false };
+            }
         }
 
         public GenerateErrorDto AddNode(CreateNodeDto newNode)
@@ -80,7 +110,7 @@ namespace BLL
             try
             {
                 EGITRepository.AddNode(mapper.Map<Node>(n));
-                CalculateClusterSpace(n.ClusterID);
+                this.CalculateClusterSpace(n.ClusterID);
                 return new GenerateErrorDto { Response = "Node Added Successfully!", IsValid = true };
             }
 
@@ -92,6 +122,20 @@ namespace BLL
 
         public GenerateErrorDto DeleteClient(int ClientID)
         {
+
+            var clientVMsList = EGITRepository.GetClientVMs(ClientID);
+            var clientVPNsList = EGITRepository.GetClientVPNs(ClientID);
+
+            if (clientVMsList.Count > 0)
+            {
+                return new GenerateErrorDto { Response = "Cannot Delete This Client, Please Delete His VMs First!", IsValid = true };
+            }
+
+            if (clientVPNsList.Count > 0)
+            {
+                return new GenerateErrorDto { Response = "Cannot Delete This Client, Please Delete His VPNs First!", IsValid = true };
+            }
+
             try
             {
                 EGITRepository.DeleteClient(ClientID);
@@ -107,6 +151,13 @@ namespace BLL
 
         public GenerateErrorDto DeleteCluster(int ClusterID)
         {
+
+            var clusterNodesList = EGITRepository.GetClusterNodes(ClusterID);
+
+            if (clusterNodesList.Count > 0)
+            {
+                return new GenerateErrorDto { Response = "Cannot Delete This Cluster, Please Delete Its Nodes First!", IsValid = true };
+            }
 
             try
             {
@@ -124,10 +175,16 @@ namespace BLL
         public GenerateErrorDto DeleteNode(int NodeID)
         {
             NodeDto nodeToBeDeleted = this.GetNodeByID(NodeID);
+            var nodeVMsList = EGITRepository.GetNodeVMs(NodeID);
 
-            if(nodeToBeDeleted == null)
+            if (nodeToBeDeleted == null)
             {
                 return new GenerateErrorDto { Response = "Node Not Found, Cannot Delete This Node!", IsValid = false };
+            }
+
+            if (nodeVMsList.Count > 0)
+            {
+                return new GenerateErrorDto { Response = "Cannot Delete This Node, Please Delete Its VMs First!", IsValid = true };
             }
 
             try
@@ -207,7 +264,7 @@ namespace BLL
             if (oldCluster != null)
             {
                 oldCluster.ClusterType = newCluster.ClusterType;
-                oldCluster.NumberOfNodes = newCluster.NumberOfNodes;
+                oldCluster.ClusterName = newCluster.ClusterName;
 
                 EGITRepository.UpdateCluster(mapper.Map<Cluster>(oldCluster));
                 return new GenerateErrorDto { Response = "Cluster Updated Successfully!", IsValid = true };
@@ -225,9 +282,6 @@ namespace BLL
 
             if (oldNode != null)
             {
-                oldNode.NodeTotalCPUCores = newNode.NodeTotalCPUCores;
-                oldNode.NodeTotalRAM = newNode.NodeTotalRAM;
-                oldNode.ClusterID = newNode.ClusterID;
 
                 ClusterDto nodeCluster = this.GetClusterByID(newNode.ClusterID);
 
@@ -236,9 +290,31 @@ namespace BLL
                     return new GenerateErrorDto { Response = "Cluster Not Found, Cannot Update This Node!", IsValid = false };
                 }
 
-                EGITRepository.UpdateNode(mapper.Map<Node>(oldNode));
-                CalculateClusterSpace(oldNode.ClusterID);
-                return new GenerateErrorDto { Response = "Node Updated Successfully!", IsValid = true };
+                if(newNode.ClusterID == oldNode.ClusterID)
+                {
+                    oldNode.NodeTotalCPUCores = newNode.NodeTotalCPUCores;
+                    oldNode.NodeTotalRAM = newNode.NodeTotalRAM;
+                    oldNode.ClusterID = newNode.ClusterID;
+
+                    EGITRepository.UpdateNode(mapper.Map<Node>(oldNode));
+                    CalculateClusterSpace(oldNode.ClusterID);
+                    return new GenerateErrorDto { Response = "Node Updated Successfully!", IsValid = true };
+                }
+
+                else
+                {
+                    var oldClusterID = oldNode.ClusterID;
+
+                    oldNode.NodeTotalCPUCores = newNode.NodeTotalCPUCores;
+                    oldNode.NodeTotalRAM = newNode.NodeTotalRAM;
+                    oldNode.ClusterID = newNode.ClusterID;
+
+                    EGITRepository.UpdateNode(mapper.Map<Node>(oldNode));
+                    CalculateClusterSpace(oldNode.ClusterID);
+                    CalculateClusterSpace(oldClusterID);
+                    return new GenerateErrorDto { Response = "Node Updated Successfully!", IsValid = true };
+                }
+
             }
 
             else
@@ -259,9 +335,8 @@ namespace BLL
             {
                 LunName = lun.LunName,
                 LunTotalSpace = lun.LunTotalSpace,
-                LunRemainingSpace=lun.LunTotalSpace,
+                LunRemainingSpace = lun.LunTotalSpace,
                 StorageID = lun.StorageID
-
             };
             StorageDto linkedStorage = GetStorage(lun.StorageID);
 
@@ -280,7 +355,6 @@ namespace BLL
                 CalculateStorageSpace(newLun.StorageID);
                 return new GenerateErrorDto { Response = "Lun Added Successfully!", IsValid = true };
             }
-
             catch (Exception)
             {
                 return new GenerateErrorDto { Response = "Error Adding The Lun!", IsValid = false };
@@ -296,12 +370,20 @@ namespace BLL
         {
 
             LunDto lunToBeDeleted = this.GetLun(LunID);
+            var lunVMsList = EGITRepository.GetLunVMs(LunID);
 
-            if(lunToBeDeleted == null)
+            if (lunToBeDeleted == null)
             {
                 return new GenerateErrorDto { Response = "Lun Not Found, Cannot Delete This Lun!", IsValid = false };
             }
           
+
+            if (lunVMsList.Count > 0)
+            {
+                return new GenerateErrorDto { Response = "Cannot Delete This Lun, Please Delete Its VMs First!", IsValid = true };
+            }
+
+            LunDto LunToBeDeleted = GetLun(LunID);
             try
             {
                 EGITRepository.DeleteLun(LunID);
@@ -346,10 +428,15 @@ namespace BLL
                 remainingStorage = newlinkedStorage.StorageRemainingSpace;
 
             }
+            if (LunToBeUpdated.LunTotalSpace> remainingStorage)
+            {
+                return new GenerateErrorDto { Response = "Lun RAM cannot Exceed Storage RAM!", IsValid = false };
+            }
 
             LunToBeUpdated.LunName = UpdatedLun.LunName;
             LunToBeUpdated.LunTotalSpace = UpdatedLun.LunTotalSpace;
             LunToBeUpdated.StorageID = UpdatedLun.StorageID;
+
             if (LunToBeUpdated.LunTotalSpace > remainingStorage)
             {
                 return new GenerateErrorDto { Response = "Lun RAM cannot Exceed Storage RAM!", IsValid = false };
@@ -361,6 +448,7 @@ namespace BLL
                 CalculateStorageSpace(LunToBeUpdated.StorageID);
                 CalculateLunSpace(LunToBeUpdated.LunID);
                 return new GenerateErrorDto { Response = "Lun Updated Successfully!", IsValid = true };
+            
             }
             catch
             {
@@ -388,7 +476,6 @@ namespace BLL
                 StorageType = storage.StorageType,
                 StorageTotalSpace = storage.StorageTotalSpace,
                 StorageRemainingSpace = storage.StorageTotalSpace
-
             };
 
             try
@@ -409,6 +496,14 @@ namespace BLL
             {
                 return new GenerateErrorDto { Response = "Storage Not Found, Cannot Delete Storage!", IsValid = false };
             }
+
+            var storageLunsList = EGITRepository.GetStorageLuns(StorageID);
+
+            if (storageLunsList.Count > 0)
+            {
+                return new GenerateErrorDto { Response = "Cannot Delete This Storage, Please Delete Its Luns First!", IsValid = true };
+            }
+
             try
             {
                 EGITRepository.DeleteStorage(StorageID);
@@ -418,8 +513,7 @@ namespace BLL
             catch (Exception)
             {
                 return new GenerateErrorDto { Response = "Error Deleting The Storage!", IsValid = false };
-            }
-            
+            } 
 
         }
         public GenerateErrorDto UpdateStorage(CreateStorageDto UpdatedStorage ,int StorageID)
@@ -452,35 +546,6 @@ namespace BLL
             }
         }
 
-        public GenerateErrorDto CalculateClusterSpace(int ClusterID)
-        {
-            Cluster returnedCluster = EGITRepository.GetClusterByID(ClusterID);
-
-            if(returnedCluster != null)
-            {
-                List<Node> returnedClusterNodes = EGITRepository.GetClusterNodes(ClusterID);
-
-                var totalRAM = returnedClusterNodes.Sum(n => n.NodeTotalRAM);
-                var remainingRAM = returnedClusterNodes.Sum(n => n.NodeRemainingRAM);
-                var totalCPUCores = returnedClusterNodes.Sum(n => n.NodeTotalCPUCores);
-                var remainingCPUCores = returnedClusterNodes.Sum(n => n.NodeRemainingCPUCores);
-                var totalNodes = returnedClusterNodes.Count();
-
-                returnedCluster.ClusterTotalRAM = totalRAM;
-                returnedCluster.ClusterRemainingRAM = remainingRAM;
-                returnedCluster.NumberOfNodes = totalNodes;
-                returnedCluster.ClusterTotalCPUCores = totalCPUCores;
-                returnedCluster.ClusterRemainingCPUCores = remainingCPUCores;
-
-                EGITRepository.UpdateCluster(returnedCluster);
-                return new GenerateErrorDto { Response = "Cluster Updated Successfully!", IsValid = true };
-            }
-
-            else
-            {
-                return new GenerateErrorDto { Response = "Cluster Not Found!", IsValid = false };
-            }
-        }
         public GenerateErrorDto CalculateStorageSpace(int StorageID)
         {
             StorageDto storage = GetStorage(StorageID);
@@ -555,8 +620,9 @@ namespace BLL
         {
             VMDto newVM = new VMDto
             {
-                CpuCores = VM.CpuCores,
+                CPUCores = VM.CPUCores,
                 RAM = VM.RAM,
+                Storage = VM.Storage,
                 IP = VM.IP,
                 Bandwidth = VM.Bandwidth,
                 ClientID = VM.ClientID,
@@ -585,9 +651,19 @@ namespace BLL
 
             try
             {
-                if(newVM.RAM > VMNode.NodeRemainingRAM || newVM.CpuCores > VMNode.NodeRemainingCPUCores)
+                if(newVM.RAM > VMNode.NodeRemainingRAM)
                 {
-                    return new GenerateErrorDto { Response = "No Enough RAM or CPU Cores!", IsValid = false };
+                    return new GenerateErrorDto { Response = "No Enough RAM!", IsValid = false };
+                }
+
+                if (newVM.CPUCores > VMNode.NodeRemainingCPUCores)
+                {
+                    return new GenerateErrorDto { Response = "No Enough CPU Cores!", IsValid = false };
+                }
+
+                if (newVM.Storage > VMLun.LunRemainingSpace)
+                {
+                    return new GenerateErrorDto { Response = "No Enough Storage!", IsValid = false };
                 }
 
                 else
@@ -595,6 +671,7 @@ namespace BLL
                     EGITRepository.AddVM(mapper.Map<VM>(newVM));
                     this.CalculateNodeRemainingSpace(newVM.NodeID);
                     this.CalculateLunSpace(newVM.LunID);
+                    this.CalculateClusterSpace(VMNode.ClusterID);
                     return new GenerateErrorDto { Response = "VM Added Successfully!", IsValid = true };
                 }
                 
@@ -605,71 +682,57 @@ namespace BLL
                 return new GenerateErrorDto { Response = "Error Adding The VM!", IsValid = false };
             }
         }
-        public GenerateErrorDto UpdateVM(CreateVMDto VM, int VMID)
+        public GenerateErrorDto UpdateVM(UpdateVMDto VM, int VMID)
         {
-            VMDto newVM = GetVM(VMID);
+            VMDto oldVM = GetVM(VMID);
 
-            NodeDto VMNode = this.GetNodeByID(VM.NodeID);
-            ClientDto VMClient = this.GetClientByID(VM.ClientID);
-            LunDto VMLun = this.GetLun(VM.LunID);
-
-            if (VMNode == null)
+            if (oldVM != null)
             {
-                return new GenerateErrorDto { Response = "Node Not Found, Cannot Update This VM!", IsValid = false };
-            }
 
-            if (VMClient == null)
-            {
-                return new GenerateErrorDto { Response = "Client Not Found, Cannot Update This VM!", IsValid = false };
-            }
+                NodeDto oldVMNode = this.GetNodeByID(oldVM.NodeID);
+                LunDto oldVMLun = this.GetLun(oldVM.LunID);
+                var remainingRAMs = oldVM.RAM + oldVMNode.NodeRemainingRAM;
+                var remainingCPUCors = oldVM.CPUCores + oldVMNode.NodeRemainingCPUCores;
+                var remainingStorage = oldVM.Storage + oldVMLun.LunRemainingSpace;
 
-            if (VMLun == null)
-            {
-                return new GenerateErrorDto { Response = "Lun Not Found, Cannot Update This VM!", IsValid = false };
-            }
+                oldVM.CPUCores = VM.CPUCores;
+                oldVM.RAM = VM.RAM;
+                oldVM.Storage = VM.Storage;
 
-            var remainingRAMs = 0;
-            var remainingCPUCors = 0;
+                if (VM.RAM > remainingRAMs)
+                {
+                    return new GenerateErrorDto { Response = "No Enough RAM!", IsValid = false };
+                }
 
-            if (newVM != null)
-            {
-                remainingRAMs = newVM.RAM + VMNode.NodeRemainingRAM;
-                remainingCPUCors = newVM.CpuCores + VMNode.NodeRemainingCPUCores;
+                if (VM.CPUCores > remainingCPUCors)
+                {
+                    return new GenerateErrorDto { Response = "No Enough CPU Cores!", IsValid = false };
+                }
 
-                newVM.CpuCores = VM.CpuCores;
-                newVM.RAM = VM.RAM;
-                newVM.IP = VM.IP;
-                newVM.Bandwidth = VM.Bandwidth;
-                newVM.ClientID = VM.ClientID;
-                newVM.NodeID = VM.NodeID;
-                newVM.LunID = VM.LunID;
+                if (VM.Storage > remainingStorage)
+                {
+                    return new GenerateErrorDto { Response = "No Enough Storage!", IsValid = false };
+                }
+
+                try
+                {
+                    EGITRepository.UpdateVM(mapper.Map<VM>(oldVM));
+                    this.CalculateNodeRemainingSpace(oldVM.NodeID);
+                    this.CalculateClusterSpace(oldVMNode.ClusterID);
+                    this.CalculateLunSpace(oldVM.LunID);
+                    return new GenerateErrorDto { Response = "VM Updated Successfully!", IsValid = true };
+                }
+
+                catch (Exception)
+                {
+
+                    return new GenerateErrorDto { Response = "Error Updating The VM!", IsValid = false };
+                }
             }
 
             else
             {
                 return new GenerateErrorDto { Response = "VM Not Found, Cannot Update This VM!", IsValid = false };
-            }
-
-            try
-            {
-
-                if (VM.RAM > remainingRAMs || VM.CpuCores > remainingCPUCors)
-                {
-                    return new GenerateErrorDto { Response = "No Enough RAM or CPU Cores!", IsValid = false };
-                }
-
-                else
-                {
-                    EGITRepository.UpdateVM(mapper.Map<VM>(newVM));
-                    this.CalculateNodeRemainingSpace(newVM.NodeID);
-                    this.CalculateLunSpace(newVM.LunID);
-                    return new GenerateErrorDto { Response = "VM Updated Successfully!", IsValid = true };
-                }
-            }
-
-            catch (Exception)
-            {
-                return new GenerateErrorDto { Response = "Error Updating The VM!", IsValid = false };
             }
 
         }
@@ -682,11 +745,14 @@ namespace BLL
                 return new GenerateErrorDto { Response = "VM Not Found, Cannot Delete This VM!", IsValid = false };
             }
 
+            NodeDto VMNode = this.GetNodeByID(VMToBeDeleted.NodeID);
+
             try
             {
                 EGITRepository.DeleteVM(VMID);
                 this.CalculateNodeRemainingSpace(VMToBeDeleted.NodeID);
                 this.CalculateLunSpace(VMToBeDeleted.LunID);
+                this.CalculateClusterSpace(VMNode.ClusterID);
                 return new GenerateErrorDto { Response = "VM Deleted Successfully!", IsValid = true };
             }
 
@@ -791,7 +857,7 @@ namespace BLL
                 var totalVMsRAM = returnedNodeVMs.Sum(vm => vm.RAM);
                 var remainingNodeRAM = returnedNode.NodeTotalRAM - totalVMsRAM;
 
-                var totalVMsCPUCores = returnedNodeVMs.Sum(vm => vm.CpuCores);
+                var totalVMsCPUCores = returnedNodeVMs.Sum(vm => vm.CPUCores);
                 var remainingNodeCPUCores = returnedNode.NodeTotalCPUCores - totalVMsCPUCores;
 
                 returnedNode.NodeRemainingCPUCores = remainingNodeCPUCores;

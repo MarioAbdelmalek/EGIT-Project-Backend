@@ -44,7 +44,7 @@ namespace EGITBackend.Controllers
 
         [Route("updateVM")]
         [HttpPut]
-        public GenerateErrorDto UpdateVM(CreateVMDto VM, int VMID)
+        public GenerateErrorDto UpdateVM(UpdateVMDto VM, int VMID)
         {
             return EGITService.UpdateVM(VM, VMID);
         }
