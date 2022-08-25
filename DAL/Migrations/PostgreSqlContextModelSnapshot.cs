@@ -216,10 +216,10 @@ namespace DAL.Migrations
                     b.Property<int>("Bandwidth")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ClientID")
+                    b.Property<int>("CPUCores")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CpuCores")
+                    b.Property<int>("ClientID")
                         .HasColumnType("integer");
 
                     b.Property<string>("IP")
@@ -232,6 +232,9 @@ namespace DAL.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int>("RAM")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Storage")
                         .HasColumnType("integer");
 
                     b.HasKey("VMID");

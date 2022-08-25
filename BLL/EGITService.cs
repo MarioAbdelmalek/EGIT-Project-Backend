@@ -548,8 +548,9 @@ namespace BLL
         {
             VMDto newVM = new VMDto
             {
-                CpuCores = VM.CpuCores,
+                CPUCores = VM.CPUCores,
                 RAM = VM.RAM,
+                Storage = VM.Storage,
                 IP = VM.IP,
                 Bandwidth = VM.Bandwidth,
                 ClientID = VM.ClientID,
@@ -578,9 +579,19 @@ namespace BLL
 
             try
             {
-                if(newVM.RAM > VMNode.NodeRemainingRAM || newVM.CpuCores > VMNode.NodeRemainingCPUCores)
+                if(newVM.RAM > VMNode.NodeRemainingRAM)
                 {
-                    return new GenerateErrorDto { Response = "No Enough RAM or CPU Cores!", IsValid = false };
+                    return new GenerateErrorDto { Response = "No Enough RAM!", IsValid = false };
+                }
+
+                if (newVM.CPUCores > VMNode.NodeRemainingCPUCores)
+                {
+                    return new GenerateErrorDto { Response = "No Enough CPU Cores!", IsValid = false };
+                }
+
+                if (newVM.Storage > VMLun.LunRemainingRAM)
+                {
+                    return new GenerateErrorDto { Response = "No Enough Storage!", IsValid = false };
                 }
 
                 else
@@ -598,99 +609,50 @@ namespace BLL
                 return new GenerateErrorDto { Response = "Error Adding The VM!", IsValid = false };
             }
         }
-        public GenerateErrorDto UpdateVM(CreateVMDto VM, int VMID)
+        public GenerateErrorDto UpdateVM(UpdateVMDto VM, int VMID)
         {
-            VMDto newVM = GetVM(VMID);
-            NodeDto newVMNode = this.GetNodeByID(newVM.NodeID);
+            VMDto oldVM = GetVM(VMID);
+            NodeDto oldVMNode = this.GetNodeByID(oldVM.NodeID);
+            LunDto oldVMLun = this.GetLun(oldVM.LunID);
 
-            NodeDto VMNode = this.GetNodeByID(VM.NodeID);
 
-            if (VMNode == null)
+            if (oldVM != null)
             {
-                return new GenerateErrorDto { Response = "Node Not Found, Cannot Update This VM!", IsValid = false };
-            }
 
-            var remainingRAMs = -1;
-            var remainingCPUCors = -1;
+                var remainingRAMs = oldVM.RAM + oldVMNode.NodeRemainingRAM;
+                var remainingCPUCors = oldVM.CPUCores + oldVMNode.NodeRemainingCPUCores;
+                var remainingStorage = oldVM.Storage + oldVMLun.LunRemainingRAM;
 
-            if (newVM != null)
-            {
-                var oldNodeID = newVM.NodeID;
+                oldVM.CPUCores = VM.CPUCores;
+                oldVM.RAM = VM.RAM;
+                oldVM.Storage = VM.Storage;
 
-                if (newVM.NodeID == VM.NodeID)
+                if (VM.RAM > remainingRAMs)
                 {
-                    remainingRAMs = newVM.RAM + VMNode.NodeRemainingRAM;
-                    remainingCPUCors = newVM.CpuCores + VMNode.NodeRemainingCPUCores;
-
-                    newVM.CpuCores = VM.CpuCores;
-                    newVM.RAM = VM.RAM;
-                    newVM.IP = VM.IP;
-                    newVM.Bandwidth = VM.Bandwidth;
-                    newVM.ClientID = VM.ClientID;
-                    newVM.NodeID = VM.NodeID;
-                    newVM.LunID = VM.LunID;
-
-                    if (VM.RAM > remainingRAMs || VM.CpuCores > remainingCPUCors)
-                    {
-                        return new GenerateErrorDto { Response = "No Enough RAM or CPU Cores!", IsValid = false };
-                    }
-
-                    try
-                    {
-                        EGITRepository.UpdateVM(mapper.Map<VM>(newVM));
-                        this.CalculateNodeRemainingSpace(newVM.NodeID);
-                        this.CalculateClusterSpace(VMNode.ClusterID);
-                        return new GenerateErrorDto { Response = "VM Updated Successfully!", IsValid = true };
-                    }
-
-                    catch (Exception)
-                    {
-                        return new GenerateErrorDto { Response = "Error Updating The VM!", IsValid = false };
-                    }
-
+                    return new GenerateErrorDto { Response = "No Enough RAM!", IsValid = false };
                 }
 
-                else
+                if (VM.CPUCores > remainingCPUCors)
                 {
+                    return new GenerateErrorDto { Response = "No Enough CPU Cores!", IsValid = false };
+                }
 
-                    if (VM.RAM > VMNode.NodeRemainingRAM || VM.CpuCores > VMNode.NodeRemainingCPUCores)
-                    {
-                        return new GenerateErrorDto { Response = "No Enough RAM or CPU Cores!", IsValid = false };
-                    }
+                if (VM.Storage > remainingStorage)
+                {
+                    return new GenerateErrorDto { Response = "No Enough Storage!", IsValid = false };
+                }
 
-                    else
-                    {
-                        newVM.CpuCores = VM.CpuCores;
-                        newVM.RAM = VM.RAM;
-                        newVM.IP = VM.IP;
-                        newVM.Bandwidth = VM.Bandwidth;
-                        newVM.ClientID = VM.ClientID;
-                        newVM.NodeID = VM.NodeID;
-                        newVM.LunID = VM.LunID;
-                    }
+                try
+                {
+                    EGITRepository.UpdateVM(mapper.Map<VM>(oldVM));
+                    this.CalculateNodeRemainingSpace(oldVM.NodeID);
+                    this.CalculateClusterSpace(oldVMNode.ClusterID);
+                    return new GenerateErrorDto { Response = "VM Updated Successfully!", IsValid = true };
+                }
 
-                    try
-                    {
-                        EGITRepository.UpdateVM(mapper.Map<VM>(newVM));
-                        this.CalculateNodeRemainingSpace(newVM.NodeID);
-                        this.CalculateNodeRemainingSpace(oldNodeID);
-
-                        if(newVMNode.ClusterID == VMNode.ClusterID)
-                        {
-                            this.CalculateClusterSpace(newVMNode.ClusterID);
-                        }
-                        else
-                        {
-                            this.CalculateClusterSpace(newVMNode.ClusterID);
-                            this.CalculateClusterSpace(VMNode.ClusterID);
-                        }
-
-                        return new GenerateErrorDto { Response = "VM Updated Successfully!", IsValid = true };
-                    }
-                    catch (Exception)
-                    {
-                        return new GenerateErrorDto { Response = "Error Updating The VM!", IsValid = false };
-                    }
+                catch (Exception)
+                {
+                    return new GenerateErrorDto { Response = "Error Updating The VM!", IsValid = false };
                 }
             }
 
@@ -814,13 +776,12 @@ namespace BLL
 
             if (returnedNode != null)
             {
-                //ClusterDto nodeCluster = this.GetClusterByID(returnedNode.ClusterID);
                 List<VM> returnedNodeVMs = EGITRepository.GetNodeVMs(NodeID);
 
                 var totalVMsRAM = returnedNodeVMs.Sum(vm => vm.RAM);
                 var remainingNodeRAM = returnedNode.NodeTotalRAM - totalVMsRAM;
 
-                var totalVMsCPUCores = returnedNodeVMs.Sum(vm => vm.CpuCores);
+                var totalVMsCPUCores = returnedNodeVMs.Sum(vm => vm.CPUCores);
                 var remainingNodeCPUCores = returnedNode.NodeTotalCPUCores - totalVMsCPUCores;
 
                 returnedNode.NodeRemainingCPUCores = remainingNodeCPUCores;
@@ -828,7 +789,6 @@ namespace BLL
 
 
                 EGITRepository.UpdateNode(returnedNode);
-                //this.CalculateClusterSpace(nodeCluster.ClusterID);
                 return new GenerateErrorDto { Response = "Node Updated Successfully!", IsValid = true };
             }
 

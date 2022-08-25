@@ -9,8 +9,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     [DbContext(typeof(PostgreSqlContext))]
-    [Migration("20220823112646_AddVMandVpnEntities")]
-    partial class AddVMandVpnEntities
+    [Migration("20220825105712_UpdatingVMs")]
+    partial class UpdatingVMs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -218,10 +218,10 @@ namespace DAL.Migrations
                     b.Property<int>("Bandwidth")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ClientID")
+                    b.Property<int>("CPUCores")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CpuCores")
+                    b.Property<int>("ClientID")
                         .HasColumnType("integer");
 
                     b.Property<string>("IP")
@@ -234,6 +234,9 @@ namespace DAL.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int>("RAM")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Storage")
                         .HasColumnType("integer");
 
                     b.HasKey("VMID");
