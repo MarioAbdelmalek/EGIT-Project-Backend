@@ -18,7 +18,9 @@ namespace BLL
         public GenerateErrorDto AddStorage(CreateStorageDto storage);
         public GenerateErrorDto DeleteStorage(int id);
         public GenerateErrorDto UpdateStorage(CreateStorageDto storage, int StorageID);
-        public GenerateErrorDto CalculateStorageRAM(int StorageID);
+        public GenerateErrorDto CalculateStorageSpace(int StorageID);
+        public GenerateErrorDto CalculateLunSpace(int LunID);
+
         public List<VMDto> GetAllVMs();
         public VMDto GetVM(int VMID);
         public GenerateErrorDto AddVM(CreateVMDto VM);

@@ -15,6 +15,8 @@ namespace DAL.Models
 
         public int RAM { get; set; }
 
+        public int Storage { get; set; }
+
         public string? IP { get; set; }
 
         public int Bandwidth { get; set; }

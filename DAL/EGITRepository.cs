@@ -50,6 +50,12 @@ namespace DAL
 
         }
 
+        public List<VM> GetLunVMs(int LunID)
+        {
+            return context.VMs.Where(t => t.LunID == LunID).ToList();
+
+        }
+
 
         public List<Storage> GetAllStorages()
         {

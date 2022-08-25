@@ -28,6 +28,8 @@ namespace DAL
         public void DeleteLun(int id);
         public void UpdateLun(Lun lun);
         public List<Lun> GetStorageLuns(int StorageID);
+        public List<VM> GetLunVMs(int LunID);
+
 
         //Storage functions
 
