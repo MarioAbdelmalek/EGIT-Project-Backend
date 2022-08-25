@@ -587,6 +587,7 @@ namespace BLL
                 {
                     EGITRepository.AddVM(mapper.Map<VM>(newVM));
                     this.CalculateNodeRemainingSpace(newVM.NodeID);
+                    this.CalculateClusterSpace(VMNode.ClusterID);
                     return new GenerateErrorDto { Response = "VM Added Successfully!", IsValid = true };
                 }
                 
@@ -600,24 +601,13 @@ namespace BLL
         public GenerateErrorDto UpdateVM(CreateVMDto VM, int VMID)
         {
             VMDto newVM = GetVM(VMID);
+            NodeDto newVMNode = this.GetNodeByID(newVM.NodeID);
 
             NodeDto VMNode = this.GetNodeByID(VM.NodeID);
-            ClientDto VMClient = this.GetClientByID(VM.ClientID);
-            LunDto VMLun = this.GetLun(VM.LunID);
 
             if (VMNode == null)
             {
                 return new GenerateErrorDto { Response = "Node Not Found, Cannot Update This VM!", IsValid = false };
-            }
-
-            if (VMClient == null)
-            {
-                return new GenerateErrorDto { Response = "Client Not Found, Cannot Update This VM!", IsValid = false };
-            }
-
-            if (VMLun == null)
-            {
-                return new GenerateErrorDto { Response = "Lun Not Found, Cannot Update This VM!", IsValid = false };
             }
 
             var remainingRAMs = -1;
@@ -649,6 +639,7 @@ namespace BLL
                     {
                         EGITRepository.UpdateVM(mapper.Map<VM>(newVM));
                         this.CalculateNodeRemainingSpace(newVM.NodeID);
+                        this.CalculateClusterSpace(VMNode.ClusterID);
                         return new GenerateErrorDto { Response = "VM Updated Successfully!", IsValid = true };
                     }
 
@@ -683,9 +674,19 @@ namespace BLL
                         EGITRepository.UpdateVM(mapper.Map<VM>(newVM));
                         this.CalculateNodeRemainingSpace(newVM.NodeID);
                         this.CalculateNodeRemainingSpace(oldNodeID);
+
+                        if(newVMNode.ClusterID == VMNode.ClusterID)
+                        {
+                            this.CalculateClusterSpace(newVMNode.ClusterID);
+                        }
+                        else
+                        {
+                            this.CalculateClusterSpace(newVMNode.ClusterID);
+                            this.CalculateClusterSpace(VMNode.ClusterID);
+                        }
+
                         return new GenerateErrorDto { Response = "VM Updated Successfully!", IsValid = true };
                     }
-
                     catch (Exception)
                     {
                         return new GenerateErrorDto { Response = "Error Updating The VM!", IsValid = false };
@@ -702,6 +703,7 @@ namespace BLL
         public GenerateErrorDto DeleteVM(int VMID)
         {
             VMDto VMToBeDeleted = GetVM(VMID);
+            NodeDto VMNode = this.GetNodeByID(VMToBeDeleted.NodeID);
 
             if (VMToBeDeleted == null)
             {
@@ -712,6 +714,7 @@ namespace BLL
             {
                 EGITRepository.DeleteVM(VMID);
                 this.CalculateNodeRemainingSpace(VMToBeDeleted.NodeID);
+                this.CalculateClusterSpace(VMNode.ClusterID);
                 return new GenerateErrorDto { Response = "VM Deleted Successfully!", IsValid = true };
             }
 
@@ -811,7 +814,7 @@ namespace BLL
 
             if (returnedNode != null)
             {
-                ClusterDto nodeCluster = this.GetClusterByID(returnedNode.ClusterID);
+                //ClusterDto nodeCluster = this.GetClusterByID(returnedNode.ClusterID);
                 List<VM> returnedNodeVMs = EGITRepository.GetNodeVMs(NodeID);
 
                 var totalVMsRAM = returnedNodeVMs.Sum(vm => vm.RAM);
@@ -825,7 +828,7 @@ namespace BLL
 
 
                 EGITRepository.UpdateNode(returnedNode);
-                this.CalculateClusterSpace(nodeCluster.ClusterID);
+                //this.CalculateClusterSpace(nodeCluster.ClusterID);
                 return new GenerateErrorDto { Response = "Node Updated Successfully!", IsValid = true };
             }
 
