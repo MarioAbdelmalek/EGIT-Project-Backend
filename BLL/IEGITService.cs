@@ -15,6 +15,8 @@ namespace BLL
         public GenerateErrorDto UpdateLun(CreateLunDto lun, int LunID);
         public List<StorageDto> GetAllStorages();
         public StorageDto GetStorage(int id);
+        public List<LunDto> GetStorageLuns(int StorageID);
+
         public GenerateErrorDto AddStorage(CreateStorageDto storage);
         public GenerateErrorDto DeleteStorage(int id);
         public GenerateErrorDto UpdateStorage(CreateStorageDto storage, int StorageID);

@@ -63,7 +63,7 @@ namespace DAL
         }
 
         public Storage GetStorage(int StorageID)
-        {
+       {
             return (Storage)context.Storages.FirstOrDefault(l => l.StorageID == StorageID);
         }
 
