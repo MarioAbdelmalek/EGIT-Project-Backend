@@ -9,7 +9,7 @@ namespace DAL.Models
         public int StorageID { get; set; }
         public string StorageName { get; set; }
         public string StorageType { get; set; }
-        public int StorageTotalRAM { get; set; }
-        public int StorageRemainingRAM { get; set; }
+        public int StorageTotalSpace { get; set; }
+        public int StorageRemainingSpace { get; set; }
     }
 }

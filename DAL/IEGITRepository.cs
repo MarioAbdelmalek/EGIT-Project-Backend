@@ -17,6 +17,7 @@ namespace DAL
         Client GetClientByID(int ClientID);
         Node GetNodeByID(int NodeID);
         List<Cluster> GetAllClusters();
+        public List<Cluster> GetClustersByType(string ClusterType);
         List<Client> GetAllClients();
         List<Node> GetAllNodes();
         void DeleteCluster(int ClusterID);
@@ -28,6 +29,8 @@ namespace DAL
         public void DeleteLun(int id);
         public void UpdateLun(Lun lun);
         List<Lun> GetStorageLuns(int StorageID);
+        public List<VM> GetLunVMs(int LunID);
+
         public List<Storage> GetAllStorages();
         public Storage GetStorage(int id);
         public void AddStorage(Storage storage);
@@ -37,7 +40,6 @@ namespace DAL
         List<VM> GetNodeVMs(int NodeID);
         List<VM> GetClientVMs(int ClientID);
         List<Vpn> GetClientVPNs(int ClientID);
-        List<VM> GetLunVMs(int LunID);
         public List<VM> GetAllVMs();
         public VM GetVM(int VMID);
         public void AddVM(VM VM);

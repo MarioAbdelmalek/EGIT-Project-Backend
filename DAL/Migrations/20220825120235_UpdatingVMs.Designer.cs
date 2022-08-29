@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     [DbContext(typeof(PostgreSqlContext))]
-    [Migration("20220825105712_UpdatingVMs")]
+    [Migration("20220825120235_UpdatingVMs")]
     partial class UpdatingVMs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,10 +81,10 @@ namespace DAL.Migrations
                     b.Property<string>("LunName")
                         .HasColumnType("text");
 
-                    b.Property<int>("LunRemainingRAM")
+                    b.Property<int>("LunRemainingSpace")
                         .HasColumnType("integer");
 
-                    b.Property<int>("LunTotalRAM")
+                    b.Property<int>("LunTotalSpace")
                         .HasColumnType("integer");
 
                     b.Property<int>("StorageID")
@@ -136,10 +136,10 @@ namespace DAL.Migrations
                     b.Property<string>("StorageName")
                         .HasColumnType("text");
 
-                    b.Property<int>("StorageRemainingRAM")
+                    b.Property<int>("StorageRemainingSpace")
                         .HasColumnType("integer");
 
-                    b.Property<int>("StorageTotalRAM")
+                    b.Property<int>("StorageTotalSpace")
                         .HasColumnType("integer");
 
                     b.Property<string>("StorageType")

@@ -50,6 +50,20 @@ namespace EGITBackend.Controllers
             return EGITService.GetAllClusters();
         }
 
+        [Route("getClusterNodes")]
+        [HttpGet]
+        public IEnumerable<NodeDto> GetClusterNodes(int ClusterID)
+        {
+            return EGITService.GetClusterNodes(ClusterID);
+        }
+
+        [Route("getClustersByType")]
+        [HttpGet]
+        public IEnumerable<ClusterDto> GetClustersByType(string ClusterType)
+        {
+            return EGITService.GetClustersByType(ClusterType);
+        }
+
         [Route("deleteCluster")]
         [HttpDelete]
         public GenerateErrorDto DeleteCluster(int ClusterID)

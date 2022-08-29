@@ -57,12 +57,7 @@ namespace EGITBackend.Controllers
             return EGITService.UpdateStorage(storage, StorageID);
         }
 
-        [Route("calculateRAM")]
-        [HttpPost]
-        public GenerateErrorDto CalculateStorageRAM(int StorageID)
-        {
-            return EGITService.CalculateStorageRAM(StorageID);
-        }
+
 
 
     }

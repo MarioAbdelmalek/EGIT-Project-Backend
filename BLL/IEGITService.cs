@@ -18,7 +18,9 @@ namespace BLL
         public GenerateErrorDto AddStorage(CreateStorageDto storage);
         public GenerateErrorDto DeleteStorage(int id);
         public GenerateErrorDto UpdateStorage(CreateStorageDto storage, int StorageID);
-        public GenerateErrorDto CalculateStorageRAM(int StorageID);
+        public GenerateErrorDto CalculateStorageSpace(int StorageID);
+        public GenerateErrorDto CalculateLunSpace(int LunID);
+
         public List<VMDto> GetAllVMs();
         public VMDto GetVM(int VMID);
         public GenerateErrorDto AddVM(CreateVMDto VM);
@@ -35,6 +37,7 @@ namespace BLL
         public GenerateErrorDto AddClient(CreateClientDto newClient);
         public GenerateErrorDto AddNode(CreateNodeDto newNode);
         public ClusterDto GetClusterByID(int ClusterID);
+        public List<ClusterDto> GetClustersByType(string ClusterType);
         public ClientDto GetClientByID(int ClientID);
         public NodeDto GetNodeByID(int NodeID);
         public GenerateErrorDto UpdateCluster(int ClusterID, CreateClusterDto newCluster);
@@ -43,6 +46,8 @@ namespace BLL
         public List<ClusterDto> GetAllClusters();
         public List<ClientDto> GetAllClients();
         public List<NodeDto> GetAllNodes();
+        public List<VMDto> GetNodeVMs(int NodeID);
+        public List<NodeDto> GetClusterNodes(int ClusterID);
         public GenerateErrorDto DeleteCluster(int ClusterID);
         public GenerateErrorDto DeleteClient(int ClientID);
         public GenerateErrorDto DeleteNode(int NodeID);

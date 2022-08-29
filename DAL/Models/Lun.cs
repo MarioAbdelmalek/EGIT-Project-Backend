@@ -10,8 +10,8 @@ namespace DAL.Models
     {
         public int LunID { get; set; }
         public string LunName { get; set; }
-        public int LunTotalRAM { get; set; }
-        public int LunRemainingRAM { get; set; }
+        public int LunTotalSpace { get; set; }
+        public int LunRemainingSpace { get; set; }
 
         [ForeignKey("Storage")]
         public int StorageID { get; set; }

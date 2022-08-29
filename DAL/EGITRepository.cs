@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +51,12 @@ namespace DAL
 
         }
 
+        public List<VM> GetLunVMs(int LunID)
+        {
+            return context.VMs.Where(t => t.LunID == LunID).ToList();
+
+        }
+
 
         public List<Storage> GetAllStorages()
         {
@@ -80,12 +87,6 @@ namespace DAL
             context.Storages.Remove(entity);
             context.SaveChanges();
         }
-
-
-
-
-        //vpn functions
-
         public List<Vpn> GetAllVpns()
         {
             return context.Vpns.ToList();
@@ -220,7 +221,7 @@ namespace DAL
 
         public List<Node> GetClusterNodes(int ClusterID)
         {
-            return context.Nodes.Where(n => n.ClusterID == ClusterID).ToList();
+            return context.Nodes.Include("Cluster").Where(n => n.ClusterID == ClusterID).ToList();
         }
 
         public List<VM> GetNodeVMs(int NodeID)
@@ -238,9 +239,9 @@ namespace DAL
             return context.Vpns.Where(vpn => vpn.ClientID == ClientID).ToList();
         }
 
-        public List<VM> GetLunVMs(int LunID)
+        public List<Cluster> GetClustersByType(string ClusterType)
         {
-            return context.VMs.Where(vm => vm.LunID == LunID).ToList();
+            return context.Clusters.Where(c => c.ClusterType == ClusterType).ToList();
         }
     }
 }
