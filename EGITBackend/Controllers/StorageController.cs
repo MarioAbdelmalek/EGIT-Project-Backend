@@ -56,9 +56,12 @@ namespace EGITBackend.Controllers
         {
             return EGITService.UpdateStorage(storage, StorageID);
         }
-
-
-
+        [Route("getStorageLuns")]
+        [HttpGet]
+        public List<LunDto> GetStorageLuns(int StorageID)
+        {
+            return EGITService.GetStorageLuns(StorageID);
+        }
 
     }
 }

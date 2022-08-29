@@ -64,7 +64,7 @@ namespace DAL
         }
 
         public Storage GetStorage(int StorageID)
-        {
+       {
             return (Storage)context.Storages.FirstOrDefault(l => l.StorageID == StorageID);
         }
 
@@ -115,8 +115,6 @@ namespace DAL
             context.SaveChanges();
         }
 
-        //VM functions
-
         public List<VM> GetAllVMs()
         {
             return context.VMs.ToList();
@@ -145,7 +143,6 @@ namespace DAL
             context.SaveChanges();
         }
 
-        //
         public void AddCluster(Cluster newCluster)
         {
             context.Clusters.Add(newCluster);

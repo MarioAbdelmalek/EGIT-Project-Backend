@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BLL;
 using DAL;
+using EGITBackend.HubConfig;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -55,6 +56,9 @@ namespace EGITBackend
 
             services.AddScoped<IEGITRepository, EGITRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddHostedService<SignalRService>();
+
 
             services.AddAuthentication(x =>
             {
@@ -109,7 +113,10 @@ namespace EGITBackend
                 });
             });
 
+
             services.AddMvc();
+            services.AddSignalR();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -140,6 +147,7 @@ namespace EGITBackend
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<EGITHub>("/EGITUpdates");
             });
         }
     }

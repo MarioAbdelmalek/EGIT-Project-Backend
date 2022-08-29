@@ -409,7 +409,6 @@ namespace BLL
                 return new GenerateErrorDto { Response = "Cannot Delete This Lun, Please Delete Its VMs First!", IsValid = true };
             }
 
-            LunDto LunToBeDeleted = GetLun(LunID);
             try
             {
                 EGITRepository.DeleteLun(LunID);
@@ -428,7 +427,6 @@ namespace BLL
 
             LunDto LunToBeUpdated = GetLun(LunID);
             StorageDto oldlinkedStorage = GetStorage(LunToBeUpdated.StorageID);
-            StorageDto newlinkedStorage = GetStorage(UpdatedLun.StorageID);
             var remainingStorage = 0;
 
             if (LunToBeUpdated == null)
@@ -436,35 +434,27 @@ namespace BLL
                 return new GenerateErrorDto { Response = "Lun Not Found, Cannot Update Lun!", IsValid = false };
             }
 
-            if (newlinkedStorage == null || oldlinkedStorage == null)
+            if (oldlinkedStorage == null)
             {
                 return new GenerateErrorDto { Response = "Storage Not Found, Cannot Update Lun!", IsValid = false };
 
             }
-          
-            if(LunToBeUpdated.StorageID == UpdatedLun.StorageID)
-            {
-                remainingStorage =  oldlinkedStorage.StorageRemainingSpace + LunToBeUpdated.LunTotalSpace;
-            }
-            else
-            {
-                oldlinkedStorage.StorageRemainingSpace += LunToBeUpdated.LunTotalSpace;
-                EGITRepository.UpdateStorage(mapper.Map<Storage>(oldlinkedStorage));
-                remainingStorage = newlinkedStorage.StorageRemainingSpace;
 
-            }
+            remainingStorage =  oldlinkedStorage.StorageRemainingSpace + LunToBeUpdated.LunTotalSpace;
+
             if (LunToBeUpdated.LunTotalSpace> remainingStorage)
             {
-                return new GenerateErrorDto { Response = "Lun RAM cannot Exceed Storage RAM!", IsValid = false };
+                return new GenerateErrorDto { Response = "Lun Space cannot Exceed Storage Space!", IsValid = false };
             }
 
             LunToBeUpdated.LunName = UpdatedLun.LunName;
+            LunToBeUpdated.LunRemainingSpace = LunToBeUpdated.LunRemainingSpace + (UpdatedLun.LunTotalSpace - LunToBeUpdated.LunTotalSpace);
             LunToBeUpdated.LunTotalSpace = UpdatedLun.LunTotalSpace;
             LunToBeUpdated.StorageID = UpdatedLun.StorageID;
 
             if (LunToBeUpdated.LunTotalSpace > remainingStorage)
             {
-                return new GenerateErrorDto { Response = "Lun RAM cannot Exceed Storage RAM!", IsValid = false };
+                return new GenerateErrorDto { Response = "Lun Space cannot Exceed Storage Space!", IsValid = false };
 
             }
             try
@@ -515,6 +505,12 @@ namespace BLL
             }
 
         }
+        public List<LunDto> GetStorageLuns(int StorageID)
+        {
+            List<Lun> luns = EGITRepository.GetStorageLuns(StorageID);
+            return mapper.Map<List<LunDto>>(luns);
+        }
+
         public GenerateErrorDto DeleteStorage(int StorageID)
         {
             if(GetStorage(StorageID)== null)
@@ -550,7 +546,11 @@ namespace BLL
 
                 StorageToBeUpdated.StorageName = UpdatedStorage.StorageName;
                 StorageToBeUpdated.StorageType = UpdatedStorage.StorageType;
+                StorageToBeUpdated.StorageRemainingSpace = StorageToBeUpdated.StorageRemainingSpace
+                    + (UpdatedStorage.StorageTotalSpace - StorageToBeUpdated.StorageTotalSpace);
                 StorageToBeUpdated.StorageTotalSpace = UpdatedStorage.StorageTotalSpace;
+
+
 
             }
             else
@@ -615,13 +615,19 @@ namespace BLL
                 return new GenerateErrorDto { Response = "Lun Contains no Vms, Cannot Calculate Lun RAM!", IsValid = false };
 
             }
-            var RemainingSum = lun.LunTotalSpace - vms.Sum(l => l.RAM);
+
+            var RemainingSum = lun.LunTotalSpace - vms.Sum(l => l.Storage);
+            if (RemainingSum > lun.LunTotalSpace)
+            {
+                return new GenerateErrorDto { Response = "Error Calculating Lun Space!", IsValid = false };
+
+            }
             lun.LunRemainingSpace = RemainingSum;
 
             try
             {
                 EGITRepository.UpdateLun(mapper.Map<Lun>(lun));
-                return new GenerateErrorDto { Response = "  Lun RAM Calculated Successfully!", IsValid = true };
+                return new GenerateErrorDto { Response = "  Lun Space Calculated Successfully!", IsValid = true };
 
             }
             catch
@@ -711,18 +717,39 @@ namespace BLL
         {
             VMDto oldVM = GetVM(VMID);
 
+
             if (oldVM != null)
             {
                 LunDto oldVMLun = this.GetLun(oldVM.LunID);
+
                 NodeDto oldVMNode = this.GetNodeByID(oldVM.NodeID);
+
+                LunDto newVMLun = this.GetLun(VM.LunID);
 
                 var remainingRAMs = oldVM.RAM + oldVMNode.NodeRemainingRAM;
                 var remainingCPUCors = oldVM.CPUCores + oldVMNode.NodeRemainingCPUCores;
-                var remainingStorage = oldVM.Storage + oldVMLun.LunRemainingSpace;
+                var remainingStorage = 0;
+
+                if (newVMLun == null)
+                {
+                    return new GenerateErrorDto { Response = "Lun Not Found!", IsValid = false };
+
+                }
+                if (oldVM.LunID == newVMLun.LunID)
+                {
+                    remainingStorage = oldVM.Storage + oldVMLun.LunRemainingSpace;
+                }
+                else
+                {
+                    oldVMLun.LunRemainingSpace += oldVM.Storage;
+                    this.EGITRepository.UpdateLun(mapper.Map<Lun>(oldVMLun));
+                    remainingStorage = newVMLun.LunRemainingSpace;
+                }
 
                 oldVM.CPUCores = VM.CPUCores;
                 oldVM.RAM = VM.RAM;
                 oldVM.Storage = VM.Storage;
+                oldVM.LunID = VM.LunID;
 
                 if (VM.RAM > remainingRAMs)
                 {
@@ -759,8 +786,8 @@ namespace BLL
             {
                 return new GenerateErrorDto { Response = "VM Not Found, Cannot Update This VM!", IsValid = false };
             }
-
         }
+
         public GenerateErrorDto DeleteVM(int VMID)
         {
             VMDto VMToBeDeleted = GetVM(VMID);
@@ -787,6 +814,8 @@ namespace BLL
             }
             
         }
+
+
         public List<VpnDto> GetAllVpns()
         {
             List<Vpn> Vpns = EGITRepository.GetAllVpns();
@@ -805,7 +834,7 @@ namespace BLL
                 Username = vpn.Username,
                 ClientID = vpn.ClientID
             };
-
+            
             ClientDto VPNClient = this.GetClientByID(vpn.ClientID);
 
             if(VPNClient == null)
