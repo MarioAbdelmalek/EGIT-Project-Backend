@@ -757,6 +757,7 @@ namespace BLL
                 oldVM.RAM = VM.RAM;
                 oldVM.Storage = VM.Storage;
                 oldVM.LunID = VM.LunID;
+                oldVM.LastUpdateTime = DateTime.Now;
 
                 if (VM.RAM > remainingRAMs)
                 {
