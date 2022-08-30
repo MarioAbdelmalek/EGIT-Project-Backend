@@ -54,6 +54,13 @@ namespace EGITBackend.Controllers
             return EGITService.UpdateLun(lun,LunID);
         }
 
+        [Route("getUpdatedLuns")]
+        [HttpGet]
+        public IEnumerable<LunDto> GetUpdatedLuns()
+        {
+            return EGITService.GetUpdatedLuns();
+        }
+
 
     }
 }

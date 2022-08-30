@@ -11,5 +11,7 @@ namespace BLL.ModelsDto
         public int LunTotalSpace { get; set; }
         public int LunRemainingSpace { get; set; }
         public int StorageID { get; set; }
+        public DateTime LastUpdateTime { get; set; }
+
     }
 }

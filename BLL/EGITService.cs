@@ -368,7 +368,9 @@ namespace BLL
                 LunName = lun.LunName,
                 LunTotalSpace = lun.LunTotalSpace,
                 LunRemainingSpace = lun.LunTotalSpace,
-                StorageID = lun.StorageID
+                StorageID = lun.StorageID,
+                LastUpdateTime = DateTime.Now
+
             };
             StorageDto linkedStorage = GetStorage(lun.StorageID);
 
@@ -457,6 +459,7 @@ namespace BLL
             LunToBeUpdated.LunRemainingSpace = LunToBeUpdated.LunRemainingSpace + (UpdatedLun.LunTotalSpace - LunToBeUpdated.LunTotalSpace);
             LunToBeUpdated.LunTotalSpace = UpdatedLun.LunTotalSpace;
             LunToBeUpdated.StorageID = UpdatedLun.StorageID;
+            LunToBeUpdated.LastUpdateTime = DateTime.Now;
 
             if (LunToBeUpdated.LunTotalSpace > remainingStorage)
             {
@@ -496,7 +499,9 @@ namespace BLL
                 StorageName = storage.StorageName,
                 StorageType = storage.StorageType,
                 StorageTotalSpace = storage.StorageTotalSpace,
-                StorageRemainingSpace = storage.StorageTotalSpace
+                StorageRemainingSpace = storage.StorageTotalSpace,
+                LastUpdateTime = DateTime.Now
+
             };
 
             try
@@ -555,6 +560,8 @@ namespace BLL
                 StorageToBeUpdated.StorageRemainingSpace = StorageToBeUpdated.StorageRemainingSpace
                     + (UpdatedStorage.StorageTotalSpace - StorageToBeUpdated.StorageTotalSpace);
                 StorageToBeUpdated.StorageTotalSpace = UpdatedStorage.StorageTotalSpace;
+                StorageToBeUpdated.LastUpdateTime = DateTime.Now;
+
 
 
 
@@ -840,7 +847,9 @@ namespace BLL
             VpnDto newVpn = new VpnDto
             {
                 Username = vpn.Username,
-                ClientID = vpn.ClientID
+                ClientID = vpn.ClientID,
+                LastUpdateTime = DateTime.Now
+
             };
             
             ClientDto VPNClient = this.GetClientByID(vpn.ClientID);
@@ -890,6 +899,7 @@ namespace BLL
             {
                 newVpn.Username = vpn.Username;
                 newVpn.ClientID = vpn.ClientID;
+                newVpn.LastUpdateTime = DateTime.Now;
 
                 ClientDto VPNClient = this.GetClientByID(vpn.ClientID);
 
@@ -1023,6 +1033,57 @@ namespace BLL
                 }
             }
             return mapper.Map<List<VMDto>>(mappedUpdatedVMList);
+        }
+
+        public List<StorageDto> GetUpdatedStorages()
+        {
+            var mappedUpdatedStorageList = EGITRepository.GetUpdatedStorages(dateTime);
+
+            if (mappedUpdatedStorageList != null)
+            {
+                foreach (Storage st in mappedUpdatedStorageList)
+                {
+                    if (st.LastUpdateTime > dateTime)
+                    {
+                        dateTime = st.LastUpdateTime;
+                    }
+                }
+            }
+            return mapper.Map<List<StorageDto>>(mappedUpdatedStorageList);
+        }
+
+        public List<LunDto> GetUpdatedLuns()
+        {
+            var mappedUpdatedLunList = EGITRepository.GetUpdatedLuns(dateTime);
+
+            if (mappedUpdatedLunList != null)
+            {
+                foreach (Lun l in mappedUpdatedLunList)
+                {
+                    if (l.LastUpdateTime > dateTime)
+                    {
+                        dateTime = l.LastUpdateTime;
+                    }
+                }
+            }
+            return mapper.Map<List<LunDto>>(mappedUpdatedLunList);
+        }
+
+        public List<VpnDto> GetUpdatedVPNs()
+        {
+            var mappedUpdatedVPNList = EGITRepository.GetUpdatedVPNs(dateTime);
+
+            if (mappedUpdatedVPNList != null)
+            {
+                foreach (Vpn vpn in mappedUpdatedVPNList)
+                {
+                    if (vpn.LastUpdateTime > dateTime)
+                    {
+                        dateTime = vpn.LastUpdateTime;
+                    }
+                }
+            }
+            return mapper.Map<List<VpnDto>>(mappedUpdatedVPNList);
         }
     }
 }

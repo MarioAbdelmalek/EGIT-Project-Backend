@@ -57,5 +57,13 @@ namespace EGITBackend.Controllers
         {
             return EGITService.DeleteVpn(VpnID);
         }
+
+        [Route("getUpdatedVPNs")]
+        [HttpGet]
+        public IEnumerable<VpnDto> GetUpdatedVPNs()
+        {
+            return EGITService.GetUpdatedVPNs();
+        }
+
     }
 }

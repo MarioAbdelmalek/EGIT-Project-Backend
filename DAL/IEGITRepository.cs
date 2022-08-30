@@ -54,5 +54,9 @@ namespace DAL
         List<Cluster> GetUpdatedClusters(DateTime dateTime);
         List<Node> GetUpdatedNodes(DateTime dateTime);
         List<VM> GetUpdatedVMs(DateTime dateTime);
+        List<Storage> GetUpdatedStorages(DateTime dateTime);
+        List<Lun> GetUpdatedLuns(DateTime dateTime);
+        List<Vpn> GetUpdatedVPNs(DateTime dateTime);
+
     }
 }

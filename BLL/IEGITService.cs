@@ -56,6 +56,9 @@ namespace BLL
         public List<ClusterDto> GetUpdatedClusters();
         public List<NodeDto> GetUpdatedNodes();
         public List<VMDto> GetUpdatedVMs();
+        public List<StorageDto> GetUpdatedStorages();
+        public List<LunDto> GetUpdatedLuns();
+        public List<VpnDto> GetUpdatedVPNs();
 
     }
 }

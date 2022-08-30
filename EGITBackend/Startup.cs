@@ -132,6 +132,8 @@ namespace EGITBackend
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors("AllowOrigin");
+
 
             app.UseAuthentication();
             app.UseAuthorization();
@@ -142,7 +144,6 @@ namespace EGITBackend
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "EGIT Web Api");
             });
 
-            app.UseCors("AllowOrigin");
 
             app.UseEndpoints(endpoints =>
             {
