@@ -664,7 +664,8 @@ namespace BLL
                 Bandwidth = VM.Bandwidth,
                 ClientID = VM.ClientID,
                 NodeID = VM.NodeID,
-                LunID = VM.LunID
+                LunID = VM.LunID,
+                LastUpdateTime = DateTime.Now
             };
 
             NodeDto VMNode = this.GetNodeByID(newVM.NodeID);
