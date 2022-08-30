@@ -13,8 +13,7 @@ namespace EGITBackend
 {
     public sealed class SignalRService : BackgroundService
     {
-        private IServiceProvider serviceProvider;
-
+        private readonly IServiceProvider serviceProvider;
         private readonly IHubContext<EGITHub> EGITHub;
         public SignalRService(IServiceProvider serviceProvider, IHubContext<EGITHub> EGITHub)
         {
@@ -37,7 +36,7 @@ namespace EGITBackend
                     await EGITHub.Clients.All.SendAsync("UpdatedStorages", Newtonsoft.Json.
                         JsonConvert.SerializeObject(storageList));
 
-                    var clusterList= hostedServices.GetAllClusters();
+                    var clusterList = hostedServices.GetAllClusters();
                     await EGITHub.Clients.All.SendAsync("UpdatedClusters", Newtonsoft.Json.
                         JsonConvert.SerializeObject(clusterList));
 
@@ -56,11 +55,9 @@ namespace EGITBackend
                     var clientList = hostedServices.GetAllClients();
                     await EGITHub.Clients.All.SendAsync("UpdatedClients", Newtonsoft.Json.
                         JsonConvert.SerializeObject(clientList));
-
-
                 }
 
-                await Task.Delay(new TimeSpan(0, 0, 5));
+                await Task.Delay(new TimeSpan(0, 0, 10));
             }
         }
     }

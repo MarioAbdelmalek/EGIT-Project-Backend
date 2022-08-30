@@ -11,6 +11,5 @@ namespace BLL.ModelsDto
         public int Storage { get; set; }
         public int LunID { get; set; }
 
-
     }
 }

@@ -39,6 +39,7 @@ namespace BLL
         public GenerateErrorDto AddClient(CreateClientDto newClient);
         public GenerateErrorDto AddNode(CreateNodeDto newNode);
         public ClusterDto GetClusterByID(int ClusterID);
+        public List<ClusterDto> GetClustersByType(string ClusterType);
         public ClientDto GetClientByID(int ClientID);
         public NodeDto GetNodeByID(int NodeID);
         public GenerateErrorDto UpdateCluster(int ClusterID, CreateClusterDto newCluster);
@@ -47,6 +48,8 @@ namespace BLL
         public List<ClusterDto> GetAllClusters();
         public List<ClientDto> GetAllClients();
         public List<NodeDto> GetAllNodes();
+        public List<VMDto> GetNodeVMs(int NodeID);
+        public List<NodeDto> GetClusterNodes(int ClusterID);
         public GenerateErrorDto DeleteCluster(int ClusterID);
         public GenerateErrorDto DeleteClient(int ClientID);
         public GenerateErrorDto DeleteNode(int NodeID);

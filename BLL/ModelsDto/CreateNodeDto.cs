@@ -7,6 +7,7 @@ namespace BLL.ModelsDto
     public class CreateNodeDto
     {
         public int NodeTotalRAM { get; set; }
+        public string NodeName { get; set; }
         public int NodeTotalCPUCores { get; set; }
         public int ClusterID { get; set; }
     }

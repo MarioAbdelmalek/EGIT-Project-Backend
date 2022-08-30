@@ -8,6 +8,7 @@ namespace DAL.Models
     public class Node
     {
         public int NodeID { get; set; }
+        public string NodeName { get; set; }
         public int NodeTotalRAM { get; set; }
         public int NodeRemainingRAM { get; set; }
         public int NodeTotalCPUCores { get; set; }

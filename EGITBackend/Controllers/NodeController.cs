@@ -49,6 +49,13 @@ namespace EGITBackend.Controllers
             return EGITService.GetAllNodes();
         }
 
+        [Route("getNodeVMs")]
+        [HttpGet]
+        public IEnumerable<VMDto> GetNodeVMs(int NodeID)
+        {
+            return EGITService.GetNodeVMs(NodeID);
+        }
+
         [Route("deleteNode")]
         [HttpDelete]
         public GenerateErrorDto DeleteNode(int NodeID)

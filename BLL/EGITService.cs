@@ -93,6 +93,7 @@ namespace BLL
             NodeDto n = new NodeDto
 
             {
+                NodeName = newNode.NodeName,
                 NodeTotalCPUCores = newNode.NodeTotalCPUCores,
                 NodeTotalRAM = newNode.NodeTotalRAM,
                 ClusterID = newNode.ClusterID,
@@ -156,7 +157,7 @@ namespace BLL
 
             if (clusterNodesList.Count > 0)
             {
-                return new GenerateErrorDto { Response = "Cannot Delete This Cluster, Please Delete Its Nodes First!", IsValid = true };
+                return new GenerateErrorDto { Response = "Cannot Delete This Cluster, Please Delete Its Nodes First!", IsValid = false };
             }
 
             try
@@ -184,7 +185,7 @@ namespace BLL
 
             if (nodeVMsList.Count > 0)
             {
-                return new GenerateErrorDto { Response = "Cannot Delete This Node, Please Delete Its VMs First!", IsValid = true };
+                return new GenerateErrorDto { Response = "Cannot Delete This Node, Please Delete Its VMs First!", IsValid = false };
             }
 
             try
@@ -292,9 +293,22 @@ namespace BLL
 
                 if(newNode.ClusterID == oldNode.ClusterID)
                 {
+                    oldNode.NodeName = newNode.NodeName;
                     oldNode.NodeTotalCPUCores = newNode.NodeTotalCPUCores;
                     oldNode.NodeTotalRAM = newNode.NodeTotalRAM;
                     oldNode.ClusterID = newNode.ClusterID;
+
+                    List<VM> returnedNodeVMs = EGITRepository.GetNodeVMs(NodeID);
+
+                    var totalVMsRAM = returnedNodeVMs.Sum(vm => vm.RAM);
+                    var remainingNodeRAM = oldNode.NodeTotalRAM - totalVMsRAM;
+
+                    var totalVMsCPUCores = returnedNodeVMs.Sum(vm => vm.CPUCores);
+                    var remainingNodeCPUCores = oldNode.NodeTotalCPUCores - totalVMsCPUCores;
+
+                    oldNode.NodeRemainingCPUCores = remainingNodeCPUCores;
+                    oldNode.NodeRemainingRAM = remainingNodeRAM;
+
 
                     EGITRepository.UpdateNode(mapper.Map<Node>(oldNode));
                     CalculateClusterSpace(oldNode.ClusterID);
@@ -305,9 +319,21 @@ namespace BLL
                 {
                     var oldClusterID = oldNode.ClusterID;
 
+                    oldNode.NodeName = newNode.NodeName;
                     oldNode.NodeTotalCPUCores = newNode.NodeTotalCPUCores;
                     oldNode.NodeTotalRAM = newNode.NodeTotalRAM;
                     oldNode.ClusterID = newNode.ClusterID;
+
+                    List<VM> returnedNodeVMs = EGITRepository.GetNodeVMs(NodeID);
+
+                    var totalVMsRAM = returnedNodeVMs.Sum(vm => vm.RAM);
+                    var remainingNodeRAM = oldNode.NodeTotalRAM - totalVMsRAM;
+
+                    var totalVMsCPUCores = returnedNodeVMs.Sum(vm => vm.CPUCores);
+                    var remainingNodeCPUCores = oldNode.NodeTotalCPUCores - totalVMsCPUCores;
+
+                    oldNode.NodeRemainingCPUCores = remainingNodeCPUCores;
+                    oldNode.NodeRemainingRAM = remainingNodeRAM;
 
                     EGITRepository.UpdateNode(mapper.Map<Node>(oldNode));
                     CalculateClusterSpace(oldNode.ClusterID);
@@ -407,7 +433,6 @@ namespace BLL
             {
                 return new GenerateErrorDto { Response = "Lun Not Found, Cannot Update Lun!", IsValid = false };
             }
-
 
             if (oldlinkedStorage == null)
             {
@@ -695,9 +720,10 @@ namespace BLL
 
             if (oldVM != null)
             {
+                LunDto oldVMLun = this.GetLun(oldVM.LunID);
 
                 NodeDto oldVMNode = this.GetNodeByID(oldVM.NodeID);
-                LunDto oldVMLun = this.GetLun(oldVM.LunID);
+
                 LunDto newVMLun = this.GetLun(VM.LunID);
 
                 var remainingRAMs = oldVM.RAM + oldVMNode.NodeRemainingRAM;
@@ -899,6 +925,44 @@ namespace BLL
             else
             {
                 return new GenerateErrorDto { Response = "Node Not Found!", IsValid = false };
+            }
+        }
+
+        public List<NodeDto> GetClusterNodes(int ClusterID)
+        {
+            ClusterDto returnedCluster = this.GetClusterByID(ClusterID);
+
+            if(returnedCluster != null)
+            {
+                var returnedClusterNodesList = EGITRepository.GetClusterNodes(ClusterID);
+                return mapper.Map<List<NodeDto>>(returnedClusterNodesList);
+            }
+
+            else
+            {
+                return null;
+            }
+        }
+
+        public List<ClusterDto> GetClustersByType(string ClusterType)
+        {
+            var returnedClustersList = EGITRepository.GetClustersByType(ClusterType);
+            return mapper.Map<List<ClusterDto>>(returnedClustersList);
+        }
+
+        public List<VMDto> GetNodeVMs(int NodeID)
+        {
+            NodeDto returnedNode = this.GetNodeByID(NodeID);
+
+            if (returnedNode != null)
+            {
+                var returnedNodeVMsList = EGITRepository.GetNodeVMs(NodeID);
+                return mapper.Map<List<VMDto>>(returnedNodeVMsList);
+            }
+
+            else
+            {
+                return null;
             }
         }
     }
