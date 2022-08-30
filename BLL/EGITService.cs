@@ -368,7 +368,9 @@ namespace BLL
                 LunName = lun.LunName,
                 LunTotalSpace = lun.LunTotalSpace,
                 LunRemainingSpace = lun.LunTotalSpace,
-                StorageID = lun.StorageID
+                StorageID = lun.StorageID,
+                LastUpdateTime = DateTime.Now
+
             };
             StorageDto linkedStorage = GetStorage(lun.StorageID);
 
@@ -457,6 +459,7 @@ namespace BLL
             LunToBeUpdated.LunRemainingSpace = LunToBeUpdated.LunRemainingSpace + (UpdatedLun.LunTotalSpace - LunToBeUpdated.LunTotalSpace);
             LunToBeUpdated.LunTotalSpace = UpdatedLun.LunTotalSpace;
             LunToBeUpdated.StorageID = UpdatedLun.StorageID;
+            LunToBeUpdated.LastUpdateTime = DateTime.Now;
 
             if (LunToBeUpdated.LunTotalSpace > remainingStorage)
             {
@@ -496,7 +499,9 @@ namespace BLL
                 StorageName = storage.StorageName,
                 StorageType = storage.StorageType,
                 StorageTotalSpace = storage.StorageTotalSpace,
-                StorageRemainingSpace = storage.StorageTotalSpace
+                StorageRemainingSpace = storage.StorageTotalSpace,
+                LastUpdateTime = DateTime.Now
+
             };
 
             try
@@ -555,6 +560,8 @@ namespace BLL
                 StorageToBeUpdated.StorageRemainingSpace = StorageToBeUpdated.StorageRemainingSpace
                     + (UpdatedStorage.StorageTotalSpace - StorageToBeUpdated.StorageTotalSpace);
                 StorageToBeUpdated.StorageTotalSpace = UpdatedStorage.StorageTotalSpace;
+                StorageToBeUpdated.LastUpdateTime = DateTime.Now;
+
 
 
 
@@ -664,7 +671,8 @@ namespace BLL
                 Bandwidth = VM.Bandwidth,
                 ClientID = VM.ClientID,
                 NodeID = VM.NodeID,
-                LunID = VM.LunID
+                LunID = VM.LunID,
+                LastUpdateTime = DateTime.Now
             };
 
             NodeDto VMNode = this.GetNodeByID(newVM.NodeID);
@@ -756,6 +764,7 @@ namespace BLL
                 oldVM.RAM = VM.RAM;
                 oldVM.Storage = VM.Storage;
                 oldVM.LunID = VM.LunID;
+                oldVM.LastUpdateTime = DateTime.Now;
 
                 if (VM.RAM > remainingRAMs)
                 {
@@ -838,7 +847,9 @@ namespace BLL
             VpnDto newVpn = new VpnDto
             {
                 Username = vpn.Username,
-                ClientID = vpn.ClientID
+                ClientID = vpn.ClientID,
+                LastUpdateTime = DateTime.Now
+
             };
             
             ClientDto VPNClient = this.GetClientByID(vpn.ClientID);
@@ -888,6 +899,7 @@ namespace BLL
             {
                 newVpn.Username = vpn.Username;
                 newVpn.ClientID = vpn.ClientID;
+                newVpn.LastUpdateTime = DateTime.Now;
 
                 ClientDto VPNClient = this.GetClientByID(vpn.ClientID);
 
