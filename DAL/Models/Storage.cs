@@ -11,5 +11,7 @@ namespace DAL.Models
         public string StorageType { get; set; }
         public int StorageTotalSpace { get; set; }
         public int StorageRemainingSpace { get; set; }
+        public DateTime LastUpdateTime { get; set; }
+
     }
 }

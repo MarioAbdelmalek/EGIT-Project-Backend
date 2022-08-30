@@ -50,6 +50,13 @@ namespace EGITBackend.Controllers
             return EGITService.GetAllClusters();
         }
 
+        [Route("getUpdatedClusters")]
+        [HttpGet]
+        public IEnumerable<ClusterDto> GetUpdatedClusters()
+        {
+            return EGITService.GetUpdatedClusters();
+        }
+
         [Route("getClusterNodes")]
         [HttpGet]
         public IEnumerable<NodeDto> GetClusterNodes(int ClusterID)

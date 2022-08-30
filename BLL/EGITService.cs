@@ -13,6 +13,7 @@ namespace BLL
     {
         private readonly IMapper mapper;
         IEGITRepository EGITRepository;
+        public static DateTime dateTime = DateTime.Now;
 
         public EGITService (IMapper mapper, IEGITRepository EGITRepository)
         {
@@ -43,7 +44,8 @@ namespace BLL
 
         public GenerateErrorDto AddCluster(CreateClusterDto newCluster)
         {
-            ClusterDto c = new ClusterDto { ClusterType = newCluster.ClusterType, ClusterName = newCluster.ClusterName};
+            ClusterDto c = new ClusterDto { ClusterType = newCluster.ClusterType, ClusterName = newCluster.ClusterName, 
+                LastUpdateTime = DateTime.Now};
 
             try
             {
@@ -98,7 +100,8 @@ namespace BLL
                 NodeTotalRAM = newNode.NodeTotalRAM,
                 ClusterID = newNode.ClusterID,
                 NodeRemainingCPUCores = newNode.NodeTotalCPUCores,
-                NodeRemainingRAM = newNode.NodeTotalRAM
+                NodeRemainingRAM = newNode.NodeTotalRAM,
+                LastUpdateTime = DateTime.Now
             };
 
             ClusterDto nodeCluster = this.GetClusterByID(newNode.ClusterID);
@@ -266,6 +269,7 @@ namespace BLL
             {
                 oldCluster.ClusterType = newCluster.ClusterType;
                 oldCluster.ClusterName = newCluster.ClusterName;
+                oldCluster.LastUpdateTime = DateTime.Now;
 
                 EGITRepository.UpdateCluster(mapper.Map<Cluster>(oldCluster));
                 return new GenerateErrorDto { Response = "Cluster Updated Successfully!", IsValid = true };
@@ -297,6 +301,7 @@ namespace BLL
                     oldNode.NodeTotalCPUCores = newNode.NodeTotalCPUCores;
                     oldNode.NodeTotalRAM = newNode.NodeTotalRAM;
                     oldNode.ClusterID = newNode.ClusterID;
+                    oldNode.LastUpdateTime = DateTime.Now;
 
                     List<VM> returnedNodeVMs = EGITRepository.GetNodeVMs(NodeID);
 
@@ -323,6 +328,7 @@ namespace BLL
                     oldNode.NodeTotalCPUCores = newNode.NodeTotalCPUCores;
                     oldNode.NodeTotalRAM = newNode.NodeTotalRAM;
                     oldNode.ClusterID = newNode.ClusterID;
+                    oldNode.LastUpdateTime = DateTime.Now;
 
                     List<VM> returnedNodeVMs = EGITRepository.GetNodeVMs(NodeID);
 
@@ -964,6 +970,108 @@ namespace BLL
             {
                 return null;
             }
+        }
+
+        public List<ClusterDto> GetUpdatedClusters()
+        {
+            var mappedUpdatedClusterList = EGITRepository.GetUpdatedClusters(dateTime);
+
+            if (mappedUpdatedClusterList != null)
+            {
+                foreach (Cluster c in mappedUpdatedClusterList)
+                {
+                    if (c.LastUpdateTime > dateTime)
+                    {
+                        dateTime = c.LastUpdateTime;
+                    }
+                }
+            }
+            return mapper.Map<List<ClusterDto>>(mappedUpdatedClusterList);
+        }
+
+        public List<NodeDto> GetUpdatedNodes()
+        {
+            var mappedUpdatedNodeList = EGITRepository.GetUpdatedNodes(dateTime);
+
+            if (mappedUpdatedNodeList != null)
+            {
+                foreach (Node n in mappedUpdatedNodeList)
+                {
+                    if (n.LastUpdateTime > dateTime)
+                    {
+                        dateTime = n.LastUpdateTime;
+                    }
+                }
+            }
+            return mapper.Map<List<NodeDto>>(mappedUpdatedNodeList);
+        }
+
+        public List<VMDto> GetUpdatedVMs()
+        {
+            var mappedUpdatedVMList = EGITRepository.GetUpdatedVMs(dateTime);
+
+            if (mappedUpdatedVMList != null)
+            {
+                foreach (VM vm in mappedUpdatedVMList)
+                {
+                    if (vm.LastUpdateTime > dateTime)
+                    {
+                        dateTime = vm.LastUpdateTime;
+                    }
+                }
+            }
+            return mapper.Map<List<VMDto>>(mappedUpdatedVMList);
+        }
+
+        public List<StorageDto> GetUpdatedStorages()
+        {
+            var mappedUpdatedStorageList = EGITRepository.GetUpdatedStorages(dateTime);
+
+            if (mappedUpdatedStorageList != null)
+            {
+                foreach (Storage st in mappedUpdatedStorageList)
+                {
+                    if (st.LastUpdateTime > dateTime)
+                    {
+                        dateTime = st.LastUpdateTime;
+                    }
+                }
+            }
+            return mapper.Map<List<StorageDto>>(mappedUpdatedStorageList);
+        }
+
+        public List<LunDto> GetUpdatedLuns()
+        {
+            var mappedUpdatedLunList = EGITRepository.GetUpdatedLuns(dateTime);
+
+            if (mappedUpdatedLunList != null)
+            {
+                foreach (Lun l in mappedUpdatedLunList)
+                {
+                    if (l.LastUpdateTime > dateTime)
+                    {
+                        dateTime = l.LastUpdateTime;
+                    }
+                }
+            }
+            return mapper.Map<List<LunDto>>(mappedUpdatedLunList);
+        }
+
+        public List<VpnDto> GetUpdatedVPNs()
+        {
+            var mappedUpdatedVPNList = EGITRepository.GetUpdatedVPNs(dateTime);
+
+            if (mappedUpdatedVPNList != null)
+            {
+                foreach (Vpn vpn in mappedUpdatedVPNList)
+                {
+                    if (vpn.LastUpdateTime > dateTime)
+                    {
+                        dateTime = vpn.LastUpdateTime;
+                    }
+                }
+            }
+            return mapper.Map<List<VpnDto>>(mappedUpdatedVPNList);
         }
     }
 }

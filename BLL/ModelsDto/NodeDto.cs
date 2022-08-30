@@ -14,5 +14,6 @@ namespace BLL.ModelsDto
         public int NodeRemainingCPUCores { get; set; }
         public int ClusterID { get; set; }
         public ClusterDto Cluster { get; set; }
+        public DateTime LastUpdateTime { get; set; }
     }
 }

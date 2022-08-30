@@ -240,5 +240,45 @@ namespace DAL
         {
             return context.Clusters.Where(c => c.ClusterType == ClusterType).ToList();
         }
+
+        public List<Cluster> GetUpdatedClusters(DateTime dateTime)
+        {
+            List<Cluster> updatedClusterList = new List<Cluster>();
+            updatedClusterList = context.Clusters.Where(c => c.LastUpdateTime > dateTime).ToList();
+            return updatedClusterList;
+        }
+
+        public List<Node> GetUpdatedNodes(DateTime dateTime)
+        {
+            List<Node> updatedNodeList = new List<Node>();
+            updatedNodeList = context.Nodes.Where(n => n.LastUpdateTime > dateTime).ToList();
+            return updatedNodeList;
+        }
+
+        public List<VM> GetUpdatedVMs(DateTime dateTime)
+        {
+            List<VM> updatedVMList = new List<VM>();
+            updatedVMList = context.VMs.Where(vm => vm.LastUpdateTime > dateTime).ToList();
+            return updatedVMList;
+        }
+
+        public List<Storage> GetUpdatedStorages(DateTime dateTime)
+        {
+            List<Storage> updatedStorageList = new List<Storage>();
+            updatedStorageList = context.Storages.Where(st => st.LastUpdateTime > dateTime).ToList();
+            return updatedStorageList;
+        }
+        public List<Lun> GetUpdatedLuns(DateTime dateTime)
+        {
+            List<Lun> updatedLunList = new List<Lun>();
+            updatedLunList = context.Luns.Where(l => l.LastUpdateTime > dateTime).ToList();
+            return updatedLunList;
+        }
+        public List<Vpn> GetUpdatedVPNs(DateTime dateTime)
+        {
+            List<Vpn> updatedVPNList = new List<Vpn>();
+            updatedVPNList = context.Vpns.Where(vpn => vpn.LastUpdateTime > dateTime).ToList();
+            return updatedVPNList;
+        }
     }
 }

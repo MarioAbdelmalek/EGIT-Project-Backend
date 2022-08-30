@@ -27,7 +27,7 @@ namespace DAL.Models
         public Client Client { get; set; }
         public Node Node { get; set; }
         public Lun Lun { get; set; }
-
+        public DateTime LastUpdateTime { get; set; }
 
     }
 }

@@ -15,6 +15,7 @@ namespace BLL.ModelsDto
         public int ClientID { get; set; }
         public int NodeID { get; set; }
         public int LunID { get; set; }
+        public DateTime LastUpdateTime { get; set; }
 
     }
 }

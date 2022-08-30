@@ -14,5 +14,6 @@ namespace BLL.ModelsDto
         public int ClusterRemainingRAM { get; set; }
         public int ClusterTotalCPUCores { get; set; }
         public int ClusterRemainingCPUCores { get; set; }
+        public DateTime LastUpdateTime { get; set; }
     }
 }
