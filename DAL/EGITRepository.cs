@@ -240,5 +240,26 @@ namespace DAL
         {
             return context.Clusters.Where(c => c.ClusterType == ClusterType).ToList();
         }
+
+        public List<Cluster> GetUpdatedClusters(DateTime dateTime)
+        {
+            List<Cluster> updatedClusterList = new List<Cluster>();
+            updatedClusterList = context.Clusters.Where(c => c.LastUpdateTime > dateTime).ToList();
+            return updatedClusterList;
+        }
+
+        public List<Node> GetUpdatedNodes(DateTime dateTime)
+        {
+            List<Node> updatedNodeList = new List<Node>();
+            updatedNodeList = context.Nodes.Where(n => n.LastUpdateTime > dateTime).ToList();
+            return updatedNodeList;
+        }
+
+        public List<VM> GetUpdatedVMs(DateTime dateTime)
+        {
+            List<VM> updatedVMList = new List<VM>();
+            updatedVMList = context.VMs.Where(vm => vm.LastUpdateTime > dateTime).ToList();
+            return updatedVMList;
+        }
     }
 }

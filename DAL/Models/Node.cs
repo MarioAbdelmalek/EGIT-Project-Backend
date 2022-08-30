@@ -17,5 +17,6 @@ namespace DAL.Models
         [ForeignKey("Cluster")]
         public int ClusterID { get; set; }
         public Cluster Cluster { get; set; }
+        public DateTime LastUpdateTime { get; set; }
     }
 }

@@ -16,7 +16,6 @@ namespace BLL
         public List<StorageDto> GetAllStorages();
         public StorageDto GetStorage(int id);
         public List<LunDto> GetStorageLuns(int StorageID);
-
         public GenerateErrorDto AddStorage(CreateStorageDto storage);
         public GenerateErrorDto DeleteStorage(int id);
         public GenerateErrorDto UpdateStorage(CreateStorageDto storage, int StorageID);
@@ -34,7 +33,6 @@ namespace BLL
         public GenerateErrorDto AddVpn(CreateVpnDto vpn);
         public GenerateErrorDto UpdateVpn(CreateVpnDto vpn, int VpnID);
         public GenerateErrorDto DeleteVpn(int VpnID);
-
         public GenerateErrorDto AddCluster(CreateClusterDto newCluster);
         public GenerateErrorDto AddClient(CreateClientDto newClient);
         public GenerateErrorDto AddNode(CreateNodeDto newNode);
@@ -55,5 +53,9 @@ namespace BLL
         public GenerateErrorDto DeleteNode(int NodeID);
         public GenerateErrorDto CalculateClusterSpace(int ClusterID);
         public GenerateErrorDto CalculateNodeRemainingSpace(int NodeID);
+        public List<ClusterDto> GetUpdatedClusters();
+        public List<NodeDto> GetUpdatedNodes();
+        public List<VMDto> GetUpdatedVMs();
+
     }
 }
