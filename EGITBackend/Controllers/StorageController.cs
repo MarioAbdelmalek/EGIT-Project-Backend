@@ -63,5 +63,12 @@ namespace EGITBackend.Controllers
             return EGITService.GetStorageLuns(StorageID);
         }
 
+        [Route("getUpdatedStorages")]
+        [HttpGet]
+        public IEnumerable<StorageDto> GetUpdatedStorages()
+        {
+            return EGITService.GetUpdatedStorages();
+        }
+
     }
 }

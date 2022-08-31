@@ -30,13 +30,17 @@ namespace EGITBackend
                 {
                     var hostedServices = scope.ServiceProvider.GetRequiredService<IEGITService>();
 
-                    var lunList = hostedServices.GetAllLuns();
-                    await EGITHub.Clients.All.SendAsync("UpdatedLuns", Newtonsoft.Json.
-                        JsonConvert.SerializeObject(lunList));
+                    var updatedLunList = hostedServices.GetUpdatedLuns();
+                    if (updatedLunList.Count != 0)
+                    {
+                        await EGITHub.Clients.All.SendAsync("UpdatedLuns", Newtonsoft.Json.JsonConvert.SerializeObject(updatedLunList));
+                    }
 
-                    var storageList = hostedServices.GetAllStorages();
-                    await EGITHub.Clients.All.SendAsync("UpdatedStorages", Newtonsoft.Json.
-                        JsonConvert.SerializeObject(storageList));
+                    var updatedStorageList = hostedServices.GetUpdatedStorages();
+                    if (updatedStorageList.Count != 0)
+                    {
+                        await EGITHub.Clients.All.SendAsync("UpdatedStorages", Newtonsoft.Json.JsonConvert.SerializeObject(updatedStorageList));
+                    }
 
                     var updatedClusterList = hostedServices.GetUpdatedClusters();
                     if (updatedClusterList.Count != 0)
@@ -57,9 +61,11 @@ namespace EGITBackend
                         await EGITHub.Clients.All.SendAsync("UpdatedVMs", Newtonsoft.Json.JsonConvert.SerializeObject(updatedVMList));
                     }
 
-                    var vpnList = hostedServices.GetAllVpns();
-                    await EGITHub.Clients.All.SendAsync("UpdatedVPNs", Newtonsoft.Json.
-                        JsonConvert.SerializeObject(vpnList));
+                    var updatedVPNList = hostedServices.GetUpdatedVPNs();
+                    if (updatedVPNList.Count != 0)
+                    {
+                        await EGITHub.Clients.All.SendAsync("UpdatedVPNs", Newtonsoft.Json.JsonConvert.SerializeObject(updatedVPNList));
+                    }
 
                     var clientList = hostedServices.GetAllClients();
                     await EGITHub.Clients.All.SendAsync("UpdatedClients", Newtonsoft.Json.

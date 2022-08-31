@@ -414,7 +414,7 @@ namespace BLL
 
             if (lunVMsList.Count > 0)
             {
-                return new GenerateErrorDto { Response = "Cannot Delete This Lun, Please Delete Its VMs First!", IsValid = true };
+                return new GenerateErrorDto { Response = "Cannot Delete This Lun, Please Delete Its VMs First!", IsValid = false };
             }
 
             try
@@ -480,6 +480,11 @@ namespace BLL
             }
 
         }
+        public List<VMDto> GetLunVMs(int LunID)
+        {
+            return mapper.Map<List<VMDto>>(EGITRepository.GetLunVMs(LunID));
+        }
+
 
         public List<StorageDto> GetAllStorages()
         {
@@ -529,11 +534,12 @@ namespace BLL
                 return new GenerateErrorDto { Response = "Storage Not Found, Cannot Delete Storage!", IsValid = false };
             }
 
+
             var storageLunsList = EGITRepository.GetStorageLuns(StorageID);
 
             if (storageLunsList.Count > 0)
             {
-                return new GenerateErrorDto { Response = "Cannot Delete This Storage, Please Delete Its Luns First!", IsValid = true };
+                return new GenerateErrorDto { Response = "Cannot Delete This Storage, Please Delete Its Luns First!", IsValid = false };
             }
 
             try
