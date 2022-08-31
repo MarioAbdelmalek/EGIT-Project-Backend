@@ -61,6 +61,12 @@ namespace EGITBackend.Controllers
             return EGITService.GetUpdatedLuns();
         }
 
+        [Route("getLunVms")]
+        [HttpGet]
+        public List<VMDto> GetLunVMs(int LunID)
+        {
+            return EGITService.GetLunVMs(LunID);
+        }
 
     }
 }

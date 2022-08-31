@@ -13,6 +13,7 @@ namespace BLL
         public LunDto GetLun(int id);
         public GenerateErrorDto DeleteLun(int id);
         public GenerateErrorDto UpdateLun(CreateLunDto lun, int LunID);
+        public List<VMDto> GetLunVMs(int LunID);
         public List<StorageDto> GetAllStorages();
         public StorageDto GetStorage(int id);
         public List<LunDto> GetStorageLuns(int StorageID);
