@@ -280,5 +280,12 @@ namespace DAL
             updatedVPNList = context.Vpns.Where(vpn => vpn.LastUpdateTime > dateTime).ToList();
             return updatedVPNList;
         }
+
+        public List<Client> GetUpdatedClients(DateTime dateTime)
+        {
+            List<Client> updatedClientList = new List<Client>();
+            updatedClientList = context.Clients.Where(c => c.LastUpdateTime > dateTime).ToList();
+            return updatedClientList;
+        }
     }
 }

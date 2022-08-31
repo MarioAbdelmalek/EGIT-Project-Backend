@@ -30,9 +30,11 @@ namespace EGITBackend
                 {
                     var hostedServices = scope.ServiceProvider.GetRequiredService<IEGITService>();
 
-                    var lunList = hostedServices.GetAllLuns();
-                    await EGITHub.Clients.All.SendAsync("UpdatedLuns", Newtonsoft.Json.
-                        JsonConvert.SerializeObject(lunList));
+                    var updatedLunList = hostedServices.GetUpdatedLuns();
+                    if (updatedLunList.Count != 0)
+                    {
+                        await EGITHub.Clients.All.SendAsync("UpdatedLuns", Newtonsoft.Json.JsonConvert.SerializeObject(updatedLunList));
+                    }
 
                     var updatedStorageList = hostedServices.GetUpdatedStorages();
                     if (updatedStorageList.Count != 0)
@@ -65,12 +67,14 @@ namespace EGITBackend
                         await EGITHub.Clients.All.SendAsync("UpdatedVPNs", Newtonsoft.Json.JsonConvert.SerializeObject(updatedVPNList));
                     }
 
-                    var clientList = hostedServices.GetAllClients();
-                    await EGITHub.Clients.All.SendAsync("UpdatedClients", Newtonsoft.Json.
-                        JsonConvert.SerializeObject(clientList));
+                    var updatedClientList = hostedServices.GetUpdatedClients();
+                    if (updatedClientList.Count != 0)
+                    {
+                        await EGITHub.Clients.All.SendAsync("UpdatedClients", Newtonsoft.Json.JsonConvert.SerializeObject(updatedClientList));
+                    }
                 }
 
-                await Task.Delay(new TimeSpan(0, 0, 10));
+                await Task.Delay(new TimeSpan(0, 0, 5));
             }
         }
     }

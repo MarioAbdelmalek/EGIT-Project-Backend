@@ -10,5 +10,6 @@ namespace DAL.Models
         public string ClientName { get; set; }
         public string ClientSector { get; set; }
         public int ISPID { get; set; }
+        public DateTime LastUpdateTime { get; set; }
     }
 }

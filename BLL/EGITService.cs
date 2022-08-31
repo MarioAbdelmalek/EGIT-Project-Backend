@@ -27,7 +27,8 @@ namespace BLL
             {
                 ClientName = newClient.ClientName,
                 ClientSector = newClient.ClientSector,
-                ISPID = newClient.ISPID
+                ISPID = newClient.ISPID,
+                LastUpdateTime = DateTime.Now
             };
 
             try
@@ -250,6 +251,7 @@ namespace BLL
                 oldClient.ClientName = newClient.ClientName;
                 oldClient.ClientSector = newClient.ClientSector;
                 oldClient.ISPID = newClient.ISPID;
+                oldClient.LastUpdateTime = DateTime.Now;
 
                 EGITRepository.UpdateClient(mapper.Map<Client>(oldClient));
                 return new GenerateErrorDto { Response = "Client Updated Successfully!", IsValid = true };
@@ -1084,6 +1086,23 @@ namespace BLL
                 }
             }
             return mapper.Map<List<VpnDto>>(mappedUpdatedVPNList);
+        }
+
+        public List<ClientDto> GetUpdatedClients()
+        {
+            var mappedClientList = EGITRepository.GetUpdatedClients(dateTime);
+
+            if (mappedClientList != null)
+            {
+                foreach (Client c in mappedClientList)
+                {
+                    if (c.LastUpdateTime > dateTime)
+                    {
+                        dateTime = c.LastUpdateTime;
+                    }
+                }
+            }
+            return mapper.Map<List<ClientDto>>(mappedClientList);
         }
     }
 }
