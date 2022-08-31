@@ -57,6 +57,7 @@ namespace DAL
         List<Storage> GetUpdatedStorages(DateTime dateTime);
         List<Lun> GetUpdatedLuns(DateTime dateTime);
         List<Vpn> GetUpdatedVPNs(DateTime dateTime);
+        List<Client> GetUpdatedClients(DateTime dateTime);
 
     }
 }

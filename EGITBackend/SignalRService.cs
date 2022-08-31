@@ -67,12 +67,14 @@ namespace EGITBackend
                         await EGITHub.Clients.All.SendAsync("UpdatedVPNs", Newtonsoft.Json.JsonConvert.SerializeObject(updatedVPNList));
                     }
 
-                    var clientList = hostedServices.GetAllClients();
-                    await EGITHub.Clients.All.SendAsync("UpdatedClients", Newtonsoft.Json.
-                        JsonConvert.SerializeObject(clientList));
+                    var updatedClientList = hostedServices.GetUpdatedClients();
+                    if (updatedClientList.Count != 0)
+                    {
+                        await EGITHub.Clients.All.SendAsync("UpdatedClients", Newtonsoft.Json.JsonConvert.SerializeObject(updatedClientList));
+                    }
                 }
 
-                await Task.Delay(new TimeSpan(0, 0, 10));
+                await Task.Delay(new TimeSpan(0, 0, 5));
             }
         }
     }

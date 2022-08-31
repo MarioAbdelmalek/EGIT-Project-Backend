@@ -60,6 +60,7 @@ namespace BLL
         public List<StorageDto> GetUpdatedStorages();
         public List<LunDto> GetUpdatedLuns();
         public List<VpnDto> GetUpdatedVPNs();
+        public List<ClientDto> GetUpdatedClients();
 
     }
 }
